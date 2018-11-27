@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.CategoryService;
+package softServe.academy.cinemasoft.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,6 @@ public class CategoryService {
     public Category addCategory(Category categoryToAdd){
         return this.categoryRepository.save(categoryToAdd);
     }
-    
+
 
 }
