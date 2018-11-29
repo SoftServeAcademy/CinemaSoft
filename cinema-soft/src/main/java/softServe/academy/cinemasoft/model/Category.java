@@ -16,7 +16,6 @@ public class Category {
 
     //private List<Movie> movies;
 
-
     public Category() {
     }
 
