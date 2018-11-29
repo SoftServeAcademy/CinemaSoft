@@ -23,7 +23,7 @@ public class UserService {
         user.setLastName(userDto.getLastName());
         user.setEmail(userDto.getEmail());
         user.setUserName(userDto.getUserName());
-        user.setPassword(user.getPassword());//ENCODE PASSWORD LATER!!!
+        user.setPassword(userDto.getPassword());//ENCODE PASSWORD LATER!!!
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
         return userRepository.save(user);
     }
