@@ -3,13 +3,14 @@ package softServe.academy.cinemasoft.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import softServe.academy.cinemasoft.entity.MovieSchedule;
 import softServe.academy.cinemasoft.service.MovieScheduleService;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class MovieScheduleController {
 
     private MovieScheduleService movieScheduleService;
