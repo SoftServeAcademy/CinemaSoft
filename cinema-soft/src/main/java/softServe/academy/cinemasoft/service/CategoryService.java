@@ -8,8 +8,13 @@ import softServe.academy.cinemasoft.repository.CategoryRepository;
 @Service
 public class CategoryService {
 
-    @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
+
     public Category addCategory(Category categoryToAdd){
         return this.categoryRepository.save(categoryToAdd);
     }
