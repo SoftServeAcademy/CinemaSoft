@@ -1,5 +1,9 @@
 package softServe.academy.cinemasoft.controller;
 
+import softServe.academy.cinemasoft.UserService.UserService;
+import softServe.academy.cinemasoft.dto.UserDTO;
+import softServe.academy.cinemasoft.model.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,23 +13,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import softServe.academy.cinemasoft.UserService.UserService;
-import softServe.academy.cinemasoft.dto.UserDTO;
-import softServe.academy.cinemasoft.model.User;
-
-import javax.validation.Valid;
 
 @Controller
 public class UserController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/register")
     public ModelAndView getRegisterForm(Model model){
         model.addAttribute("user", new UserDTO());
-        ModelAndView modelAndView = new ModelAndView("register");
-        return modelAndView;
+        return new ModelAndView("register");
     }
 
     @PostMapping("/register")
@@ -37,6 +39,7 @@ public class UserController {
         }
 
         User existing = userService.findUserByEmail(user.getEmail());
+
         if (existing != null){
             return null;
         }

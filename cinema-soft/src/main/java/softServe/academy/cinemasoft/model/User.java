@@ -1,7 +1,5 @@
 package softServe.academy.cinemasoft.model;
 
-
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,10 +36,6 @@ public class User {
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
-
-    //Comments
-
-    //Ticket
 
     public User(){
 

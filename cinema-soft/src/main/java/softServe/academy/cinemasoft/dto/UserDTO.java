@@ -4,6 +4,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 public class UserDTO {
+
     @NotEmpty
     private String firstName;
 
@@ -19,7 +20,6 @@ public class UserDTO {
     @Email
     @NotEmpty
     private String email;
-
 
     public String getFirstName() {
         return firstName;
@@ -52,8 +52,6 @@ public class UserDTO {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
 
     public String getEmail() {
         return email;
