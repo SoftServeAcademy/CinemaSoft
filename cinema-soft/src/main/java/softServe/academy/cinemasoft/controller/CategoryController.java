@@ -7,6 +7,10 @@ import softServe.academy.cinemasoft.service.CategoryService;
 @Controller
 public class CategoryController {
 
-    @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 }
