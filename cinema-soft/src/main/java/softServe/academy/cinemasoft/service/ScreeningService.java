@@ -1,7 +1,5 @@
 package softServe.academy.cinemasoft.service;
 
-
-
 import softServe.academy.cinemasoft.repository.ScreeningRepository;
 import softServe.academy.cinemasoft.model.Screening;
 
@@ -12,19 +10,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ScreeningService {
 
-    @Autowired
     private ScreeningRepository screeningRepository;
 
+    @Autowired
     public Screening addScreening(Screening screening){
     return this.screeningRepository.save(screening);
     }
-//    public Screening deleteScreening(Screening screening){
-//
-//    }
-//    public Screening editScreening(Screening screening){
-//
-//    }
-
-
 
 }

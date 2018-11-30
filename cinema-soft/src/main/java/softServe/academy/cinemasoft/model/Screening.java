@@ -9,15 +9,12 @@ public class Screening {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
-    @Column(unique = true)
-    String startTime;
+    public String startTime;
 
     // to be added
-    //    Movie movieToProject;
     //    Auditorium auditorium;
-
-//    @ManyToOne
-//    private Movie movie;
+    //    @ManyToOne
+    //    Movie movieToProject;
 
     public Screening(){
 
@@ -43,12 +40,12 @@ public class Screening {
         this.startTime = startTime;
     }
 
-//    public void setMovie() {
-//        this.movie = movie;
+//    public void setMovieProjection(Movie movieToProject) {
+//        this.movieToProject = movieToProject;
 //    }
 //
-//    public Movie getMovie(){
-//        return movie;
+//    public Movie getMovieProjection(){
+//        return movieToProject;
 //    }
 
 }
