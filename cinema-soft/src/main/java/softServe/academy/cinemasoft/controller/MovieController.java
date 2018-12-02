@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.controllers;
+package softServe.academy.cinemasoft.controller;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import softServe.academy.cinemasoft.models.entities.Movie;
-import softServe.academy.cinemasoft.services.MovieService;
+import softServe.academy.cinemasoft.model.entities.Movie;
+import softServe.academy.cinemasoft.service.MovieService;
 
 @Controller
 @RequestMapping("/movies")

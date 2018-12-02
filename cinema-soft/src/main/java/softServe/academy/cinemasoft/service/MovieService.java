@@ -1,8 +1,8 @@
-package softServe.academy.cinemasoft.services;
+package softServe.academy.cinemasoft.service;
 
 import java.util.List;
 
-import softServe.academy.cinemasoft.models.entities.Movie;
+import softServe.academy.cinemasoft.model.entities.Movie;
 
 public interface MovieService {
 	

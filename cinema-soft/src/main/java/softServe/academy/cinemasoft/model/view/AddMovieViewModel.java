@@ -1,15 +1,15 @@
-package softServe.academy.cinemasoft.models.view;
+package softServe.academy.cinemasoft.model.view;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddMovieViewModel {
 	
 	    private String id;
-		private ArrayList<String> comments;
-
+		
+	 
+	    
+	    
 		public AddMovieViewModel() {
-	        this.comments = new ArrayList<String>();
+	        
 	    }
 
 	    public String getId() {
