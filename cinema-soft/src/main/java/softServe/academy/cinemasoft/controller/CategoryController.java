@@ -36,8 +36,6 @@ public class CategoryController {
             }
         }
         categoryService.addCategory(category);
-
         return "redirect:/add-category";
     }
-
 }
