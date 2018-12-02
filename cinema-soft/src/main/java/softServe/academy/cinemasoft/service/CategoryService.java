@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import softServe.academy.cinemasoft.model.entities.Category;
 import softServe.academy.cinemasoft.repository.CategoryRepository;
 
+import java.util.List;
+
 @Service
 public class CategoryService {
 
@@ -19,4 +21,13 @@ public class CategoryService {
     public Category addCategory(Category categoryToAdd){
         return this.categoryRepository.save(categoryToAdd);
     }
+
+    public void removeCategory(Category category) {
+        categoryRepository.delete(category);
+    }
+
+    public List<Category> findAll(){
+        return categoryRepository.findAll();
+    }
+
 }

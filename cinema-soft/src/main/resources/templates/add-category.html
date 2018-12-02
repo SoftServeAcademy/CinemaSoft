@@ -22,7 +22,7 @@
 	</head>
 	<body>
 		
-		<!-- Wrapper {categoies.}-->
+		<!-- Wrapper -->
 		<div class="wrapper">
 
 			<!-- Na	vigation -->
@@ -100,20 +100,19 @@
 			<div class="container section negative-margin contact">
 				<div class="row">
 					<div class="col-sm-12">
-						<h2>List category</h2>
+						<h2>Add category</h2>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						<form method="post" th:action="@{/editCategory}">
+						<form action="#" th:object="${category}"  th:action="@{/addCategory}" method="post">
 							<div class="form-group">
-								<select name="category">
-									<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.nameOfCategory}">
-									</option>
-								</select>&nbsp
-								<input type="submit" name="edit" class="btn btn-ghost" value="Edit" />
-								<input type="submit" name="delete" class="btn btn-ghost" value="Delete" />
-							</div>																					
+								<label>Category</label>
+								<input th:field="*{nameOfCategory}" type="text" />
+							</div>														
+							<div class="form-group right-align">
+								<button type="submit" class="btn btn-ghost">Add</button>
+							</div>
 						</form>
 					</div>
 				</div>
