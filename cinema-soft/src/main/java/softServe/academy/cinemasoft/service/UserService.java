@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.UserService;
+package softServe.academy.cinemasoft.service;
 
 import softServe.academy.cinemasoft.dto.UserDTO;
 import softServe.academy.cinemasoft.model.Role;

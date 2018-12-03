@@ -1,6 +1,6 @@
 package softServe.academy.cinemasoft.controller;
 
-import softServe.academy.cinemasoft.UserService.UserService;
+import softServe.academy.cinemasoft.service.UserService;
 import softServe.academy.cinemasoft.dto.UserDTO;
 import softServe.academy.cinemasoft.model.User;
 
