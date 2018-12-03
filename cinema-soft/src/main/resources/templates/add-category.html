@@ -105,13 +105,13 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						<form>							
+						<form action="#" th:object="${category}"  th:action="@{/addCategory}" method="post">
 							<div class="form-group">
 								<label>Category</label>
-								<input type="text" />
+								<input th:field="*{nameOfCategory}" type="text" />
 							</div>														
 							<div class="form-group right-align">
-								<button class="btn btn-ghost">Add</button>
+								<button type="submit" class="btn btn-ghost">Add</button>
 							</div>
 						</form>
 					</div>
