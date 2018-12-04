@@ -100,55 +100,18 @@
 			<div class="container section negative-margin contact">
 				<div class="row">
 					<div class="col-sm-12">
-						<h2>Add movie</h2>
+						<h2>Add category</h2>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						<form>
+						<form action="#" th:object="${category}"  th:action="@{/addCategory}" method="post">
 							<div class="form-group">
-								<label>Title *</label>
-								<input type="text" />
-							</div>
-							<div class="form-group">
-								<label>Director *</label>
-								<input type="text" />
-							</div>
-							<div class="form-group">
-								<label>Cast *</label>
-								<input type="text" />
-							</div>
-							<div class="form-group">
-								<label>Description *</label>
-								<input type="text" />
-							</div>
-							<div class="form-group">
-								<label>Cover *</label>														
-								<input type="file" id="cover" 
-								name="cover" accept="image/png, image/jpeg">
-							</div>	
-							<div class="form-group">
-								<select name="category">
-									<option value="text" selected>Choose category</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="2">3</option>
-								</select>											
-							</div>	
-							<div class="form-group">
-								<label>Trailer *</label>
-								<input type="text" />
-							</div>		
-							<div class="form-group">
-								<label>Duration *</label>
-								<input type="text" />
-							</div>
-							<div class="form-group">
-								<label>Rating *</label>
-								<input type="text" />
-							</div>
+								<label>Category</label>
+								<input th:field="*{nameOfCategory}" type="text" />
+							</div>														
 							<div class="form-group right-align">
-								<button class="btn btn-ghost">Add movie</button>
+								<button type="submit" class="btn btn-ghost">Add</button>
 							</div>
 						</form>
 					</div>
@@ -163,7 +126,9 @@
 					</div>
 				</div>
 			</footer>
-		</div>		
+
+		</div>
+		
 		<script src="js/jquery-2.2.4.min.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>

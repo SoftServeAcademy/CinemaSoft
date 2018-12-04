@@ -22,7 +22,7 @@
 	</head>
 	<body>
 		
-		<!-- Wrapper -->
+		<!-- Wrapper {categoies.}-->
 		<div class="wrapper">
 
 			<!-- Na	vigation -->
@@ -100,56 +100,20 @@
 			<div class="container section negative-margin contact">
 				<div class="row">
 					<div class="col-sm-12">
-						<h2>Add movie</h2>
+						<h2>List category</h2>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						<form>
-							<div class="form-group">
-								<label>Title *</label>
-								<input type="text" />
-							</div>
-							<div class="form-group">
-								<label>Director *</label>
-								<input type="text" />
-							</div>
-							<div class="form-group">
-								<label>Cast *</label>
-								<input type="text" />
-							</div>
-							<div class="form-group">
-								<label>Description *</label>
-								<input type="text" />
-							</div>
-							<div class="form-group">
-								<label>Cover *</label>														
-								<input type="file" id="cover" 
-								name="cover" accept="image/png, image/jpeg">
-							</div>	
+						<form method="post" th:action="@{/editCategory}">
 							<div class="form-group">
 								<select name="category">
-									<option value="text" selected>Choose category</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="2">3</option>
-								</select>											
-							</div>	
-							<div class="form-group">
-								<label>Trailer *</label>
-								<input type="text" />
-							</div>		
-							<div class="form-group">
-								<label>Duration *</label>
-								<input type="text" />
-							</div>
-							<div class="form-group">
-								<label>Rating *</label>
-								<input type="text" />
-							</div>
-							<div class="form-group right-align">
-								<button class="btn btn-ghost">Add movie</button>
-							</div>
+									<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.nameOfCategory}">
+									</option>
+								</select>&nbsp
+								<input type="submit" name="edit" class="btn btn-ghost" value="Edit" />
+								<input type="submit" name="delete" class="btn btn-ghost" value="Delete" />
+							</div>																					
 						</form>
 					</div>
 				</div>
@@ -163,7 +127,9 @@
 					</div>
 				</div>
 			</footer>
-		</div>		
+
+		</div>
+		
 		<script src="js/jquery-2.2.4.min.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
