@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -99,35 +100,38 @@
 			<div class="container section negative-margin contact">
 				<div class="row">
 					<div class="col-sm-12">
-						<h2>Register</h2>
+						<h2>Book ticket</h2>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						<form action="#" th:object="${user}"  th:action="@{/register}" method="post">
-							<div class="form-group">
-								<label>Name *</label>
-								<input type="text" th:field="*{firstName}" placeholder="First Name">
-							</div>
-							<div class="form-group">
-								<label>Last Name *</label>
-								<input type="text" th:field="*{lastName}" placeholder="Last Name" >
-							</div>
-							<div class="form-group">
-								<label>Email *</label>
-								<input type="email" th:field="*{email}" placeholder="Email">
-							</div>
-							<div class="form-group">
-								<label>Username *</label>
-								<input type="text" th:field="*{userName}" placeholder="Username">
-							</div>
-							<div class="form-group">
-								<label>Password *</label>
-								<input type="password" th:field="*{password}" placeholder="Password">
-							</div>
-							<div class="form-group right-align">
-								<button type="submit" class="btn btn-ghost">Register</button>
-							</div>
+						 <form>														
+								<div class="form-group">
+									<select name="movie">
+									  <option value="text" selected>Choose number of seats</option>
+									  <option value="1">1</option>
+									  <option value="2">2</option>
+									  <option value="3">3</option>
+									</select>&nbsp									
+								</div>
+								<div class="form-group">
+									<select name="movie">
+									  <option value="text" selected>Choose column</option>
+									  <option value="1">1</option>
+									  <option value="2">2</option>
+									  <option value="3">3</option>
+									</select>&nbsp									
+								</div>	
+								<div class="form-group">
+									<select name="movie">
+									  <option value="text" selected>Choose row</option>
+									  <option value="1">1</option>
+									  <option value="2">2</option>
+									  <option value="3">3</option>
+									</select>&nbsp									
+								</div> <br/>
+								<button class="btn btn-ghost">Book ticket</button>								
+							</div>																					
 						</form>
 					</div>
 				</div>
@@ -141,7 +145,9 @@
 					</div>
 				</div>
 			</footer>
-		</div>		
+
+		</div>
+		
 		<script src="js/jquery-2.2.4.min.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -153,5 +159,4 @@
 		<script src="https://use.fontawesome.com/4dfd2d448a.js"></script>
 		<script src="js/custom.js"></script>
 	</body>
->>>>>>> cff1706dbc0293d26f6fe4f19f8f6691e212bd99
 </html>
