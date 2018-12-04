@@ -17,7 +17,6 @@ import java.util.List;
 @Controller
 public class MovieScheduleController {
 
-    @Autowired
     private MovieScheduleService movieScheduleService;
 
     @Autowired
