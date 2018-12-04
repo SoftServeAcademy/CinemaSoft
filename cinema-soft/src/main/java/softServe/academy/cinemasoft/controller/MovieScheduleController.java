@@ -9,7 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import softServe.academy.cinemasoft.entity.MovieSchedule;
+import softServe.academy.cinemasoft.model.MovieSchedule;
 import softServe.academy.cinemasoft.service.MovieScheduleService;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class MovieScheduleController {
     }
 
     @GetMapping("/movieSchedule")
-    public ModelAndView test(Model model) {
+    public ModelAndView getMovieSchedule(Model model) {
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("movieSchedules", movieScheduleService.findAll());
         return modelAndView;
