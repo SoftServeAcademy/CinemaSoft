@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import softServe.academy.cinemasoft.entity.MovieSchedule;
 import softServe.academy.cinemasoft.service.MovieScheduleService;
 
@@ -13,6 +17,7 @@ import java.util.List;
 @Controller
 public class MovieScheduleController {
 
+    @Autowired
     private MovieScheduleService movieScheduleService;
 
     @Autowired
@@ -20,29 +25,68 @@ public class MovieScheduleController {
         this.movieScheduleService = movieScheduleService;
     }
 
-    @GetMapping("/movieSchedules")
-    public ResponseEntity<List<?>> getAllMovieSchedule() {
-        return ResponseEntity.ok(this.movieScheduleService.findAllMovieSchedule());
-    }
-
-    @GetMapping("/movieScheduleByName/{name}")
-    public ResponseEntity<?> getStudentByName(@PathVariable String name){
-        List<MovieSchedule> result = this.movieScheduleService.findByName(name);
-        return ResponseEntity.ok(result);
-    }
-
-    @PutMapping("/movieSchedule")
-    public ResponseEntity<?> createMovieSchedule(@RequestBody MovieSchedule movieSchedule){
-        this.movieScheduleService.createMovieSchedule(movieSchedule);
+    @PostMapping("/movieSchedule")
+    @ResponseBody
+    public ResponseEntity<?> createScheduledScreening(@RequestBody MovieSchedule movieSchedule){
+        movieScheduleService.createMovieSchedule(movieSchedule);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    public void addScreening(){
-
+    @GetMapping("/movieSchedule/{id}")
+    @ResponseBody
+    public ResponseEntity<?> getBookById(@PathVariable Integer id){
+        MovieSchedule result = movieScheduleService.getMovieScheduleById(id);
+        if (result !=null){
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    public void showWeeklySchedule(){
+    @GetMapping("/movieSchedules")
+    @ResponseBody
+    public ResponseEntity<List<MovieSchedule>> findAllBooks(){
+        return ResponseEntity.ok(movieScheduleService.findAll());
+    }
 
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/movieSchedule")
+    public ModelAndView test(Model model) {
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("movieSchedules", movieScheduleService.findAll());
+        return modelAndView;
+    }
+
+    @GetMapping("/addMovieSchedule")
+    public String addMovieScheduleView(Model model){
+        model.addAttribute("movieSchedule", new MovieSchedule());
+        return "addMovieSchedule";
+    }
+
+    @PostMapping("/addMovieSchedule")
+    public String addMovieScheduleFromView(@ModelAttribute("movieSchedule") MovieSchedule movieSchedule, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            for(ObjectError error: bindingResult.getAllErrors()){
+                System.out.println(error);
+            }
+        }
+        movieScheduleService.createMovieSchedule(movieSchedule);
+        return  "redirect:/movieSchedule";
+    }
+
+    @DeleteMapping("/editMovieSchedule")
+    public String deleteMovieScheduleView(@ModelAttribute("category") MovieSchedule movieSchedule) {
+        movieScheduleService.deleteMovieSchedule(movieSchedule);
+        return  "redirect:/movieSchedule";
+    }
+
+    @RequestMapping(value="/editMovieSchedule", method = RequestMethod.POST, params = {"edit"})
+    public String editMovieScheduleView(@ModelAttribute("movieSchedule") MovieSchedule movieSchedule){
+        return  "redirect:/movieSchedule";
     }
 
 }

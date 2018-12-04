@@ -17,25 +17,20 @@ public class MovieScheduleService {
         this.movieScheduleRepository = movieScheduleRepository;
     }
 
-    public List<MovieSchedule> findByName(String name){
-        return movieScheduleRepository.findByName(name);
+    public void createMovieSchedule(MovieSchedule movieSchedule){
+        movieScheduleRepository.save(movieSchedule);
     }
 
-    public MovieSchedule createMovieSchedule(MovieSchedule movieSchedule){
-        return this.movieScheduleRepository.save(movieSchedule);
+    public void deleteMovieSchedule(MovieSchedule movieSchedule) {
+        movieScheduleRepository.delete(movieSchedule);
     }
 
-    public void addScreening() {
-
+    public List<MovieSchedule> findAll(){
+        return movieScheduleRepository.findAll();
     }
 
-    public void showWeekSchedule() {
-
-    }
-
-    public List<?> findAllMovieSchedule() {
-        return this.movieScheduleRepository.findAll();
-
+    public MovieSchedule getMovieScheduleById(Integer id){
+        return movieScheduleRepository.getOne(id);
     }
 
 }

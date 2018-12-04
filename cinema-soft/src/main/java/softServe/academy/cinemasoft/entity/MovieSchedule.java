@@ -1,22 +1,34 @@
 package softServe.academy.cinemasoft.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
-import java.util.List;
+import javax.persistence.*;
 
 @Entity
 public class MovieSchedule {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String movieName;
+    private String hours;
 
-    // ? needs to be replaced by Movie
-    private List<?> scheduleScreening;
-    private Date currentDate;
+    public MovieSchedule() {
+    }
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public String getHours() {
+        return hours;
+    }
+
+    public void setHours(String hours) {
+        this.hours = hours;
+    }
 
     public Integer getId() {
         return id;
@@ -26,19 +38,4 @@ public class MovieSchedule {
         this.id = id;
     }
 
-    public List<?> getScheduleScreening() {
-        return scheduleScreening;
-    }
-
-    public void setScheduleScreening(List<?> scheduleScreening) {
-        this.scheduleScreening = scheduleScreening;
-    }
-
-    public Date getCurrentDate() {
-        return currentDate;
-    }
-
-    public void setCurrentDate(Date currentDate) {
-        this.currentDate = currentDate;
-    }
 }
