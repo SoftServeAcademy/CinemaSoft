@@ -45,7 +45,7 @@ public class MovieScheduleController {
 
     @GetMapping("/movieSchedules")
     @ResponseBody
-    public ResponseEntity<List<MovieSchedule>> findAllBooks(){
+    public ResponseEntity<List<MovieSchedule>> findAllMovieSchedules(){
         return ResponseEntity.ok(movieScheduleService.findAll());
     }
 
