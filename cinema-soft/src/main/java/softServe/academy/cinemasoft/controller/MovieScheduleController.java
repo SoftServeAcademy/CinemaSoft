@@ -79,13 +79,8 @@ public class MovieScheduleController {
     }
 
     @DeleteMapping("/editMovieSchedule")
-    public String deleteMovieScheduleView(@ModelAttribute("category") MovieSchedule movieSchedule) {
+    public String deleteMovieScheduleView(@ModelAttribute("movieSchedule") MovieSchedule movieSchedule) {
         movieScheduleService.deleteMovieSchedule(movieSchedule);
-        return  "redirect:/movieSchedule";
-    }
-
-    @RequestMapping(value="/editMovieSchedule", method = RequestMethod.POST, params = {"edit"})
-    public String editMovieScheduleView(@ModelAttribute("movieSchedule") MovieSchedule movieSchedule){
         return  "redirect:/movieSchedule";
     }
 
