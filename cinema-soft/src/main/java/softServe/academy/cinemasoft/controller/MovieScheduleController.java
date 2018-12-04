@@ -54,6 +54,11 @@ public class MovieScheduleController {
         return "index";
     }
 
+    @GetMapping("/program")
+    public String program() {
+        return "program";
+    }
+
     @GetMapping("/movieSchedule")
     public ModelAndView getMovieSchedule(Model model) {
         ModelAndView modelAndView = new ModelAndView("index");
