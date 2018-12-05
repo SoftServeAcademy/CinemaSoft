@@ -30,7 +30,7 @@ public class CommentController {
 	@GetMapping("/addComment")
 	public String addCommentView(Model model) {
 		model.addAttribute("comment", new Comment());
-		return "movie.html";
+		return "add-comment";
 	}
 
 	// ADD
@@ -60,9 +60,9 @@ public class CommentController {
 		return "redirect:/allComments";
 	}
 	
-	//MOVIE_BY_NAME
-	//@GetMapping("/comments/{movie}")
-   // @ResponseBody
+	//BOOK_BY_NAME
+//	@GetMapping("/comments/{movie}")
+//    @ResponseBody
 //    public ResponseEntity<?> getBookById(@PathVariable Movie movie){
 //        Comment result = commentService.findByMovie(movie);
 //        if (result !=null){
