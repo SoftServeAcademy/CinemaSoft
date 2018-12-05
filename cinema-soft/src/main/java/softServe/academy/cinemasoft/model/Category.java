@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.model.entities;
+package softServe.academy.cinemasoft.model;
 
 
 import javax.persistence.*;

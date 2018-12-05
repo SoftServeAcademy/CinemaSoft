@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.model.binding;
+package softServe.academy.cinemasoft.dto;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package softServe.academy.cinemasoft.service;
 
 import java.util.List;
 
-import softServe.academy.cinemasoft.model.entities.Movie;
+import softServe.academy.cinemasoft.model.Movie;
 
 public interface MovieService {
 	
