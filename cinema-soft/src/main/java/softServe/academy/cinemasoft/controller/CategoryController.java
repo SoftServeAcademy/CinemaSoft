@@ -60,4 +60,10 @@ public class CategoryController {
     public String editCategoryView(@ModelAttribute("category") Category category) {
         return "redirect:/categories";
     }
+
+    @GetMapping("/index")
+    public String indexView(Model model) {
+        //model.addAttribute("category", new Category());
+        return "index";
+    }
 }
