@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ScreeningRepository extends JpaRepository <Screening, Integer> {
+public interface ScreeningRepository extends JpaRepository<Screening, Integer> {
 
-    //List<Screening> findAllScreenings();
+	// List<Screening> findAllScreenings();
 
 }
