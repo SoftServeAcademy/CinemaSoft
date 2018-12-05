@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.model.entities;
+package softServe.academy.cinemasoft.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +15,7 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
-    public String id;
+    public Integer id;
 
     @Column(nullable = false, unique = true)
     public String title;
@@ -57,11 +57,11 @@ public class Movie {
     */
 
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -121,7 +121,7 @@ public class Movie {
 		this.rating = rating;
 	}
 
-	public Movie(String id, String title, String director, String trailer, String description, String duration,
+	public Movie(Integer id, String title, String director, String trailer, String description, String duration,
 			double rating) {
 		this.id = id;
 		this.title = title;

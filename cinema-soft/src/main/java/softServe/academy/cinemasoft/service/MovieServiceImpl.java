@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import softServe.academy.cinemasoft.model.entities.Movie;
+import softServe.academy.cinemasoft.model.Movie;
 import softServe.academy.cinemasoft.repository.MovieRepository;
 
 @Service

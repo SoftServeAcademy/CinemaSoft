@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import softServe.academy.cinemasoft.model.entities.Movie;
+import softServe.academy.cinemasoft.model.Movie;
 import softServe.academy.cinemasoft.service.MovieService;
 
 @Controller

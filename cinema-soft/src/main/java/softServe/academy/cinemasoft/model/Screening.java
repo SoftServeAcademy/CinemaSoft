@@ -9,7 +9,7 @@ public class Screening {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
-    public String startTime;
+    private String startTime;
 
     // to be added
     //    Auditorium auditorium;
