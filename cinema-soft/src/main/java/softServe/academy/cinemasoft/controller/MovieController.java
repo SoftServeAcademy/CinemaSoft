@@ -18,15 +18,14 @@ import softServe.academy.cinemasoft.service.MovieService;
 @RequestMapping("/movies")
 public class MovieController {
 	
-	Movie mockDataMovie = new Movie("111", "aaaaaaaaa", "bbbbbbbb", "ssssss", "ffffffff", "vvvvvvvv", 12.5);
-	
+
+
 	@Autowired
 	 private MovieService movieService;
     
 	@GetMapping("/add")
     public ModelAndView addMovie(ModelAndView modelAndView) {
         modelAndView.setViewName("add-movie");
-        modelAndView.addObject("model", mockDataMovie);
         return modelAndView;
     }
 	
