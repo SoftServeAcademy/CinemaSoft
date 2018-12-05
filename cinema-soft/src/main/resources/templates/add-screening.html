@@ -105,27 +105,15 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						 <form>	<!-- Start method here-->
-								<div class="form-group">
-									<select name="movie">
-									  <option value="text" selected>Choose movie</option>
-									  <option value="1">1</option>
-									  <option value="2">2</option>
-									  <option value="3">3</option>
-									</select>&nbsp									
-								</div>	
-								<div class="form-group">
-									<label>Date *</label>
-									<input type="text" />
-								</div>
+						<form action="#" th:object="${screening}"  th:action="@{/addScreening}" method="post">
+
 								<div class="form-group">
 									<label>Start Hour *</label>
-									<input type="text" />
+									<input th:field ="*{startTime}" type="text" />
 								</div>
 								<div class="form-group right-align">
-								<button class="btn btn-ghost">Add screening</button>
-							</div>
-							</div>																					
+								<button type="submit" class="btn btn-ghost">Add screening</button>
+								</div>
 						</form>
 					</div>
 				</div>

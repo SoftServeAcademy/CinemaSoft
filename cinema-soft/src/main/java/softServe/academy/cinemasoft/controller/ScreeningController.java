@@ -1,7 +1,7 @@
 package softServe.academy.cinemasoft.controller;
 
-import org.springframework.http.HttpMethod;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import softServe.academy.cinemasoft.model.Screening;
@@ -27,6 +27,12 @@ public class ScreeningController {
         this.screeningService = screeningService;
     }
 
+    //GET INDEX
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+
     //GET BY ID
     @GetMapping("/screening/{id}")
     public ResponseEntity<?> getScreeningById(@PathVariable int id){
@@ -36,13 +42,22 @@ public class ScreeningController {
         } else {
             return ResponseEntity.notFound().build();
         }
-   }
+    }
+
     //ADD
-   @PostMapping("/screening/add/{id}")
-   public ResponseEntity<?> createScreening(@RequestBody Screening screening){
+    @GetMapping(value = "/addScreening")
+    public String addScreening(Model model){
+        model.addAttribute("screening", new Screening());
+        return "add-screening";
+    }
+
+    //ADD
+    @PostMapping("/addScreening")
+    public String createScreening(@ModelAttribute("screening") Screening screening, BindingResult bindingResult){
         screeningService.createScreening(screening);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-   }
+        return "redirect:/screening";
+    }
+
 
     //GET ALL
     @GetMapping("/screening")
@@ -51,26 +66,25 @@ public class ScreeningController {
     }
 
     //DELETE
-    @DeleteMapping(value ="/screening/remove/{id}")
+    @DeleteMapping(value ="/removeScreening/{id}")
     public String deleteScreening(@PathVariable("id") int Id){
         screeningService.deleteScreening(Id);
         return "redirect:/screening";
     }
 
     //EDIT
-    @GetMapping(value = "/screening/edit")
-    public ModelAndView editScreening(@PathVariable("id") int Id){
-        Screening ss = screeningService.getScreeningById(Id);
-        ModelAndView mav = new ModelAndView("editScreening");
+    @GetMapping(value = "/editScreening/{id}")
+    public ModelAndView editScreening(@PathVariable("id") int id){
+        Screening ss = screeningService.getScreeningById(id);
+        ModelAndView mav = new ModelAndView("edit-screening");
         mav.addObject("screening", ss);
         return mav;
     }
 
-    @PostMapping(value = "/screening/edit", params = {"startHour"})
-    public String postEditScreening(@ModelAttribute("screening") Screening screening){
-            String st = screening.getStartTime();
-            int id = screening.getId();
-            screeningService.editScreening(id, st);
+    @PostMapping(value = "/editScreening/{id}")
+    public String postEditScreening(@ModelAttribute("screening") Screening screening,@PathVariable("id") int Id){
+        String st = screening.getStartTime();
+        screeningService.editScreening(Id, st);
         return "redirect:/screening";
     }
 
