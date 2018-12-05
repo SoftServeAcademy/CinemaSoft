@@ -14,8 +14,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-import static com.sun.deploy.trace.Trace.flush;
-import static org.springframework.transaction.support.TransactionSynchronizationManager.clear;
 
 @Controller
 public class ScreeningController {

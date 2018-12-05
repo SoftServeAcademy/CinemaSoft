@@ -53,7 +53,10 @@ public class CategoryController {
         categoryService.removeCategory(category);
         return  "redirect:/categories";
     }
-
+    @GetMapping("/index")
+    public String showIndexView(){
+        return "index";
+    }
     @RequestMapping(value="/editCategory", method = RequestMethod.POST, params = {"edit"})
     public String editCategoryView(@ModelAttribute("category") Category category){
         return  "redirect:/categories";
