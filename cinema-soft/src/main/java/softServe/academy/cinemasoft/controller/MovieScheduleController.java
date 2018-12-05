@@ -26,14 +26,14 @@ public class MovieScheduleController {
 
     @PostMapping("/movieSchedule")
     @ResponseBody
-    public ResponseEntity<?> createScheduledScreening(@RequestBody MovieSchedule movieSchedule){
+    public ResponseEntity<?> createMovieSchedule(@RequestBody MovieSchedule movieSchedule){
         movieScheduleService.createMovieSchedule(movieSchedule);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/movieSchedule/{id}")
     @ResponseBody
-    public ResponseEntity<?> getBookById(@PathVariable Integer id){
+    public ResponseEntity<?> getMovieScheduleById(@PathVariable Integer id){
         MovieSchedule result = movieScheduleService.getMovieScheduleById(id);
         if (result !=null){
             return ResponseEntity.ok(result);

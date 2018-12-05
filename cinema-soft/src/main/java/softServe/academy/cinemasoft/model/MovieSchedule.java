@@ -10,6 +10,7 @@ public class MovieSchedule {
     private Integer id;
     private String movieName;
     private String hours;
+    private String dayOfWeek;
 
     public MovieSchedule() {
     }
@@ -36,6 +37,14 @@ public class MovieSchedule {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(String dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
     }
 
 }
