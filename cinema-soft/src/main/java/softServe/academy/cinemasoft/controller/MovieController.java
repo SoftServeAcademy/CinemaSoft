@@ -28,9 +28,7 @@ public class MovieController {
         modelAndView.setViewName("add-movie");
         return modelAndView;
     }
-	
-	
-	  
+
     @PostMapping("/add")
     public ModelAndView add(ModelAndView modelAndView, @RequestBody Movie movie) {
         modelAndView.setViewName("add-movie");
@@ -54,6 +52,5 @@ public class MovieController {
         modelAndView.addObject("movies", allMovies);
         return modelAndView;
     }
-
 }
 
