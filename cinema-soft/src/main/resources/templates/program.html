@@ -174,8 +174,8 @@
 					<div class="col-sm-12">
 
 						<div class="tabs movies">
-							<ul>
-								<li><a href="#wed">Today</a></li>
+							<ul th:each="entry: ${students}">
+								<li th:text ="${entry.value[0]}" ><a href="#wed">Today</a></li>
 								<li><a href="#mon">Mon</a></li>
 								<li><a href="#tue">Tue</a></li>
 								<li><a href="#wen">Wen</a></li>								
@@ -561,10 +561,10 @@
 													Viewing times
 												</span>
 
-												<span class="time past">10:00</span> 
-												<span class="time past">12:45</span> 
-												<span class="time">17:00</span> 
-												<span class="time">21:15</span> 
+												<span class="time past">10:00</span>
+												<span class="time past">12:45</span>
+												<span class="time">17:00</span>
+												<span class="time">21:15</span>
 											</div>
 											<div class="col-md-4 col-sm-3 running-time">
 												<hr class="space-10" />
