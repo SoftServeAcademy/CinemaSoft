@@ -27,11 +27,11 @@ public class CommentController {
 		this.commentService = commentService;
 	}
 
-//	@GetMapping("/addComment")
-//	public String addCommentView(Model model) {
-//		model.addAttribute("comment", new Comment());
-//		return "add-comment";
-//	}
+	@GetMapping("/addComment")
+	public String addCommentView(Model model) {
+		model.addAttribute("comment", new Comment());
+		return "movie.html";
+	}
 
 	// ADD
 	@PostMapping("/addComment")
@@ -60,9 +60,9 @@ public class CommentController {
 		return "redirect:/allComments";
 	}
 	
-	//BOOK_BY_NAME
-//	@GetMapping("/comments/{movie}")
-//    @ResponseBody
+	//MOVIE_BY_NAME
+	//@GetMapping("/comments/{movie}")
+   // @ResponseBody
 //    public ResponseEntity<?> getBookById(@PathVariable Movie movie){
 //        Comment result = commentService.findByMovie(movie);
 //        if (result !=null){
