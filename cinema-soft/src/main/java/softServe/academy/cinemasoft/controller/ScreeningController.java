@@ -25,12 +25,6 @@ public class ScreeningController {
         this.screeningService = screeningService;
     }
 
-    //GET INDEX
-    @GetMapping("/index")
-    public String index() {
-        return "index";
-    }
-
     //GET BY ID
     @GetMapping("/screening/{id}")
     public ResponseEntity<?> getScreeningById(@PathVariable int id){
