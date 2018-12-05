@@ -8,6 +8,5 @@ import java.util.List;
 @Repository
 public interface ScreeningRepository extends JpaRepository <Screening, Integer> {
 
-    List<Screening> findAllScreenings();
 
 }
