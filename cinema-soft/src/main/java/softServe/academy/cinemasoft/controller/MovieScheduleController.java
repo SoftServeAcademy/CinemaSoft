@@ -48,11 +48,6 @@ public class MovieScheduleController {
         return ResponseEntity.ok(movieScheduleService.findAll());
     }
 
-    @GetMapping("/index")
-    public String index() {
-        return "index";
-    }
-
     @GetMapping("/program")
     public String program() {
         return "program";

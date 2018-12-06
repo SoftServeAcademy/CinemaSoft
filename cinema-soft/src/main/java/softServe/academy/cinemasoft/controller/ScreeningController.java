@@ -86,4 +86,15 @@ public class ScreeningController {
         return "redirect:/screening";
     }
 
+    //LIST SCREENING
+    @GetMapping(value = "/listScreening")
+    public ModelAndView listScreening(@ModelAttribute("screening") Screening screening){
+        List<Screening> ss = screeningService.findAllScreenings();
+        ModelAndView modelAndView = new ModelAndView("list-screening");
+        modelAndView.addObject("screening", ss);
+        return modelAndView;
+    }
+
+
+
 }
