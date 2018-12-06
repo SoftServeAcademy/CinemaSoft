@@ -60,10 +60,20 @@ public class CategoryController {
     public String editCategoryView(@ModelAttribute("category") Category category) {
         return "redirect:/categories";
     }
+<<<<<<< HEAD
 
     @GetMapping("/index")
     public String indexView(Model model) {
         //model.addAttribute("category", new Category());
         return "index";
+=======
+    @GetMapping("/index")
+    public String showIndexView(){
+        return "index";
+    }
+    @RequestMapping(value="/editCategory", method = RequestMethod.POST, params = {"edit"})
+    public String editCategoryView(@ModelAttribute("category") Category category){
+        return  "redirect:/categories";
+>>>>>>> fd3974598d4efc952451a7dd70d08d06660c8717
     }
 }
