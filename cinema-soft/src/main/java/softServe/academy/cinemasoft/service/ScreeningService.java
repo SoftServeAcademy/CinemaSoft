@@ -25,7 +25,9 @@ public class ScreeningService {
 
 
     public Screening addScreening(Screening screening){
-    return this.screeningRepository.save(screening);
+        Screening screening1 = new Screening();
+        screening1.setStartTime(screening.getStartTime());
+        return this.screeningRepository.save(screening1);
     }
 
     public void deleteScreening(int id){
@@ -51,8 +53,4 @@ public class ScreeningService {
             screeningRepository.save(s);
         }
     }
-
-
-
-
 }
