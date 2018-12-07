@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -105,50 +105,50 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-6">
-				<form>
+				<form action="#" th:object="${movie}"  th:action="@{/add-movie}" method="post">
 					<div class="form-group">
 						<label>Title *</label>
-						<input type="text" />
+						<input th:field="*{title}" type="text"/>
 					</div>
 					<div class="form-group">
 						<label>Director *</label>
-						<input type="text" />
+						<input th:field="*{director}" type="text" />
 					</div>
 					<div class="form-group">
 						<label>Cast *</label>
-						<input type="text" />
+						<input th:field="*{cast}" type="text" />
 					</div>
 					<div class="form-group">
 						<label>Description *</label>
-						<input type="text" />
+						<input th:field="*{description}" type="text" />
 					</div>
 					<div class="form-group">
 						<label>Cover *</label>
-						<input type="file" id="cover"
+						<input  th:field="*{cover}" type="file" id="cover"
 							   name="cover" accept="image/png, image/jpeg">
 					</div>
 					<div class="form-group">
 						<select name="category">
 							<option value="text" selected>Choose category</option>
-							<option value="1">1</option>
+							<option th:field="*{category}" type="object" value="1">1</option>
 							<option value="2">2</option>
 							<option value="2">3</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label>Trailer *</label>
-						<input type="text" />
+						<input th:field="*{trailer}" type="text" />
 					</div>
 					<div class="form-group">
 						<label>Duration *</label>
-						<input type="text" />
+						<input th:field="*{duration}" type="text" />
 					</div>
 					<div class="form-group">
 						<label>Rating *</label>
-						<input type="text" />
+						<input th:field="*{rating}" type="text" />
 					</div>
 					<div class="form-group right-align">
-						<button class="btn btn-ghost">Add movie</button>
+						<button type = "submit" class="btn btn-ghost">Add movie</button>
 					</div>
 				</form>
 			</div>

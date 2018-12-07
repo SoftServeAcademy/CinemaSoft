@@ -15,6 +15,10 @@ public class Category {
     private String nameOfCategory;
 
     @OneToMany
+    @JoinTable(name="categories_movies",
+    joinColumns = @JoinColumn(name="category_id"),
+            inverseJoinColumns = @JoinColumn(name="movie_id")
+    )
     private List<Movie> movies;
 
 

@@ -2,7 +2,7 @@ package softServe.academy.cinemasoft.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import softServe.academy.cinemasoft.model.entities.Category;
+import softServe.academy.cinemasoft.model.Category;
 import softServe.academy.cinemasoft.repository.CategoryRepository;
 
 import java.util.List;

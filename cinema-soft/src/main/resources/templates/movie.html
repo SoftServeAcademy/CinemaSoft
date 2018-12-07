@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Cinemasoft</title>
 		<link rel="icon" type="image/png" href="images/favicon.png" />
-		<link href="css/slick.css" rel="stylesheet">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/venobox.css" rel="stylesheet">
-		<link href="css/style.css" rel="stylesheet">
+		<link href="/css/slick.css" rel="stylesheet">
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/css/venobox.css" rel="stylesheet">
+		<link href="/css/style.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<!--[if IE 9]>
@@ -45,7 +45,7 @@
 				<div class="container">
 					<div class="navbar-header">
 						<a href="index.html" class="logo.png" title="Cinemasoft">
-							<img src="images/logo.png" alt="Cinemasoft">
+							<img src="/images/logo.png" alt="Cinemasoft">
 						</a>
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">Toggle navigation</span>
@@ -99,22 +99,33 @@
 			</div>
 
 			<!-- Section -->
+
 			<div class="container section single-movie">
 				<div class="row">
 					<div class="col-sm-7">
+
 						<h2>Movie</h2>
+
 						<div class="row">
 							<div class="col-sm-5">
+
 								<img src="http://via.placeholder.com/265x340" alt="Transformers: The Last Knight" class="poster">								
 							</div>
+                            <div action="#" th:object="${selectMovie}"  th:action="@{/movie/{id}(id=${selectMovie.id})}" method="get">
 							<div class="col-sm-7">
-								<h3 class="no-underline">The plot</h3>
-								
-								<ul class="movie-info">
-									<li><i>Director</i> Michael Bay</li>
-									<li><i>Cast</i> Mark Wahlberg, Anthony Hopkins</li>									
-									<li><i>Duration</i> 114 mins</li>
-									<li><i>Rating</i></li>	
+								<h3 th:text="${selectMovie.title}"></h3>
+								<!--<ul class="movie-info">-->
+                                    <!--<h3 th:text="Director ${director}"></h3>-->
+									<!--<li><i>Director</i> Michael Bay</li>-->
+                                    <!--<li>Director</li>-->
+                                <i>Director:</i>
+                                <li th:text="${selectMovie.director}" ></li>
+
+                                <o1>Cast:</o1>
+									<li th:text="${selectMovie.cast}"></li>
+									<li th:text="${selectMovie.duration}"></li>
+									<li th:text="${selectMovie.rating}"></li>
+                                    <h1 th:text="${selectMovie.trailer}" ></h1>
 									<div class="star-rating">
 										<i class="material-icons">star_rate</i>
 										<i class="material-icons">star_rate</i>
@@ -122,17 +133,18 @@
 										<i class="material-icons">star_rate</i>
 										<i class="material-icons">star_rate</i>
 									</div>
-								</ul>
+								<!--</ul>-->
 								
 								
-								<p>Humans and Transformers are at war, Optimus Prime is gone. The key to saving our future lies buried in the secrets of the past, in the hidden history of Transformers on Earth.</p>
+								<!--<p>Humans and Transformers are at war, Optimus Prime is gone. The key to saving our future lies buried in the secrets of the past, in the hidden history of Transformers on Earth.</p>-->
+                                <p th:text="${selectMovie.trailer}">/p>
 
-								<p>Optimus Prime finds his home planet, Cybertron, now a dead planet, in which he comes to find he was responsible for killing. He finds a way to bring the planet back to life, but in order to do so, he needs to find an artifact, which is on Earth.</p>
+                                <p>Optimus Prime finds his home planet, Cybertron, now a dead planet, in which he comes to find he was responsible for killing. He finds a way to bring the planet back to life, but in order to do so, he needs to find an artifact, which is on Earth.</p>
 
-								
-								
 							</div>
+                            </div>
 						</div>
+
 						</br>
 						<div class="form-group right-align">
 									<button class="btn btn-ghost">Book ticket</button>
@@ -163,7 +175,7 @@
 						<div class="comments">
 							<div class="row">
 								<div class="col-sm-2">
-									<img src="images/avatar.png" class="Luke Barrett" />
+									<img src="/images/avatar.png" class="Luke Barrett" />
 								</div>
 								<div class="col-sm-9">
 									<span class="date">February 2, at 2:34pm</span>
@@ -173,7 +185,7 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-2">
-									<img src="images/avatar.png" class="Keith Cox" />
+									<img src="/images/avatar.png" class="Keith Cox" />
 								</div>
 								<div class="col-sm-9">
 									<span class="date">February 2, at 2:34pm</span>
@@ -183,7 +195,7 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-2">
-									<img src="images/avatar.png" class="Gabriel Norris" />
+									<img src="/images/avatar.png" class="Gabriel Norris" />
 								</div>
 								<div class="col-sm-9">
 									<span class="date">February 2, at 2:34pm</span>
@@ -193,7 +205,7 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-2">
-									<img src="images/avatar.png" class="Luke Barrett" />
+									<img src="/images/avatar.png" class="Luke Barrett" />
 								</div>
 								<div class="col-sm-9">
 									<span class="date">February 2, at 2:34pm</span>
@@ -203,7 +215,7 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-2">
-									<img src="images/avatar.png" class="Gabriel Norris" />
+									<img src="/images/avatar.png" class="Gabriel Norris" />
 								</div>
 								<div class="col-sm-9">
 									<span class="date">February 2, at 2:34pm</span>
@@ -253,5 +265,6 @@
 		<script src="js/venobox.min.js"></script>
 		<script src="https://use.fontawesome.com/4dfd2d448a.js"></script>
 		<script src="js/custom.js"></script>
+
 	</body>
 </html>

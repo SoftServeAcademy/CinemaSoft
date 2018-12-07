@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -196,6 +196,7 @@
 			</div>
 		</div>
 
+        <tr th:each="movie : ${movies}"></tr>
 		<!-- Rating category -->
 		<div class="container section" id="afterHeader">
 			<div class="row">
@@ -206,29 +207,49 @@
 							<li><a href="#rating">Top rated movies</a></li>
 						</ul>
 
+                        <tr th:each="movie : ${movies}">
 						<div id="rating">
 							<div class="movie-slide">
 								<div class="movie-poster">
 									<aside>
 										<div>
-											<a href="movie.html" class="read-more">read more</a>
+											<a href="@{/movie/{id}(id=${movie.id})}" class="read-more">read more</a>
+                                            <form action="#" th:object="${movie}" th:action="@{/movie/{id}(id=${movie.id})}"></form>
 											<span class="date">Released: 7 Mar, 2017</span>
 										</div>
 									</aside>
 									<a href="#">
 										<img src="http://via.placeholder.com/265x340.jpg" alt="Movie title" />
-									</a>
+                                        <!--<img th:src="*{'data:${movie.cover};base64,'+image}" alt="" />-->
+                                    </a>
 								</div>
-								<h4 class="no-underline">The last post</h4>
+								<h4  th:text="${movie.title}"></h4>
+                                <!--<h5 th:text="${movie.rating}"></h5>-->
 								<div class="star-rating">
-									<i class="material-icons">star_rate</i>
-									<i class="material-icons">star_rate</i>
-									<i class="material-icons">star_rate</i>
-									<i class="material-icons">star_rate</i>
-									<i class="material-icons">star_rate</i>
+									<i th:text="${movie.rating}" ></i>
+									<!--<i class="material-icons">star_rate</i>-->
+									<!--<i class="material-icons">star_rate</i>-->
+									<!--<i class="material-icons">star_rate</i>-->
+									<!--<i class="material-icons">star_rate</i>-->
 								</div>
 							</div>
 						</div>
+                        </tr>
+
+						<!--<tr th:each="movie : ${movies}">-->
+							<!--<td th:text="${movie.id}">1</td>-->
+							<!--<td th:text="${movie.title}">1</td>-->
+							<!--<td th:text="${movie.director}">1</td>-->
+							<!--<td th:text="${movie.cast}">1</td>-->
+							<!--&lt;!&ndash;<td th:text="${movie.cover}">1</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td th:style="'image:url('+ ${movie.cover}+');'">1</td>&ndash;&gt;-->
+                            <!--<td th:src="@{movie.cover}"></td>-->
+                            <!--<td th:text="${movie.trailer}">1</td>-->
+							<!--<td th:text="${movie.description}">1</td>-->
+							<!--<td th:text="${movie.duration}">1</td>-->
+							<!--<td th:text="${movie.rating}">1</td>-->
+						<!--</tr>-->
+
 
 					</div>
 				</div>

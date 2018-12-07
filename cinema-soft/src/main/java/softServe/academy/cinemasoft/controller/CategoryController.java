@@ -5,27 +5,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import softServe.academy.cinemasoft.model.entities.Category;
+import org.springframework.web.bind.annotation.*;
+import softServe.academy.cinemasoft.model.Category;
+import softServe.academy.cinemasoft.model.Movie;
+import softServe.academy.cinemasoft.repository.MovieRepository;
 import softServe.academy.cinemasoft.service.CategoryService;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import softServe.academy.cinemasoft.service.MovieService;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 @Controller
 public class CategoryController {
 
     private CategoryService categoryService;
+    //  private MovieService movieService;
+    private MovieService movieService;
+//    @Autowired
+//    public CategoryController(CategoryService categoryService) {
+//        this.categoryService = categoryService;
+//    }
 
     @Autowired
-    public CategoryController(CategoryService categoryService) {
+    public CategoryController(CategoryService categoryService, MovieService movieService) {
         this.categoryService = categoryService;
+        this.movieService = movieService;
     }
 
     @GetMapping("/add-category")
-
     public String addCategoryView(Model model) {
         model.addAttribute("category", new Category());
         return "add-category";
@@ -60,20 +69,28 @@ public class CategoryController {
     public String editCategoryView(@ModelAttribute("category") Category category) {
         return "redirect:/categories";
     }
-<<<<<<< HEAD
+
+//    @GetMapping("/index")
+//    public String showIndexView(){
+//        return "index";
+//    }
 
     @GetMapping("/index")
-    public String indexView(Model model) {
-        //model.addAttribute("category", new Category());
-        return "index";
-=======
-    @GetMapping("/index")
-    public String showIndexView(){
-        return "index";
+    public ModelAndView showAllMovies(Model model) {
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("movies", movieService.findAll());
+        return modelAndView;
     }
-    @RequestMapping(value="/editCategory", method = RequestMethod.POST, params = {"edit"})
-    public String editCategoryView(@ModelAttribute("category") Category category){
-        return  "redirect:/categories";
->>>>>>> fd3974598d4efc952451a7dd70d08d06660c8717
+
+    @GetMapping("/movie")
+    public String showMovie() {
+        return "movie";
+    }
+
+    @GetMapping(value = "/movie/{id}")
+    public ModelAndView showMovieById(@PathVariable("id") int id) {
+        ModelAndView modelAndView = new ModelAndView("movie");
+        modelAndView.addObject("selectMovie", movieService.getMovieById(id));
+        return modelAndView;
     }
 }
