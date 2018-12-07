@@ -1,11 +1,9 @@
 package softServe.academy.cinemasoft.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.beans.factory.annotation.Autowired;
+import softServe.academy.cinemasoft.repository.CategoryRepository;
+
+import javax.persistence.*;
 
 
 @Entity
@@ -15,42 +13,50 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
-    public Integer id;
+    private Integer id;
 
     @Column(nullable = false, unique = true)
-    public String title;
+    private String title;
     
 
     @Column(nullable = false)
-    public String director;
-    
+    private String director;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
+    private String cast;
+
+
+
+    @Column(nullable = false)
 //    @ElementCollection(targetClass=String.class)
-//    public byte[] cast;
-    
+    private byte[] cover;
 
-    @Column(nullable = false)
-    public String trailer;
+
+
+	@Column(nullable = false)
+    private String trailer;
     
     @Column(nullable = false)
-    public String description;
+    private String description;
     
     @Column(nullable = false)
-    public String duration;
+    private String duration;
    
     @Column
-    public double rating;
+    private double rating;
+
+
     
     /*
      *  @Column
     @OneToMany(mappedBy = "category")
     private List<Category> categories;
     */
-    
-    
-    
-    /*
+
+    @OneToOne
+    private Category category;
+
+/*
      *  @Column
     @OneToMany(mappedBy = "comment")
     private List<Comment> comments;
@@ -121,6 +127,39 @@ public class Movie {
 		this.rating = rating;
 	}
 
+	public String getCast() {
+		return cast;
+	}
+
+	public void setCast(String cast) {
+		this.cast = cast;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public byte[] getCover() {
+		return cover;
+	}
+
+	public void setCover(byte[] cover) {
+		this.cover = cover;
+	}
+
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
 	public Movie(Integer id, String title, String director, String trailer, String description, String duration,
 			double rating) {
 		this.id = id;
@@ -134,7 +173,4 @@ public class Movie {
 
 	public Movie() {
 	}
-
-	
-	
 }

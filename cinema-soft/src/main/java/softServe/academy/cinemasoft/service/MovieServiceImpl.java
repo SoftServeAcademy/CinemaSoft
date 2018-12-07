@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import softServe.academy.cinemasoft.model.Category;
 import softServe.academy.cinemasoft.model.Movie;
 import softServe.academy.cinemasoft.repository.MovieRepository;
 
@@ -27,15 +28,16 @@ public class MovieServiceImpl implements MovieService{
 	
 	public Movie addMovie(Movie movie) {
 		return this.movieRepository.saveAndFlush(movie);
-	}	
-	
-	public void deleteMovie(String id) {
+	}
+
+
+	public void deleteMovie(int id) {
         if(this.movieRepository.findById(id).orElse(null) != null) {
             this.movieRepository.deleteById(id);
         }
     }
 	
-	public void editMovie(String id) {
+	public void editMovie(int id) {
 	        Movie movie = this.movieRepository
 	        		.findById(id)
 	                .orElse(null);
@@ -46,13 +48,19 @@ public class MovieServiceImpl implements MovieService{
 	}
 
 	@Override
-	public Movie findMovie(String id) {		
+	public Movie findMovie(int id) {
 		return this.movieRepository.findById(id).orElse(null);
 	}
-	
-	
+
+	@Override
+	public List<Movie> findAll(){
+		return movieRepository.findAll();
+	}
+
+	@Override
+	public Movie getMovieById(int id) {
+		return movieRepository.getOne(id);
+	}
 
 
-	
-	
 }
