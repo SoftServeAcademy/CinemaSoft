@@ -36,8 +36,8 @@ public class ScreeningController {
 
     //DELETE
     @DeleteMapping(value ="/removeScreening/{id}")
-    public String deleteScreening(@PathVariable("id") int Id){
-        screeningService.deleteScreening(Id);
+    public String deleteScreening(@PathVariable("id") int id){
+        screeningService.deleteScreening(id);
         return "redirect:/listScreening";
     }
 
