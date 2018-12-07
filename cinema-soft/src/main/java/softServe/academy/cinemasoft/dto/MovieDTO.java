@@ -6,34 +6,27 @@ import javax.validation.constraints.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class AddMovieBindingModel {
+public class MovieDTO {
 
 	@NotEmpty(message = "Movie title cannot be empty.")
 	public String title;
 	
 	@NotEmpty(message = "Movie's director cannot be empty.")
-	public String director;
+	private String director;
 	
-	public List<String> cast;
+	private List<String> cast;
 	
-	public byte[] cover;
+	private byte[] cover;
 	
-	public String trailer;
+	private String trailer;
 	
     @NotEmpty(message = "Movie description cannot be empty.")
     @Size(min=5, max=100, message = "Movie description must be between 5 and 100 symbols long.")
-	public String description;
+	private String description;
 	
-	public String duration;
+	private String duration;
 	
-	public double rating;
-
-	@Autowired
-	public AddMovieBindingModel() {
-		
-	}
-	
-	
+	private double rating;
 
 	public String getTitle() {
 		return title;
