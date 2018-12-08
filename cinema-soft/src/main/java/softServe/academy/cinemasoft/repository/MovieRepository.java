@@ -7,6 +7,6 @@ import softServe.academy.cinemasoft.model.Movie;
 
 
 @Repository
-public interface MovieRepository  extends JpaRepository<Movie, String>{
+public interface MovieRepository  extends JpaRepository<Movie, Integer>{
 
 }

@@ -17,6 +17,7 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
+
     public Category addCategory(Category categoryToAdd){
         return this.categoryRepository.save(categoryToAdd);
     }

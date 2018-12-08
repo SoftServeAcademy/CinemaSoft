@@ -1,10 +1,8 @@
 package softServe.academy.cinemasoft.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Category {
@@ -12,9 +10,12 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Column(unique = true)
     private String nameOfCategory;
 
-    //private List<Movie> movies;
+    @OneToMany(mappedBy = "category")
+    private List<Movie> movies;
 
     public Category() {
     }
@@ -33,5 +34,13 @@ public class Category {
 
     public void setNameOfCategory(String nameOfCategory) {
         this.nameOfCategory = nameOfCategory;
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
 }

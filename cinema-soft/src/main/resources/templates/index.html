@@ -1,261 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Cinemasoft</title>
-		<link rel="icon" type="image/png" href="images/favicon.png" />
-		<link href="css/slick.css" rel="stylesheet">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/venobox.css" rel="stylesheet">
-		<link href="css/style.css" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<!--[if IE 9]>
-			<link href="css/ie9.css" rel="stylesheet">
-		<![endif]-->
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-	</head>
-	<body>
-		<!-- Wrapper -->
-		<div class="wrapper">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Cinemasoft</title>
+	<link rel="icon" type="image/png" href="images/favicon.png" />
+	<link href="css/slick.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/venobox.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--[if IE 9]>
+	<link href="css/ie9.css" rel="stylesheet">
+	<![endif]-->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+<!-- Wrapper -->
+<div class="wrapper">
 
-			<!-- Navigation -->
-			<div class="navbar" role="navigation">
-				<!-- Heading -->
-				<div class="heading">
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-12">								
-								<div class="tel">																										
-									<a href="register.html">Register</a>
-									<a href="login.html">Login</a>					
-									<a href="logout.html">Logout</a>																	    																		
-								</div>
-							</div>
+	<!-- Navigation -->
+	<div class="navbar" role="navigation">
+		<!-- Heading -->
+		<div class="heading">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="tel">
+							<a href="register">Register</a>
+							<a href="login">Login</a>
+							<a href="logout">Logout</a>
 						</div>
 					</div>
 				</div>
-				
-				<div class="container">
-					<div class="navbar-header">
-						<a href="index.html" class="logo.png" title="Cinemasoft">
-							<img src="images/logo.png" alt="Cinemasoft">
-						</a>
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar top-bar"></span>
-							<span class="icon-bar middle-bar"></span>
-							<span class="icon-bar bottom-bar"></span>
-						</button>
-					</div>  
-					
-					<div class="navbar-collapse collapse">
-						<ul id="menu-primary" class="nav navbar-nav">
-						    <li class="dropdown">
-								<a href="admin.html">Admin</a>
-								<ul class="dropdown-menu">
-									<li><a href="add-movie.html">Add movie</a></li>
-									<li><a href="add-category.html">Add category</a></li>
-									<li><a href="list-category.html">List category</a></li>
-									<li><a href="add-screening.html">Add screening</a></li>
-									<li><a href="list-screening.html">List screening</a></li>
-								</ul>	
-							</li>
-							<li>
-								<a href="index.html">Home</a>
-							</li>
-							<li>
-								<a href="program.html">Program</a>
-							</li>
-							<li>
-								<a href="book-ticket.html">Book ticket</a>
-							</li>															
-						</ul>
-					</div>
-				</div>
-				
 			</div>
-			<!-- Hero-->
-				
-				<div id="content_hero" style="background-image:url(images/login.jpg)"> 
-				<img src="images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+		</div>
 
-				<!-- Indicators -->
-				<div class="container">	
-					<ol class="carousel-indicators">
-						<li data-target="#hero" data-slide-to="0" class="active"></li>
-						<li data-target="#hero" data-slide-to="1"></li>
-						<li data-target="#hero" data-slide-to="2"></li>
-					</ol>
-				</div>
-				
-				<!-- Wrapper for slides -->
-				<div class="carousel-inner">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="index" class="logo.png" title="Cinemasoft">
+					<img src="images/logo.png" alt="Cinemasoft">
+				</a>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar top-bar"></span>
+					<span class="icon-bar middle-bar"></span>
+					<span class="icon-bar bottom-bar"></span>
+				</button>
+			</div>
 
-					<div class="item active" style="background-image: url(images/background.jpg)">
-						<!-- Content -->
-						<div class="container">
-							<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
-								<div class="col-md-9">
-									<span class="title">Action, Adventure, Fantasy</span>
-									<h1>End of the World: Part II</h1>
-									<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum.</p>
-									<div class="buttons">
+			<div class="navbar-collapse collapse">
+				<ul id="menu-primary" class="nav navbar-nav">
+					<li class="dropdown">
+						<a href="admin">Admin</a>
+						<ul class="dropdown-menu">
+							<li><a href="add-movie">Add movie</a></li>
+							<li><a href="add-category">Add category</a></li>
+							<li><a href="list-category">List category</a></li>
+							<li><a href="add-screening">Add screening</a></li>
+							<li><a href="list-screening">List screening</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="index">Home</a>
+					</li>
+					<li>
+						<a href="program">Program</a>
+					</li>
+					<li>
+						<a href="book-ticket">Book ticket</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+	<!-- Hero-->
+
+	<div id="content_hero" style="background-image:url(images/login.jpg)">
+		<img src="images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+
+		<!-- Indicators -->
+		<div class="container">
+			<ol class="carousel-indicators">
+				<li data-target="#hero" data-slide-to="0" class="active"></li>
+				<li data-target="#hero" data-slide-to="1"></li>
+				<li data-target="#hero" data-slide-to="2"></li>
+			</ol>
+		</div>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner">
+
+			<div class="item active" style="background-image: url(images/background.jpg)">
+				<!-- Content -->
+				<div class="container">
+					<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
+						<div class="col-md-9">
+							<span class="title">Action, Adventure, Fantasy</span>
+							<h1>End of the World: Part II</h1>
+							<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum.</p>
+							<div class="buttons">
 										<span class="certificate">
 											PG
 										</span>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
 
-					<div class="item" style="background-image: url(http://via.placeholder.com/1140x665)">
-						<!-- Content -->
-						<div class="container">
-							<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
-								<div class="col-md-9">
-									<span class="title">Action, Adventure, Fantasy</span>
-									<h1>End of the World: Part II</h1>
-									<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum.</p>
-									<div class="buttons">
+			<div class="item" style="background-image: url(http://via.placeholder.com/1140x665)">
+				<!-- Content -->
+				<div class="container">
+					<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
+						<div class="col-md-9">
+							<span class="title">Action, Adventure, Fantasy</span>
+							<h1>End of the World: Part II</h1>
+							<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum.</p>
+							<div class="buttons">
 										<span class="certificate">
 											15
 										</span>
-										
-									</div>
-								</div>
+
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
 
-					<div class="item" style="background-image: url(http://via.placeholder.com/1140x665)">
-						<!-- Content -->
-						<div class="container">
-							<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
-								<div class="col-md-9">
-									<span class="title">Action, Adventure, Fantasy</span>
-									<h1>End of the World: Part II</h1>
-									<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum.</p>
-									<div class="buttons">
+			<div class="item" style="background-image: url(http://via.placeholder.com/1140x665)">
+				<!-- Content -->
+				<div class="container">
+					<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
+						<div class="col-md-9">
+							<span class="title">Action, Adventure, Fantasy</span>
+							<h1>End of the World: Part II</h1>
+							<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum.</p>
+							<div class="buttons">
 										<span class="certificate">
 											PG
 										</span>
 
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
-
-				</div>
-
-			</div>
-
-			<!-- Filters category -->
-			<div class="container section" id="afterHeader">
-				<div class="row">
-					<div class="col-sm-12">
-					<div class="live-search">
-							<input type="text" id="search" placeholder="Search a movie">
-							<i class="material-icons">search</i>
-						</div>
-						<div class="tabs movies">
-							<ul>
-								<li><a href="#thriller">Thriller</a></li>									
-							</ul>
-							<div id="thriller">
-								<div class="movie-slide">
-									<div class="movie-poster">
-										<aside>
-											<div>												
-												<a href="movie.html" class="read-more">read more</a>
-												<span class="date">Released: 7 Mar, 2017</span>
-											</div>
-										</aside>
-										<a href="#">
-											<img src="http://via.placeholder.com/265x340.jpg" alt="Movie title" />
-										</a>
-									</div>
-									<h4 class="no-underline">The last post</h4>
-									<div class="star-rating">
-										<i class="material-icons">star_rate</i>
-										<i class="material-icons">star_rate</i>
-										<i class="material-icons">star_rate</i>
-										<i class="material-icons">star_rate</i>
-										<i class="material-icons">star_rate</i>
-									</div>
-								</div>
-							</div>																		
-						</div>
-					</div>
-				</div>
-						
-				<!-- Rating category -->
-			<div class="container section" id="afterHeader">
-				<div class="row">
-					<div class="col-sm-12">
-				
-						<div class="tabs movies">
-							<ul>								
-								<li><a href="#rating">Top rated movies</a></li>
-							</ul>
-																				
-							<div id="rating">
-								<div class="movie-slide">
-									<div class="movie-poster">
-										<aside>
-											<div>
-												<a href="movie.html" class="read-more">read more</a>
-												<span class="date">Released: 7 Mar, 2017</span>
-											</div>
-										</aside>
-										<a href="#">
-											<img src="http://via.placeholder.com/265x340.jpg" alt="Movie title" />
-										</a>
-									</div>
-									<h4 class="no-underline">The last post</h4>
-									<div class="star-rating">
-										<i class="material-icons">star_rate</i>
-										<i class="material-icons">star_rate</i>
-										<i class="material-icons">star_rate</i>
-										<i class="material-icons">star_rate</i>
-										<i class="material-icons">star_rate</i>
-									</div>
-								</div>
-							</div>
-							
-						</div>
-					</div>
 				</div>
 			</div>
-			</div>
-											
-			<!-- Footer -->
-			<footer>
-				<div class="container">					
-					<div class="copyright">
-						<p>2018 &copy; Cinemasoft  /  <a href="http://www.klevermedia.co.uk">Web design by Softserve Academy</a></p>
-					</div>
-				</div>
-			</footer>
 
 		</div>
-		
-		<script src="js/jquery-2.2.4.min.js"></script>
-		<script src="js/jquery-ui.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/headhesive.min.js"></script>
-		<script src="js/matchHeight.min.js"></script>
-		<script src="js/modernizr.custom.js"></script>
-		<script src="js/slick.min.js"></script>
-		<script src="js/venobox.min.js"></script>
-		<script src="https://use.fontawesome.com/4dfd2d448a.js"></script>
-		<script src="js/custom.js"></script>
-	</body>
+
+	</div>
+
+	<!-- Filters category -->
+	<div class="container section" id="afterHeader">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="live-search">
+					<input type="text" id="search" placeholder="Search a movie">
+					<i class="material-icons">search</i>
+				</div>
+				<div class="tabs movies">
+					<ul>
+						<li><a href="#thriller">Thriller</a></li>
+					</ul>
+					<div id="thriller">
+						<div class="movie-slide">
+							<div class="movie-poster">
+								<aside>
+									<div>
+										<a href="movie" class="read-more">read more</a>
+										<span class="date">Released: 7 Mar, 2017</span>
+									</div>
+								</aside>
+								<a href="#">
+									<img src="http://via.placeholder.com/265x340.jpg" alt="Movie title" />
+								</a>
+							</div>
+							<h4 class="no-underline">The last post</h4>
+							<div class="star-rating">
+								<i class="material-icons">star_rate</i>
+								<i class="material-icons">star_rate</i>
+								<i class="material-icons">star_rate</i>
+								<i class="material-icons">star_rate</i>
+								<i class="material-icons">star_rate</i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+        <tr th:each="movie : ${movies}"></tr>
+		<!-- Rating category -->
+		<div class="container section" id="afterHeader">
+			<div class="row">
+				<div class="col-sm-10">
+
+					<div class="tabs movies">
+						<ul>
+							<li><a href="#rating">Top rated movies</a></li>
+						</ul>
+
+                        <tr th:each="movie : ${movies}">
+						<div id="rating">
+							<div class="movie-slide">
+								<div class="movie-poster">
+									<aside>
+										<div>
+											<a href="@{/movie/{id}(id=${movie.id})}" class="read-more">read more</a>
+                                            <form action="#" th:object="${movie}" th:action="@{/movie/{id}(id=${movie.id})}"></form>
+											<span class="date">Released: 7 Mar, 2017</span>
+										</div>
+									</aside>
+									<a href="#">
+										<img src="http://via.placeholder.com/265x340.jpg" alt="Movie title" />
+                                        <!--<img th:src="*{'data:${movie.cover};base64,'+image}" alt="" />-->
+                                    </a>
+								</div>
+								<h4  th:text="${movie.title}"></h4>
+                                <!--<h5 th:text="${movie.rating}"></h5>-->
+								<div class="star-rating">
+									<i th:text="${movie.rating}" ></i>
+									<!--<i class="material-icons">star_rate</i>-->
+									<!--<i class="material-icons">star_rate</i>-->
+									<!--<i class="material-icons">star_rate</i>-->
+									<!--<i class="material-icons">star_rate</i>-->
+								</div>
+							</div>
+							<div class="btn-group">
+								<a href="edit-movie{/movie.id}">
+									<input class="btn btn-primary " aria-pressed="true" type="button" value="Edit"/>						
+								</a>
+							<!-- 	<form action="#"  th:action="@{/edit-movie/${movie.id}}" method="PUT">
+									<button
+										onclick="if (confirm('Are you sure you want to delete this movie?'))
+							{ form.action='${movie.id}'; } else { return false; }"
+										type="submit" class="btn btn-default">
+										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										Edit
+									</button>
+								</form> -->
+								<a href="delete-movie/${movie.id}">
+									<input class="btn btn-danger " aria-pressed="true" type="button" value="Delete" />								
+								</a>
+							</div>
+						</div>
+                        </tr>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer>
+		<div class="container">
+			<div class="copyright">
+				<p>2018 &copy; Cinemasoft  /  <a href="http://www.klevermedia.co.uk">Web design by Softserve Academy</a></p>
+			</div>
+		</div>
+	</footer>
+
+</div>
+
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/headhesive.min.js"></script>
+<script src="js/matchHeight.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/venobox.min.js"></script>
+<script src="https://use.fontawesome.com/4dfd2d448a.js"></script>
+<script src="js/custom.js"></script>
+</body>
 </html>
