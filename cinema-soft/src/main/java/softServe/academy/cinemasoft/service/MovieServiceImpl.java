@@ -37,14 +37,13 @@ public class MovieServiceImpl implements MovieService{
         }
     }
 	
-	public void editMovie(int id) {
+	public Movie editMovie(int id) {
 	        Movie movie = this.movieRepository
 	        		.findById(id)
 	                .orElse(null);
-
-	        if(movie == null) return;
 	        
-	        this.movieRepository.saveAndFlush(movie);		
+	        this.movieRepository.saveAndFlush(movie);
+	        return movie;
 	}
 
 	@Override

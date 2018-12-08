@@ -12,7 +12,7 @@ public interface MovieService {
 
     void deleteMovie(int id);
 
-    void editMovie(int id);
+    Movie editMovie(int id);
 
     Movie findMovie(int id);
 
