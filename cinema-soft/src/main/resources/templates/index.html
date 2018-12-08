@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
+=======
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+>>>>>>> 2c79931f07e8fd4b9f8fb00708c4debe28992c0e
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +25,7 @@
 	<![endif]-->
 </head>
 <body>
+<<<<<<< HEAD
 =======
 	<head>
 		<meta charset="utf-8">
@@ -50,6 +55,11 @@
 <!-- Wrapper -->
 <div class="wrapper">
 
+=======
+<!-- Wrapper -->
+<div class="wrapper">
+
+>>>>>>> 2c79931f07e8fd4b9f8fb00708c4debe28992c0e
 	<!-- Navigation -->
 	<div class="navbar" role="navigation">
 		<!-- Heading -->
@@ -58,9 +68,15 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="tel">
+<<<<<<< HEAD
 							<a href="register.html">Register</a>
 							<a href="login.html">Login</a>
 							<a href="logout.html">Logout</a>
+=======
+							<a href="register">Register</a>
+							<a href="login">Login</a>
+							<a href="logout">Logout</a>
+>>>>>>> 2c79931f07e8fd4b9f8fb00708c4debe28992c0e
 						</div>
 					</div>
 				</div>
@@ -69,7 +85,11 @@
 
 		<div class="container">
 			<div class="navbar-header">
+<<<<<<< HEAD
 				<a href="index.html" class="logo.png" title="Cinemasoft">
+=======
+				<a href="index" class="logo.png" title="Cinemasoft">
+>>>>>>> 2c79931f07e8fd4b9f8fb00708c4debe28992c0e
 					<img src="images/logo.png" alt="Cinemasoft">
 				</a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -83,6 +103,7 @@
 			<div class="navbar-collapse collapse">
 				<ul id="menu-primary" class="nav navbar-nav">
 					<li class="dropdown">
+<<<<<<< HEAD
 						<a href="admin.html">Admin</a>
 						<ul class="dropdown-menu">
 							<li><a href="add-movie.html">Add movie</a></li>
@@ -100,6 +121,25 @@
 					</li>
 					<li>
 						<a href="book-ticket.html">Book ticket</a>
+=======
+						<a href="admin">Admin</a>
+						<ul class="dropdown-menu">
+							<li><a href="add-movie">Add movie</a></li>
+							<li><a href="add-category">Add category</a></li>
+							<li><a href="list-category">List category</a></li>
+							<li><a href="add-screening">Add screening</a></li>
+							<li><a href="list-screening">List screening</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="index">Home</a>
+					</li>
+					<li>
+						<a href="program">Program</a>
+					</li>
+					<li>
+						<a href="book-ticket">Book ticket</a>
+>>>>>>> 2c79931f07e8fd4b9f8fb00708c4debe28992c0e
 					</li>
 				</ul>
 			</div>
@@ -110,6 +150,7 @@
 
 	<div id="content_hero" style="background-image:url(images/login.jpg)">
 		<img src="images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+<<<<<<< HEAD
 
 		<!-- Indicators -->
 		<div class="container">
@@ -123,6 +164,21 @@
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner">
 
+=======
+
+		<!-- Indicators -->
+		<div class="container">
+			<ol class="carousel-indicators">
+				<li data-target="#hero" data-slide-to="0" class="active"></li>
+				<li data-target="#hero" data-slide-to="1"></li>
+				<li data-target="#hero" data-slide-to="2"></li>
+			</ol>
+		</div>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner">
+
+>>>>>>> 2c79931f07e8fd4b9f8fb00708c4debe28992c0e
 			<div class="item active" style="background-image: url(images/background.jpg)">
 				<!-- Content -->
 				<div class="container">
@@ -200,7 +256,11 @@
 							<div class="movie-poster">
 								<aside>
 									<div>
+<<<<<<< HEAD
 										<a href="movie.html" class="read-more">read more</a>
+=======
+										<a href="movie" class="read-more">read more</a>
+>>>>>>> 2c79931f07e8fd4b9f8fb00708c4debe28992c0e
 										<span class="date">Released: 7 Mar, 2017</span>
 									</div>
 								</aside>
@@ -222,27 +282,45 @@
 			</div>
 		</div>
 
+<<<<<<< HEAD
 		<!-- Rating category -->
 		<div class="container section" id="afterHeader">
 			<div class="row">
 				<div class="col-sm-12">
+=======
+        <tr th:each="movie : ${movies}"></tr>
+		<!-- Rating category -->
+		<div class="container section" id="afterHeader">
+			<div class="row">
+				<div class="col-sm-10">
+>>>>>>> 2c79931f07e8fd4b9f8fb00708c4debe28992c0e
 
 					<div class="tabs movies">
 						<ul>
 							<li><a href="#rating">Top rated movies</a></li>
 						</ul>
 
+<<<<<<< HEAD
+=======
+                        <tr th:each="movie : ${movies}">
+>>>>>>> 2c79931f07e8fd4b9f8fb00708c4debe28992c0e
 						<div id="rating">
 							<div class="movie-slide">
 								<div class="movie-poster">
 									<aside>
 										<div>
+<<<<<<< HEAD
 											<a href="movie.html" class="read-more">read more</a>
+=======
+											<a href="@{/movie/{id}(id=${movie.id})}" class="read-more">read more</a>
+                                            <form action="#" th:object="${movie}" th:action="@{/movie/{id}(id=${movie.id})}"></form>
+>>>>>>> 2c79931f07e8fd4b9f8fb00708c4debe28992c0e
 											<span class="date">Released: 7 Mar, 2017</span>
 										</div>
 									</aside>
 									<a href="#">
 										<img src="http://via.placeholder.com/265x340.jpg" alt="Movie title" />
+<<<<<<< HEAD
 									</a>
 								</div>
 								<h4 class="no-underline">The last post</h4>
@@ -256,6 +334,40 @@
 							</div>
 						</div>
 
+=======
+                                        <!--<img th:src="*{'data:${movie.cover};base64,'+image}" alt="" />-->
+                                    </a>
+								</div>
+								<h4  th:text="${movie.title}"></h4>
+                                <!--<h5 th:text="${movie.rating}"></h5>-->
+								<div class="star-rating">
+									<i th:text="${movie.rating}" ></i>
+									<!--<i class="material-icons">star_rate</i>-->
+									<!--<i class="material-icons">star_rate</i>-->
+									<!--<i class="material-icons">star_rate</i>-->
+									<!--<i class="material-icons">star_rate</i>-->
+								</div>
+							</div>
+							<div class="btn-group">
+								<a href="edit-movie{/movie.id}">
+									<input class="btn btn-primary " aria-pressed="true" type="button" value="Edit"/>						
+								</a>
+							<!-- 	<form action="#"  th:action="@{/edit-movie/${movie.id}}" method="PUT">
+									<button
+										onclick="if (confirm('Are you sure you want to delete this movie?'))
+							{ form.action='${movie.id}'; } else { return false; }"
+										type="submit" class="btn btn-default">
+										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										Edit
+									</button>
+								</form> -->
+								<a href="delete-movie/${movie.id}">
+									<input class="btn btn-danger " aria-pressed="true" type="button" value="Delete" />								
+								</a>
+							</div>
+						</div>
+                        </tr>
+>>>>>>> 2c79931f07e8fd4b9f8fb00708c4debe28992c0e
 					</div>
 				</div>
 			</div>
