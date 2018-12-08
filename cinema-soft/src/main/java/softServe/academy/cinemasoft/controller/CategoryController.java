@@ -63,7 +63,7 @@ public class CategoryController {
 
     @RequestMapping(value = "/editCategory", method = RequestMethod.POST, params = {"edit"})
     public String editCategoryView(@ModelAttribute("category") Category category) {
-        return "redirect:/categories";
+        return "edit-category";
     }
 
 //    @GetMapping("/index")
@@ -88,5 +88,20 @@ public class CategoryController {
         ModelAndView modelAndView = new ModelAndView("movie");
         modelAndView.addObject("selectMovie", movieService.getMovieById(id));
         return modelAndView;
+    }
+
+    @GetMapping("/editCategory/{id}")
+   public ModelAndView showEditCategoryView(@PathVariable("id") int id){
+        Category selectedCategory = categoryService.getCategoryById(id);
+        ModelAndView modelAndView = new ModelAndView("edit-category");
+        modelAndView.addObject("category", selectedCategory);
+        return modelAndView;
+    }
+
+    @PostMapping("editCategory/{id}")
+    public String editCategory(@ModelAttribute("category") Category category, @PathVariable("id") int id){
+        String newName = category.getNameOfCategory();
+        categoryService.editCategory(id, newName);
+        return "redirect:/categories";
     }
 }
