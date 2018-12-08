@@ -1,6 +1,7 @@
 package softServe.academy.cinemasoft.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,12 +22,7 @@ import java.nio.file.Files;
 public class CategoryController {
 
     private CategoryService categoryService;
-    //  private MovieService movieService;
     private MovieService movieService;
-//    @Autowired
-//    public CategoryController(CategoryService categoryService) {
-//        this.categoryService = categoryService;
-//    }
 
     @Autowired
     public CategoryController(CategoryService categoryService, MovieService movieService) {
@@ -78,7 +74,7 @@ public class CategoryController {
     @GetMapping("/index")
     public ModelAndView showAllMovies(Model model) {
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("movies", movieService.findAll());
+        modelAndView.addObject("movies", movieService.findAll(new Sort(Sort.Direction.DESC, "rating")));
         return modelAndView;
     }
 
