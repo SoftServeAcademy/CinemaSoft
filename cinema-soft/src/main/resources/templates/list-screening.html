@@ -114,7 +114,7 @@
 								</thead>
 								<tbody>
 								<tr class="table-danger" th:each="screening : ${screening}">
-									<td th:text="${screening.startTime}" ></td> <td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-danger-xs" method="get" >Edit</a><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-danger-xs" method="get" >Edit</a></td>
+									<td th:text="${screening.startTime}" ></td> <td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-danger-xs" method="get" >Edit</a><a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-danger-xs" method="get" >delete</a></td>
 								</tr>
 								</tbody>
 							</table>
