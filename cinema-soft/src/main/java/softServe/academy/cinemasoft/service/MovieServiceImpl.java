@@ -53,11 +53,6 @@ public class MovieServiceImpl implements MovieService{
 	}
 
 	@Override
-	public List<Movie> findAll(){
-		return movieRepository.findAll();
-	}
-
-	@Override
 	public Movie getMovieById(int id) {
 		return movieRepository.getOne(id);
 	}

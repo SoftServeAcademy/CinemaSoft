@@ -78,7 +78,7 @@ public class CategoryController {
     @GetMapping("/index")
     public ModelAndView showAllMovies(Model model) {
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("movies", movieService.findAll());
+        modelAndView.addObject("movies", movieService.getAllMovie());
         return modelAndView;
     }
 
