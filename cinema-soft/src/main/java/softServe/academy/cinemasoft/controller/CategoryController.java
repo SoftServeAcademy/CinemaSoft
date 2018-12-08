@@ -82,15 +82,15 @@ public class CategoryController {
         return modelAndView;
     }
 
-    @GetMapping("/movie")
-    public String showMovie() {
-        return "movie";
-    }
+//    @GetMapping("/movie")
+//    public String showMovie() {
+//        return "movie";
+//    }
 
-    @GetMapping(value = "/movie/{id}")
-    public ModelAndView showMovieById(@PathVariable("id") int id) {
-        ModelAndView modelAndView = new ModelAndView("movie");
-        modelAndView.addObject("selectMovie", movieService.getMovieById(id));
-        return modelAndView;
-    }
+//    @GetMapping(value = "/movie/{id}")
+//    public ModelAndView showMovieById(@PathVariable("id") int id) {
+//        ModelAndView modelAndView = new ModelAndView("movie");
+//        modelAndView.addObject("selectMovie", movieService.getMovieById(id));
+//        return modelAndView;
+//    }
 }

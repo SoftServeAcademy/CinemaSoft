@@ -14,13 +14,8 @@ public class Category {
     @Column(unique = true)
     private String nameOfCategory;
 
-    @OneToMany
-    @JoinTable(name="categories_movies",
-    joinColumns = @JoinColumn(name="category_id"),
-            inverseJoinColumns = @JoinColumn(name="movie_id")
-    )
+    @OneToMany(mappedBy = "category")
     private List<Movie> movies;
-
 
     public Category() {
     }
