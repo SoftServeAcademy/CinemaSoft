@@ -32,9 +32,9 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="tel">
-							<a href="register.html">Register</a>
-							<a href="login.html">Login</a>
-							<a href="logout.html">Logout</a>
+							<a href="register">Register</a>
+							<a href="login">Login</a>
+							<a href="logout">Logout</a>
 						</div>
 					</div>
 				</div>
@@ -43,7 +43,7 @@
 
 		<div class="container">
 			<div class="navbar-header">
-				<a href="index.html" class="logo.png" title="Cinemasoft">
+				<a href="index" class="logo.png" title="Cinemasoft">
 					<img src="images/logo.png" alt="Cinemasoft">
 				</a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -57,23 +57,23 @@
 			<div class="navbar-collapse collapse">
 				<ul id="menu-primary" class="nav navbar-nav">
 					<li class="dropdown">
-						<a href="admin.html">Admin</a>
+						<a href="admin">Admin</a>
 						<ul class="dropdown-menu">
-							<li><a href="add-movie.html">Add movie</a></li>
-							<li><a href="add-category.html">Add category</a></li>
-							<li><a href="list-category.html">List category</a></li>
-							<li><a href="add-screening.html">Add screening</a></li>
-							<li><a href="list-screening.html">List screening</a></li>
+							<li><a href="add-movie">Add movie</a></li>
+							<li><a href="add-category">Add category</a></li>
+							<li><a href="list-category">List category</a></li>
+							<li><a href="add-screening">Add screening</a></li>
+							<li><a href="list-screening">List screening</a></li>
 						</ul>
 					</li>
 					<li>
-						<a href="index.html">Home</a>
+						<a href="index">Home</a>
 					</li>
 					<li>
-						<a href="program.html">Program</a>
+						<a href="program">Program</a>
 					</li>
 					<li>
-						<a href="book-ticket.html">Book ticket</a>
+						<a href="book-ticket">Book ticket</a>
 					</li>
 				</ul>
 			</div>
@@ -174,7 +174,7 @@
 							<div class="movie-poster">
 								<aside>
 									<div>
-										<a href="movie.html" class="read-more">read more</a>
+										<a href="movie" class="read-more">read more</a>
 										<span class="date">Released: 7 Mar, 2017</span>
 									</div>
 								</aside>
@@ -200,7 +200,7 @@
 		<!-- Rating category -->
 		<div class="container section" id="afterHeader">
 			<div class="row">
-				<div class="col-sm-12">
+				<div class="col-sm-10">
 
 					<div class="tabs movies">
 						<ul>
@@ -233,24 +233,25 @@
 									<!--<i class="material-icons">star_rate</i>-->
 								</div>
 							</div>
+							<div class="btn-group">
+								<a href="edit-movie{/movie.id}">
+									<input class="btn btn-primary " aria-pressed="true" type="button" value="Edit"/>						
+								</a>
+							<!-- 	<form action="#"  th:action="@{/edit-movie/${movie.id}}" method="PUT">
+									<button
+										onclick="if (confirm('Are you sure you want to delete this movie?'))
+							{ form.action='${movie.id}'; } else { return false; }"
+										type="submit" class="btn btn-default">
+										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										Edit
+									</button>
+								</form> -->
+								<a href="delete-movie/${movie.id}">
+									<input class="btn btn-danger " aria-pressed="true" type="button" value="Delete" />								
+								</a>
+							</div>
 						</div>
                         </tr>
-
-						<!--<tr th:each="movie : ${movies}">-->
-							<!--<td th:text="${movie.id}">1</td>-->
-							<!--<td th:text="${movie.title}">1</td>-->
-							<!--<td th:text="${movie.director}">1</td>-->
-							<!--<td th:text="${movie.cast}">1</td>-->
-							<!--&lt;!&ndash;<td th:text="${movie.cover}">1</td>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<td th:style="'image:url('+ ${movie.cover}+');'">1</td>&ndash;&gt;-->
-                            <!--<td th:src="@{movie.cover}"></td>-->
-                            <!--<td th:text="${movie.trailer}">1</td>-->
-							<!--<td th:text="${movie.description}">1</td>-->
-							<!--<td th:text="${movie.duration}">1</td>-->
-							<!--<td th:text="${movie.rating}">1</td>-->
-						<!--</tr>-->
-
-
 					</div>
 				</div>
 			</div>
