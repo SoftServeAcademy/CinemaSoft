@@ -88,14 +88,6 @@ public class Movie {
 		this.director = director;
 	}
 
-//	public List<String> getCast() {
-//		return cast;
-//	}
-//
-//	public void setCast(List<String> cast) {
-//		this.cast = cast;
-//	}
-
 	public String getTrailer() {
 		return trailer;
 	}
@@ -153,7 +145,7 @@ public class Movie {
 	}
 
 	public Movie(Integer id, String title, String director, String trailer, String description, String duration,
-			double rating) {
+			double rating, String cast, byte[] cover ) {
 		this.id = id;
 		this.title = title;
 		this.director = director;
@@ -161,6 +153,8 @@ public class Movie {
 		this.description = description;
 		this.duration = duration;
 		this.rating = rating;
+		this.cast = cast;
+		this.cover = cover;
 	}
 
 	public Movie() {

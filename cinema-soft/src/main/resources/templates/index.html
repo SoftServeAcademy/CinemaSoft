@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"> 
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -197,7 +197,7 @@
 		</div>
 
         <tr th:each="movie : ${movies}"></tr>
-		<!-- Rating category -->
+		Rating category
 		<div class="container section" id="afterHeader">
 			<div class="row">
 				<div class="col-sm-10">
@@ -207,7 +207,7 @@
 							<li><a href="#rating">Top rated movies</a></li>
 						</ul>
 
-                        <tr th:each="movie : ${movies}">
+                        <tr th:each="movie, stat : ${movies}">
 						<div id="rating">
 							<div class="movie-slide">
 								<div class="movie-poster">
@@ -234,29 +234,16 @@
 								</div>
 							</div>
 							<div class="btn-group">
-								<a href="edit-movie{/movie.id}">
-									<input class="btn btn-primary " aria-pressed="true" type="button" value="Edit"/>						
-								</a>
-							<!-- 	<form action="#"  th:action="@{/edit-movie/${movie.id}}" method="PUT">
-									<button
-										onclick="if (confirm('Are you sure you want to delete this movie?'))
-							{ form.action='${movie.id}'; } else { return false; }"
-										type="submit" class="btn btn-default">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										Edit
-									</button>
-								</form> -->
-								<a href="delete-movie/${movie.id}">
-									<input class="btn btn-danger " aria-pressed="true" type="button" value="Delete" />								
-								</a>
+								<a th:href="@{/edit-movie/{id}(id=${movie.id})}" class="btn btn-ghost">Edit</a>
+								<a th:href="@{/delete-movie/{id}(id=${movie.id})}" class="btn btn-ghost"  >Delete </a>				
 							</div>
 						</div>
                         </tr>
 					</div>
-				</div>
+				</div> 
 			</div>
 		</div>
-	</div>
+	</div> 
 
 	<!-- Footer -->
 	<footer>
