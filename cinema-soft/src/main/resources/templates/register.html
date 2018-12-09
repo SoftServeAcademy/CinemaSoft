@@ -31,10 +31,14 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-sm-12">								
-								<div class="tel">																										
-									<a href="register.html">Register</a>
-									<a href="login.html">Login</a>					
-									<a href="logout.html">Logout</a>																	    																		
+								<div class="tel">
+
+									<a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a>
+
+									<a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
+
+									<a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+
 								</div>
 							</div>
 						</div>
@@ -82,7 +86,7 @@
 			</div>
 			<!-- Hero-->
 				
-				<div id="content_hero" style="background-image:url(images/background.jpg)"> 
+				<div id="content_hero" style="background-image:url(images/background.jpg)">
 				<img src="images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
 
 				<!-- Content -->
@@ -153,5 +157,4 @@
 		<script src="https://use.fontawesome.com/4dfd2d448a.js"></script>
 		<script src="js/custom.js"></script>
 	</body>
->>>>>>> cff1706dbc0293d26f6fe4f19f8f6691e212bd99
 </html>
