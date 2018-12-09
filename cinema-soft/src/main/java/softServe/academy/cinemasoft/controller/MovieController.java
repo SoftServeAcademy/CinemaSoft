@@ -20,6 +20,7 @@ import softServe.academy.cinemasoft.service.MovieService;
 public class MovieController {
 	
 
+
 	@Autowired
     private MovieService movieService;
     

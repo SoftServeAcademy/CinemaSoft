@@ -33,9 +33,12 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="tel">
-							<a href="register">Register</a>
-							<a href="login">Login</a>
-							<a href="logout">Logout</a>
+							<a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a>
+
+							<a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
+
+							<a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+
 						</div>
 					</div>
 				</div>
