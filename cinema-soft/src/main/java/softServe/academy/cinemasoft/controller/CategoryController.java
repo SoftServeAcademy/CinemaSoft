@@ -67,6 +67,7 @@ public class CategoryController {
 
     @RequestMapping(value = "/editCategory", method = RequestMethod.POST, params = {"edit"})
     public String editCategoryView(@ModelAttribute("category") Category category) {
+    	System.out.println(category);
         return "redirect:/categories";
     }
 

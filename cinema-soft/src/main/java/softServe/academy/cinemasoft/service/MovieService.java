@@ -12,10 +12,12 @@ public interface MovieService {
 
     void deleteMovie(int id);
 
-    void editMovie(int id);
+    Movie editMovie(Movie movie);
 
     Movie findMovie(int id);
 
     Movie getMovieById(int id);
+
+	void editPostMovie(Movie movie);
 
 }
