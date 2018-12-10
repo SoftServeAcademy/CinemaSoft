@@ -15,9 +15,9 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="movie")
+@Table(name = "movie")
 public class Movie {
-	
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
@@ -31,157 +31,154 @@ public class Movie {
 
     @Column(nullable = false)
     private String cast;
-    
+
     @ManyToOne
     private Category category;
-    
+
     @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
     private List<Comment> comment;
 
-	@OneToMany
-	private List<Screening> screenings;
+    @OneToMany
+    private List<Screening> screenings;
 
-	//@Column(nullable = false)
+
     private byte[] cover;
 
-//	@Column(nullable = false)
-//    private byte[] cover;
-
-
-	@Column(nullable = false)
+    @Column(nullable = false)
     private String trailer;
-    
+
     @Column(nullable = false)
     private String description;
-    
+
     @Column(nullable = false)
     private String duration;
 
     private double rating;
 
-	public Category getCategory() {
-		return category;
-	}
+    public Category getCategory() {
+        return category;
+    }
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getDirector() {
-		return director;
-	}
+    public String getDirector() {
+        return director;
+    }
 
-	public void setDirector(String director) {
-		this.director = director;
-	}
+    public void setDirector(String director) {
+        this.director = director;
+    }
 
-	public String getTrailer() {
-		return trailer;
-	}
+    public String getTrailer() {
+        return trailer;
+    }
 
-	public void setTrailer(String trailer) {
-		this.trailer = trailer;
-	}
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
+    }
 
-	public String getDiscription() {
-		return description;
-	}
+    public String getDiscription() {
+        return description;
+    }
 
-	public void setDiscription(String discription) {
-		this.description = discription;
-	}
+    public void setDiscription(String discription) {
+        this.description = discription;
+    }
 
-	public String getDuration() {
-		return duration;
-	}
+    public String getDuration() {
+        return duration;
+    }
 
-	public void setDuration(String duration) {
-		this.duration = duration;
-	}
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
 
-	public double getRating() {
-		return rating;
-	}
+    public double getRating() {
+        return rating;
+    }
 
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
 
-	public String getCast() {
-		return cast;
-	}
+    public String getCast() {
+        return cast;
+    }
 
-	public void setCast(String cast) {
-		this.cast = cast;
-	}
+    public void setCast(String cast) {
+        this.cast = cast;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-//	public byte[] getCover() {
-//		return cover;
-//	}
-//
-//	public void setCover(byte[] cover) {
-//		this.cover = cover;
-//	}
+    public byte[] getCover() {
+        return cover;
+    }
 
-	public List<Comment> getComment() {
-		return comment;
-	}
+    public void setCover(byte[] cover) {
+        this.cover = cover;
+    }
 
-	public void setComment(List<Comment> comment) {
-		this.comment = comment;
-	}
+    public List<Comment> getComment() {
+        return comment;
+    }
 
-	public List<Screening> getScreenings() {
-		return screenings;
-	}
+    public void setComment(List<Comment> comment) {
+        this.comment = comment;
+    }
 
-	public void setScreenings(List<Screening> screenings) {
-		this.screenings = screenings;
-	}
+    public List<Screening> getScreenings() {
+        return screenings;
+    }
 
-	public Movie(Integer id, String title, String director, String trailer, String description, String duration,
-			double rating, String cast, byte[] cover ) {
-		this.id = id;
-		this.title = title;
-		this.director = director;
-		this.trailer = trailer;
-		this.description = description;
-		this.duration = duration;
-		this.rating = rating;
-		this.cast = cast;
-		this.cover = cover;
-		this.comment = new ArrayList<Comment>();
-	}
+    public void setScreenings(List<Screening> screenings) {
+        this.screenings = screenings;
+    }
 
-	public Movie() {
-	}
-	public void addComment(Comment comment) {
-		this.comment.add(comment);
-	}
+    public Movie(Integer id, String title, String director, String trailer, String description, String duration,
+                 double rating, String cast, byte[] cover) {
+        this.id = id;
+        this.title = title;
+        this.director = director;
+        this.trailer = trailer;
+        this.description = description;
+        this.duration = duration;
+        this.rating = rating;
+        this.cast = cast;
+        this.cover = cover;
+        this.comment = new ArrayList<>();
+    }
 
-	}
+    public Movie() {
+    }
+
+    public void addComment(Comment comment) {
+        this.comment.add(comment);
+    }
+
+}
 

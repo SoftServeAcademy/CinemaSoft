@@ -60,25 +60,25 @@
 
 			<div class="navbar-collapse collapse">
 				<ul id="menu-primary" class="nav navbar-nav">
-					<li class="dropdown">
+					<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
 						<a href="admin">Admin</a>
 						<ul class="dropdown-menu">
-							<li><a href="add-movie">Add movie</a></li>
-							<li><a href="add-category">Add category</a></li>
-							<li><a href="list-category">List category</a></li>
-							<li><a href="add-screening">Add screening</a></li>
-							<li><a href="list-screening">List screening</a></li>
+							<li><a href="/add-movie">Add movie</a></li>
+							<li><a href="/add-category">Add category</a></li>
+							<li><a href="/categories">List category</a></li>
+							<li><a href="/addScreening">Add screening</a></li>
+							<li><a href="/listScreening">List screening</a></li>
 						</ul>
 					</li>
 					<li>
-						<a href="index">Home</a>
+						<a href="/">Home</a>
 					</li>
 					<li>
 						<a href="program">Program</a>
 					</li>
-					<li>
-						<a href="book-ticket">Book ticket</a>
-					</li>
+					<!--  <li>
+                       <a href="book-ticket">Book ticket</a>
+                   </li>-->
 				</ul>
 			</div>
 		</div>
@@ -131,11 +131,9 @@
 							   name="cover" accept="image/png, image/jpeg">
 					</div>
 					<div class="form-group">
-						<select name="category">
+						<select name="category" th:field="*{category}">
 							<option value="text" selected>Choose category</option>
-							<option th:field="*{category}" type="object" value="1">1</option>
-							<option value="2">2</option>
-							<option value="2">3</option>
+							<option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.nameOfCategory}" ></option>
 						</select>
 					</div>
 					<div class="form-group">
