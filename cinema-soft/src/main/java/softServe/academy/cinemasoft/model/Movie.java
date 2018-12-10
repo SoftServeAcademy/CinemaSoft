@@ -1,12 +1,7 @@
 package softServe.academy.cinemasoft.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -32,6 +27,9 @@ public class Movie {
     
     @ManyToOne
     private Comment comment;
+
+	@OneToMany
+	private List<Screening> screenings;
 
     public Comment getComment() {
 		return comment;
@@ -142,6 +140,14 @@ public class Movie {
 
 	public void setCover(byte[] cover) {
 		this.cover = cover;
+	}
+
+	public List<Screening> getScreenings() {
+		return screenings;
+	}
+
+	public void setScreenings(List<Screening> screenings) {
+		this.screenings = screenings;
 	}
 
 	public Movie(Integer id, String title, String director, String trailer, String description, String duration,

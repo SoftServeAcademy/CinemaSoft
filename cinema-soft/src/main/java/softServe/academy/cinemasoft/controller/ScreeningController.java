@@ -1,5 +1,6 @@
 package softServe.academy.cinemasoft.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,17 +44,16 @@ public class ScreeningController {
 
     //EDIT
     @GetMapping(value = "/editScreening/{id}")
-    public ModelAndView editScreening(@PathVariable("id") int id){
-        Screening ss = screeningService.getScreeningById(id);
+    public ModelAndView editScreening(@PathVariable("id") int id, Screening screening){
+       // screening = screeningService.getScreeningById(id);
         ModelAndView mav = new ModelAndView("edit-screening");
-        mav.addObject("screening", ss);
+        mav.addObject("screening", screening);
         return mav;
     }
 
     @PostMapping(value = "/editScreening/{id}")
     public String postEditScreening(@ModelAttribute("screening") Screening screening,@PathVariable("id") int Id){
-        String st = screening.getStartTime();
-        screeningService.editScreening(Id, st);
+        screeningService.editPostScreening(screening);
         return "redirect:/listScreening";
     }
 
