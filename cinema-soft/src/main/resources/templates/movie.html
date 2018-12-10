@@ -172,19 +172,13 @@
 						<div class="comments">
 						  
 							<div class="row" th:each="com:${comments}">
-								<div class="col-sm-2">
-									<img src="/images/avatar.png" class="Luke Barrett" />
-								</div>
+
 								<div class="col-sm-9">
 									<span th:text="${com.dateOfComment}" class="date"></span>
-									<h4 class="no-underline">Luke Barrett</h4>
+									<h4 th:text="${com.user.email}" class="no-underline"></h4>
 									<p th:text="${com.content}"></p>
 								</div>
 							</div>
-							
-							
-	
-							
 						</div>
 					</div>
 					

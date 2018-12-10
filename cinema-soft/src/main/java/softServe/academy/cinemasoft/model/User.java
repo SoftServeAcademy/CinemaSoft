@@ -1,16 +1,9 @@
 package softServe.academy.cinemasoft.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class User {
@@ -31,6 +24,9 @@ public class User {
 
     private String password;
 
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
+
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles",
     joinColumns = @JoinColumn(name = "user_id"),
@@ -46,6 +42,7 @@ public class User {
         this.userName = userName;
         this.email = email;
         this.password = password;
+        this.comments = new ArrayList<>();
     }
 
     public User(String firstName, String lastName, String userName, String email, String password, Collection<Role> roles) {
@@ -103,6 +100,15 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public Collection<Role> getRoles() {
