@@ -299,12 +299,11 @@
 									<aside>
 										<div>
 
-											<a href="movie.html" class="read-more">read more</a>
-
-											<a href="@{/movie/{id}(id=${movie.id})}" class="read-more">read more</a>
-                                            <form action="#" th:object="${movie}" th:action="@{/movie/{id}(id=${movie.id})}"></form>
+											<a th:href="@{/movie/{id}(id=${movie.id})}" >read more</a>
+                                            <!--<form action="#" th:object="${movie}" th:action="@{/movie/{id}(id=${movie.id})}"></form>-->
 
 											<span class="date">Released: 7 Mar, 2017</span>
+											<p th:text="${movie.id}"></p></a>
 										</div>
 									</aside>
 									<a href="#">

@@ -30,4 +30,16 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+    public Category getCategoryById(int id){
+        return categoryRepository.getOne(id);
+    }
+
+    public void editCategory(int id, String newName){
+        Category current = categoryRepository.getOne(id);
+        if(current != null){
+            String newCategoryName = newName;
+            current.setNameOfCategory(newCategoryName);
+            categoryRepository.save(current);
+        }
+    }
 }
