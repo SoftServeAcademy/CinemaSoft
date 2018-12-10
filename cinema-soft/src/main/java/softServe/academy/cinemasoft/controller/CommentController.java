@@ -47,7 +47,8 @@ public class CommentController {
         User userEntity = this.userService.findUserByEmail(user.getUsername());
 
         commentService.addComment(comment,movieId,userEntity);
-        return "redirect:/index";
+
+        return "redirect:/movie/" + movieId;
     }
 
     // GET_ALL
