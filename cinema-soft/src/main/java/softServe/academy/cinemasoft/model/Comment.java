@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,20 +26,22 @@ public class Comment {
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	Date dateOfComment;
 	
-	@OneToMany(mappedBy = "comment")
-	private List<Movie> movie;
+	@ManyToOne
+	private Movie movie;
 	
 	public Comment() {
 		this.dateOfComment = new Date();
 	}
 
-	public List<Movie> getMovie() {
+	public Movie getMovie() {
 		return movie;
 	}
-
-	public void setMovie(List<Movie> movie) {
+	
+	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
+
+
 
 	public Integer getId() {
 		return id;

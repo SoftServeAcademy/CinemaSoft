@@ -8,21 +8,32 @@ import org.springframework.stereotype.Service;
 import softServe.academy.cinemasoft.model.Comment;
 import softServe.academy.cinemasoft.model.Movie;
 import softServe.academy.cinemasoft.repository.CommentRepository;
+import softServe.academy.cinemasoft.repository.MovieRepository;
 
 @Service
 public class CommentService {
 
 	private CommentRepository commentRepository;
+	
+	private MovieRepository movieRepository;
 
 	@Autowired
-	public CommentService(CommentRepository commentRepository) {
+	public CommentService(CommentRepository commentRepository, MovieRepository movieRepository) {
 		this.commentRepository=commentRepository;
+		this.movieRepository=movieRepository;
 	}
-	public Comment addComment(Comment commentToAdd) {
+	public Comment addComment(Comment commentToAdd,int movieId) {
 	
+		  Movie newMovie = this.movieRepository.getOne(movieId);
 	        Comment newComment = new Comment();
 	        newComment.setContent(commentToAdd.getContent());
-	        return this.commentRepository.save(newComment);
+	        newComment.setMovie(newMovie);
+	        Comment savedComment = this.commentRepository.save(newComment);
+	       
+	        newMovie.addComment(savedComment);
+	        this.movieRepository.save(newMovie);
+	        
+	        return savedComment;
 	}
 
 	public void removeComment(int id) {

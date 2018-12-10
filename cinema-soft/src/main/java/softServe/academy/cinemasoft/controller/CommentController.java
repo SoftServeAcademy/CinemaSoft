@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import softServe.academy.cinemasoft.model.Category;
 import softServe.academy.cinemasoft.model.Comment;
 import softServe.academy.cinemasoft.model.Movie;
 import softServe.academy.cinemasoft.service.CommentService;
@@ -33,18 +35,23 @@ public class CommentController {
 		this.commentService = commentService;
 	}
 
-	@GetMapping("/addComment")
-	public String addCommentView(Model model) {
-		model.addAttribute("comment", new Comment());
-		return "movie";
-	}
+//	@GetMapping("/addComment")
+//	public String addCommentView(Model model) {
+//		model.addAttribute("comment", new Comment());
+//		return "movie";
+//	}
 
 	// ADD
 	@PostMapping("/addComment")
-	 @ResponseBody
-	    public ResponseEntity<?> addComment(@RequestBody Comment comment){
-	        commentService.addComment(comment);
-	        return ResponseEntity.status(HttpStatus.CREATED).build();
+	    public String addComment(@ModelAttribute("comment") Comment comment,@ModelAttribute("movieId") int movieId, BindingResult bindingResult){
+	    if (bindingResult.hasErrors()) {
+	            for (ObjectError error : bindingResult.getAllErrors()) {
+	                System.out.println(error);
+	            }
+	        }
+	    System.out.println(movieId);
+		commentService.addComment(comment,movieId);
+	        return "redirect:/index";
 	    }	
 
 	// GET_ALL

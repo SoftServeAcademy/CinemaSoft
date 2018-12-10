@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import softServe.academy.cinemasoft.model.Category;
+import softServe.academy.cinemasoft.model.Comment;
 import softServe.academy.cinemasoft.model.Movie;
 import softServe.academy.cinemasoft.repository.MovieRepository;
 import softServe.academy.cinemasoft.service.CategoryService;
@@ -86,9 +87,10 @@ public class CategoryController {
 
 
     @GetMapping(value = "/movie/{id}")
-    public ModelAndView showMovieById(@PathVariable("id") int id) {
+    public ModelAndView showMovieById(@PathVariable("id") int id,Model model) {
         ModelAndView modelAndView = new ModelAndView("movie");
         modelAndView.addObject("selectMovie", movieService.getMovieById(id));
+        model.addAttribute("comment", new Comment());
         return modelAndView;
     }
 
@@ -106,7 +108,6 @@ public class CategoryController {
         categoryService.editCategory(id, newName);
         return "redirect:/categories";
     }
-=======
 //    @GetMapping(value = "/movie/{id}")
 //    public ModelAndView showMovieById(@PathVariable("id") int id) {
 //        ModelAndView modelAndView = new ModelAndView("movie");
