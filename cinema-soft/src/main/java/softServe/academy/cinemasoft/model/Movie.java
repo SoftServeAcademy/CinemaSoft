@@ -38,12 +38,11 @@ public class Movie {
     @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
     private List<Comment> comment;
 
+	@OneToMany
+	private List<Screening> screenings;
+
 	//@Column(nullable = false)
     private byte[] cover;
-
-	public void setComment(Comment comment) {
-		this.comment = comment;
-	}
 
 //	@Column(nullable = false)
 //    private byte[] cover;
@@ -156,6 +155,14 @@ public class Movie {
 		this.comment = comment;
 	}
 
+	public List<Screening> getScreenings() {
+		return screenings;
+	}
+
+	public void setScreenings(List<Screening> screenings) {
+		this.screenings = screenings;
+	}
+
 	public Movie(Integer id, String title, String director, String trailer, String description, String duration,
 			double rating, String cast, byte[] cover ) {
 		this.id = id;
@@ -175,6 +182,6 @@ public class Movie {
 	public void addComment(Comment comment) {
 		this.comment.add(comment);
 	}
-		
+
 	}
 

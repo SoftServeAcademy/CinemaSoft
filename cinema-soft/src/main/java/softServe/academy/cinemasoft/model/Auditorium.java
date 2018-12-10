@@ -2,12 +2,7 @@ package softServe.academy.cinemasoft.model;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Auditorium {
@@ -21,6 +16,9 @@ public class Auditorium {
 	private int seatsInRow;
 	@OneToMany(mappedBy = "auditorium")
 	private List<Seat> seats;
+	@OneToMany
+	private List<Screening> screening;
+
 
 	public Auditorium() {
 
@@ -33,6 +31,14 @@ public class Auditorium {
 		this.numberOfRows = numberOfRows;
 		this.seatsInRow = seatsInRow;
 		this.seats = seats;
+	}
+
+	public List<Screening> getScreening() {
+		return screening;
+	}
+
+	public void setScreening(List<Screening> screening) {
+		this.screening = screening;
 	}
 
 	public Integer getId() {
