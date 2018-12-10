@@ -32,10 +32,13 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-sm-12">								
-								<div class="tel">																										
-									<a href="register.html">Register</a>
-									<a href="login.html">Login</a>					
-									<a href="logout.html">Logout</a>																	    																		
+								<div class="tel">
+									<a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a>
+
+									<a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
+
+									<a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+
 								</div>
 							</div>
 						</div>
@@ -44,7 +47,7 @@
 				
 				<div class="container">
 					<div class="navbar-header">
-						<a href="index.html" class="logo.png" title="Cinemasoft">
+						<a href="index" class="logo.png" title="Cinemasoft">
 							<img src="images/logo.png" alt="Cinemasoft">
 						</a>
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -58,23 +61,23 @@
 					<div class="navbar-collapse collapse">
 						<ul id="menu-primary" class="nav navbar-nav">
 						    <li class="dropdown">
-								<a href="admin.html">Admin</a>
+								<a href="admin">Admin</a>
 								<ul class="dropdown-menu">
-									<li><a href="add-movie.html">Add movie</a></li>
-									<li><a href="add-category.html">Add category</a></li>
-									<li><a href="list-category.html">List category</a></li>
-									<li><a href="add-screening.html">Add screening</a></li>
-									<li><a href="list-screening.html">List screening</a></li>
+									<li><a href="add-movie">Add movie</a></li>
+									<li><a href="add-category">Add category</a></li>
+									<li><a href="list-category">List category</a></li>
+									<li><a href="add-screening">Add screening</a></li>
+									<li><a href="list-screening">List screening</a></li>
 								</ul>	
 							</li>
 							<li>
-								<a href="index.html">Home</a>
+								<a href="index">Home</a>
 							</li>
 							<li>
-								<a href="program.html">Program</a>
+								<a href="program">Program</a>
 							</li>
 							<li>
-								<a href="book-ticket.html">Book ticket</a>
+								<a href="book-ticket">Book ticket</a>
 							</li>														
 						</ul>
 					</div>
@@ -105,27 +108,15 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						 <form>														
-								<div class="form-group">
-									<select name="movie">
-									  <option value="text" selected>Choose movie</option>
-									  <option value="1">1</option>
-									  <option value="2">2</option>
-									  <option value="3">3</option>
-									</select>&nbsp									
-								</div>	
-								<div class="form-group">
-									<label>Date *</label>
-									<input type="text" />
-								</div>
+						<form action="#" th:object="${screening}"  th:action="@{/addScreening}" method="post">
+
 								<div class="form-group">
 									<label>Start Hour *</label>
-									<input type="text" />
+									<input th:field ="*{startTime}" type="text" />
 								</div>
 								<div class="form-group right-align">
-								<button class="btn btn-ghost">Add screening</button>
-							</div>
-							</div>																					
+								<button type="submit" class="btn btn-ghost">Add screening</button>
+								</div>
 						</form>
 					</div>
 				</div>

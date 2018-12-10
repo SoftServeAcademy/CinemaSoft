@@ -1,19 +1,14 @@
 package softServe.academy.cinemasoft.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import softServe.academy.cinemasoft.model.Screening;
 import softServe.academy.cinemasoft.service.ScreeningService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import java.util.List;
 
-import static com.sun.deploy.trace.Trace.flush;
-import static org.springframework.transaction.support.TransactionSynchronizationManager.clear;
 
 @Controller
 public class ScreeningController {
@@ -25,50 +20,49 @@ public class ScreeningController {
         this.screeningService = screeningService;
     }
 
-    // EDIT SCREENING
-
-    // DELETE SCREENING
-
-//    @GetMapping("/screening/{id}")
-//    public ResponseEntity<?> getScreeningById(@PathVariable int id){
-//        Screening result = this.screeningService.getScreeningById(id);
-//        if (result != null){
-//            return ResponseEntity.status(HttpStatus.CREATED).build();
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-
-    @GetMapping("/screening")
-    public ResponseEntity<List<Screening>> getAllScreenings(){
-        return ResponseEntity.ok(this.screeningService.findAllScreenings());
+    //ADD
+    @GetMapping(value = "/addScreening")
+    public String addScreening(Model model){
+        model.addAttribute("screening", new Screening());
+        return "add-screening";
     }
 
-//    @RequestMapping("/remove/{id}")
-//    public ResponseEntity<?> deleteScreeningById(@PathVariable int id) {
-//        Screening screening = new Screening();
-//        screening.setId(id);
-//        entityManager.persist(screening);
-//        flushAndClear();
-//        screening = entityManager.find(Screening.class, screening.getId());
-//        assertThat(screening, notNullValue());
-//        entityManager.remove(foo);
-//        flushAndClear();
-//        assertThat(entityManager.find(Screening.class, screening.getId()), nullValue());
-//    }
+    //ADD
+    @PostMapping("/addScreening")
+    public String createScreening(@ModelAttribute("screening") Screening screening){
+        screeningService.createScreening(screening);
+        return "redirect:/listScreening";
+    }
 
-//    @RequestMapping(value ="/screening/remove/{id}")
-//    public String deleteScreening(@PathVariable("id") int Id){
-//        screeningService.delete(id);
-//        return "redirect:/screening";
-//    }
-//
-//    // ADD SCREENING
-//
-//    private void flushAndClear() {
-//        flush();
-//        clear();
-//    }
+    //DELETE
+    @GetMapping(value ="/removeScreening/{id}")
+    public String deleteScreening(@PathVariable("id") int id){
+        screeningService.deleteScreening(id);
+        return "redirect:/listScreening";
+    }
 
+    //EDIT
+    @GetMapping(value = "/editScreening/{id}")
+    public ModelAndView editScreening(@PathVariable("id") int id){
+        Screening ss = screeningService.getScreeningById(id);
+        ModelAndView mav = new ModelAndView("edit-screening");
+        mav.addObject("screening", ss);
+        return mav;
+    }
+
+    @PostMapping(value = "/editScreening/{id}")
+    public String postEditScreening(@ModelAttribute("screening") Screening screening,@PathVariable("id") int Id){
+        String st = screening.getStartTime();
+        screeningService.editScreening(Id, st);
+        return "redirect:/listScreening";
+    }
+
+    //LIST SCREENING
+    @GetMapping(value = "/listScreening")
+    public ModelAndView listScreening(Model model){
+        ModelAndView modelAndView = new ModelAndView("list-screening");
+        modelAndView.addObject("screening", screeningService.findAllScreenings());
+        return modelAndView;
+    }
 
 }

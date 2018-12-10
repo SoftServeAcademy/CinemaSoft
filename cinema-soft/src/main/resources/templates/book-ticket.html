@@ -32,10 +32,13 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-sm-12">								
-								<div class="tel">																										
-									<a href="register.html">Register</a>
-									<a href="login.html">Login</a>					
-									<a href="logout.html">Logout</a>																	    																		
+								<div class="tel">
+									<a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a>
+
+									<a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
+
+									<a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+
 								</div>
 							</div>
 						</div>
@@ -105,26 +108,18 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						 <form>														
+						 <form>																						
 								<div class="form-group">
-									<select name="movie">
-									  <option value="text" selected>Choose number of seats</option>
-									  <option value="1">1</option>
-									  <option value="2">2</option>
-									  <option value="3">3</option>
-									</select>&nbsp									
-								</div>
-								<div class="form-group">
-									<select name="movie">
-									  <option value="text" selected>Choose column</option>
+									<select name="row">
+									  <option value="text" selected>Choose row</option>
 									  <option value="1">1</option>
 									  <option value="2">2</option>
 									  <option value="3">3</option>
 									</select>&nbsp									
 								</div>	
 								<div class="form-group">
-									<select name="movie">
-									  <option value="text" selected>Choose row</option>
+									<select name="seat">
+									  <option value="seat" selected>Choose seat</option>
 									  <option value="1">1</option>
 									  <option value="2">2</option>
 									  <option value="3">3</option>
