@@ -51,11 +51,6 @@ public class CommentController {
         return "redirect:/movie/" + movieId;
     }
 
-    // GET_ALL
-    @GetMapping("/allComments")
-    public ResponseEntity<List<Comment>> getAllComments() {
-        return ResponseEntity.ok(this.commentService.findAll());
-    }
 
     // DELETE
     @DeleteMapping(value = "/removeComment/{id}")
@@ -64,15 +59,5 @@ public class CommentController {
         return "redirect:/movie";
     }
 
-    //FIND BY MOVIE
-    @GetMapping("/comments/{movie}")
-    @ResponseBody
-    public ResponseEntity<?> getBookById(@PathVariable Movie movie) {
-        List<Comment> result = commentService.findByMovie(movie);
-        if (result != null) {
-            return ResponseEntity.ok(result);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+
 }

@@ -38,7 +38,6 @@
                             <a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
 
                             <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
-
                         </div>
                     </div>
                 </div>
@@ -60,25 +59,25 @@
 
             <div class="navbar-collapse collapse">
                 <ul id="menu-primary" class="nav navbar-nav">
-                    <li class="dropdown">
+                    <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
                         <a href="admin">Admin</a>
                         <ul class="dropdown-menu">
-                            <li><a href="add-movie">Add movie</a></li>
-                            <li><a href="add-category">Add category</a></li>
-                            <li><a href="list-category">List category</a></li>
-                            <li><a href="add-screening">Add screening</a></li>
-                            <li><a href="list-screening">List screening</a></li>
+                            <li><a href="/add-movie">Add movie</a></li>
+                            <li><a href="/add-category">Add category</a></li>
+                            <li><a href="/categories">List category</a></li>
+                            <li><a href="/addScreening">Add screening</a></li>
+                            <li><a href="/listScreening">List screening</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="index">Home</a>
+                        <a href="/index">Home</a>
                     </li>
                     <li>
-                        <a href="program">Program</a>
+                        <a href="/program">Program</a>
                     </li>
-                    <li>
+                  <!--  <li>
                         <a href="book-ticket">Book ticket</a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </div>
@@ -138,7 +137,7 @@
 
             </br>
             <div class="form-group right-align">
-                <button class="btn btn-ghost">Book ticket</button>
+              <!--  <button class="btn btn-ghost">Book ticket</button>-->
                 <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-ghost">Edit</a>
                 <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-ghost">Delete</a>
             </div>
