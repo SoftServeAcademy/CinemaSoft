@@ -60,25 +60,25 @@
 					
 					<div class="navbar-collapse collapse">
 						<ul id="menu-primary" class="nav navbar-nav">
-						    <li class="dropdown">
-								<a href="admin.html">Admin</a>
+							<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
+								<a href="admin">Admin</a>
 								<ul class="dropdown-menu">
-									<li><a th:href="@{/add}" method="post">Add movie</a></li>
-									<li><a th:href="@{/addCategory}" method="get">Add category</a></li>
-									<li><a th:href="@{/categories}" method="get">List category</a></li>
-									<li><a th:href="@{/addScreening}" method="post">Add screening</a></li>
-									<li><a th:href="@{/listScreening}" method="get">List screening</a></li>
-								</ul>	
+									<li><a href="/add-movie">Add movie</a></li>
+									<li><a href="/add-category">Add category</a></li>
+									<li><a href="/categories">List category</a></li>
+									<li><a href="/addScreening">Add screening</a></li>
+									<li><a href="/listScreening">List screening</a></li>
+								</ul>
 							</li>
 							<li>
-								<a th:href="@{/index}" method="get">Home</a>
+								<a href="/">Home</a>
 							</li>
 							<li>
-								<a th:href="@{/movieSchedule}" method="get">Program</a>
+								<a href="/program">Program</a>
 							</li>
-							<li>
-								<a href="book-ticket.html">Book ticket</a>
-							</li>														
+							<!--  <li>
+                                  <a href="book-ticket">Book ticket</a>
+                              </li>-->
 						</ul>
 					</div>
 				</div>
@@ -113,12 +113,14 @@
 								<a class="btn btn-ghost" th:href="@{/addScreening}" method="post">Add Screening</a>
 								<thead>
 								<tr>
-									<th scope="col">Start Time</th>
+									 <th scope="col">Auditorium</th> <th scope="col">Start Time</th>
 								</tr>
 								</thead>
 								<tbody>
 								<tr class="table-danger" th:each="screening : ${screening}">
-									<td th:text="${screening.startTime}" ></td> <td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >Edit</a><a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >delete</a></td>
+									<!--<td th:text="${screening.movie}"></td>-->
+									<td th:text="${screening.auditorium.id}"></td> <td th:text="${screening.startTime}"></td> <td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >Edit</a><a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >delete</a></td>
+									<!--<td th:text="${screening.startTime}"></td> <td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >Edit</a><a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >delete</a></td> --->
 								</tr>
 								</tbody>
 							</table>

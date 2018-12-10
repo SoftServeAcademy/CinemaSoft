@@ -1,14 +1,13 @@
 package softServe.academy.cinemasoft.model;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,28 +19,24 @@ public class Comment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Integer id;
+	private Integer id;
 
-	String content;
+	private String content;
+
 	@DateTimeFormat(iso = ISO.DATE_TIME)
-	Date dateOfComment;
+	private Date dateOfComment;
 	
 	@ManyToOne
 	private Movie movie;
+
+    @ManyToOne
+    @JoinColumn(nullable = false,name = "userId")
+	private User user;
+
 	
 	public Comment() {
 		this.dateOfComment = new Date();
 	}
-
-	public Movie getMovie() {
-		return movie;
-	}
-	
-	public void setMovie(Movie movie) {
-		this.movie = movie;
-	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -66,5 +61,19 @@ public class Comment {
 	public void setDateOfComment(Date dateOfComment) {
 		this.dateOfComment = dateOfComment;
 	}
+	public Movie getMovie() {
+		return movie;
+	}
 
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

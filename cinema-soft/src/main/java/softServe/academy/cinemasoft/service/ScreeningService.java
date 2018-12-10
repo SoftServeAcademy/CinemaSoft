@@ -1,6 +1,7 @@
 package softServe.academy.cinemasoft.service;
 
 import org.springframework.http.ResponseEntity;
+import softServe.academy.cinemasoft.model.Auditorium;
 import softServe.academy.cinemasoft.repository.ScreeningRepository;
 import softServe.academy.cinemasoft.model.Screening;
 
@@ -45,12 +46,7 @@ public class ScreeningService {
         screeningRepository.save(screening);
     }
 
-    public void editScreening(int id, String startTime){
-        Screening s = screeningRepository.getOne(id);
-        if (s != null){
-            String st = startTime;
-            s.setStartTime(st);
-            screeningRepository.save(s);
-        }
+    public void editPostScreening(Screening screening) {
+        screeningRepository.save(screening);
     }
 }

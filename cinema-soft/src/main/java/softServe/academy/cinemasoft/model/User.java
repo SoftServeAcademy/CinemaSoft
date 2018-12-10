@@ -1,5 +1,6 @@
 package softServe.academy.cinemasoft.model;
 
+<<<<<<< HEAD
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+=======
+import javax.persistence.*;
+>>>>>>> c13ff632571da73d2b96c1d93ecf76f026c56af5
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -42,7 +46,18 @@ public class User {
 
 	public User() {
 
+<<<<<<< HEAD
 	}
+=======
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
+
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinTable(name = "users_roles",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> roles;
+>>>>>>> c13ff632571da73d2b96c1d93ecf76f026c56af5
 
 	public User(String lastName, String userName, String email, String password) {
 		this.lastName = lastName;
@@ -62,9 +77,19 @@ public class User {
 		this.roles = roles;
 	}
 
+<<<<<<< HEAD
 	public Integer getId() {
 		return id;
 	}
+=======
+    public User(String lastName, String userName, String email, String password) {
+        this.lastName = lastName;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.comments = new ArrayList<>();
+    }
+>>>>>>> c13ff632571da73d2b96c1d93ecf76f026c56af5
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -118,9 +143,24 @@ public class User {
 		this.comments = comments;
 	}
 
+<<<<<<< HEAD
 	public Collection<Role> getRoles() {
 		return roles;
 	}
+=======
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+>>>>>>> c13ff632571da73d2b96c1d93ecf76f026c56af5
 
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
