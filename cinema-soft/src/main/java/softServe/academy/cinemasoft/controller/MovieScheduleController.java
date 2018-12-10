@@ -24,6 +24,11 @@ public class MovieScheduleController {
         this.movieScheduleService = movieScheduleService;
     }
 
+    @GetMapping("/program")
+    public String program() {
+        return "program";
+    }
+
     @PostMapping("/movieSchedule")
     @ResponseBody
     public ResponseEntity<?> createMovieSchedule(@RequestBody MovieSchedule movieSchedule){
@@ -46,11 +51,6 @@ public class MovieScheduleController {
     @ResponseBody
     public ResponseEntity<List<MovieSchedule>> findAllMovieSchedules(){
         return ResponseEntity.ok(movieScheduleService.findAll());
-    }
-
-    @GetMapping("/program")
-    public String program() {
-        return "program";
     }
 
     @GetMapping("/movieSchedule")

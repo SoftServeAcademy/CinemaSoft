@@ -27,32 +27,32 @@ public class MovieServiceImpl implements MovieService{
 	
 	public Movie addMovie(Movie movie) {
 		return this.movieRepository.saveAndFlush(movie);
-	}	
-	
-	public void deleteMovie(String id) {
+	}
+
+
+	public void deleteMovie(int id) {
         if(this.movieRepository.findById(id).orElse(null) != null) {
             this.movieRepository.deleteById(id);
         }
     }
 	
-	public void editMovie(String id) {
-	        Movie movie = this.movieRepository
-	        		.findById(id)
-	                .orElse(null);
+	public Movie editMovie(Movie movie) {	       
+	        this.movieRepository.saveAndFlush(movie);
+	        return movie;
+	}
+	public void editPostMovie(Movie movie) {
+		movieRepository.save(movie);
+}
 
-	        if(movie == null) return;
-	        
-	        this.movieRepository.saveAndFlush(movie);		
+	@Override
+	public Movie findMovie(int id) {
+		return this.movieRepository.findById(id).orElse(null);
 	}
 
 	@Override
-	public Movie findMovie(String id) {		
-		return this.movieRepository.findById(id).orElse(null);
+	public Movie getMovieById(int id) {
+		return movieRepository.getOne(id);
 	}
-	
-	
 
 
-	
-	
 }
