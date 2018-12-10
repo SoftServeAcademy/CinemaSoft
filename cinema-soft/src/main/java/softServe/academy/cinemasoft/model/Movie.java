@@ -41,6 +41,14 @@ public class Movie {
 	//@Column(nullable = false)
     private byte[] cover;
 
+	public void setComment(Comment comment) {
+		this.comment = comment;
+	}
+
+//	@Column(nullable = false)
+//    private byte[] cover;
+
+
 	@Column(nullable = false)
     private String trailer;
     
@@ -132,13 +140,13 @@ public class Movie {
 		this.description = description;
 	}
 
-	public byte[] getCover() {
-		return cover;
-	}
-
-	public void setCover(byte[] cover) {
-		this.cover = cover;
-	}
+//	public byte[] getCover() {
+//		return cover;
+//	}
+//
+//	public void setCover(byte[] cover) {
+//		this.cover = cover;
+//	}
 
 	public List<Comment> getComment() {
 		return comment;
