@@ -63,7 +63,8 @@ public class CategoryController {
 
     @RequestMapping(value = "/editCategory", method = RequestMethod.POST, params = {"edit"})
     public String editCategoryView(@ModelAttribute("category") Category category) {
-        return "edit-category";
+    	System.out.println(category);
+        return "redirect:/categories";
     }
 
 //    @GetMapping("/index")
@@ -78,10 +79,11 @@ public class CategoryController {
         return modelAndView;
     }
 
-    @GetMapping("/movie")
-    public String showMovie() {
-        return "movie";
-    }
+//    @GetMapping("/movie")
+//    public String showMovie() {
+//        return "movie";
+//    }
+
 
     @GetMapping(value = "/movie/{id}")
     public ModelAndView showMovieById(@PathVariable("id") int id) {
@@ -104,4 +106,11 @@ public class CategoryController {
         categoryService.editCategory(id, newName);
         return "redirect:/categories";
     }
+=======
+//    @GetMapping(value = "/movie/{id}")
+//    public ModelAndView showMovieById(@PathVariable("id") int id) {
+//        ModelAndView modelAndView = new ModelAndView("movie");
+//        modelAndView.addObject("selectMovie", movieService.getMovieById(id));
+//        return modelAndView;
+//    }
 }

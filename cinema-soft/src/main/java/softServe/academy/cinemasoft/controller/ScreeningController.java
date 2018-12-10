@@ -1,7 +1,6 @@
 package softServe.academy.cinemasoft.controller;
 
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import softServe.academy.cinemasoft.model.Screening;
@@ -9,10 +8,6 @@ import softServe.academy.cinemasoft.service.ScreeningService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
-import java.util.List;
 
 
 @Controller
@@ -25,17 +20,6 @@ public class ScreeningController {
         this.screeningService = screeningService;
     }
 
-    //GET BY ID
-    @GetMapping("/screening/{id}")
-    public ResponseEntity<?> getScreeningById(@PathVariable int id){
-        Screening result = this.screeningService.getScreeningById(id);
-        if (result != null){
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
     //ADD
     @GetMapping(value = "/addScreening")
     public String addScreening(Model model){
@@ -45,23 +29,16 @@ public class ScreeningController {
 
     //ADD
     @PostMapping("/addScreening")
-    public String createScreening(@ModelAttribute("screening") Screening screening, BindingResult bindingResult){
+    public String createScreening(@ModelAttribute("screening") Screening screening){
         screeningService.createScreening(screening);
-        return "redirect:/screening";
-    }
-
-
-    //GET ALL
-    @GetMapping("/screening")
-    public ResponseEntity<List<Screening>> getAllScreenings(){
-        return ResponseEntity.ok(this.screeningService.findAllScreenings());
+        return "redirect:/listScreening";
     }
 
     //DELETE
-    @DeleteMapping(value ="/removeScreening/{id}")
-    public String deleteScreening(@PathVariable("id") int Id){
-        screeningService.deleteScreening(Id);
-        return "redirect:/screening";
+    @GetMapping(value ="/removeScreening/{id}")
+    public String deleteScreening(@PathVariable("id") int id){
+        screeningService.deleteScreening(id);
+        return "redirect:/listScreening";
     }
 
     //EDIT
@@ -77,7 +54,15 @@ public class ScreeningController {
     public String postEditScreening(@ModelAttribute("screening") Screening screening,@PathVariable("id") int Id){
         String st = screening.getStartTime();
         screeningService.editScreening(Id, st);
-        return "redirect:/screening";
+        return "redirect:/listScreening";
+    }
+
+    //LIST SCREENING
+    @GetMapping(value = "/listScreening")
+    public ModelAndView listScreening(Model model){
+        ModelAndView modelAndView = new ModelAndView("list-screening");
+        modelAndView.addObject("screening", screeningService.findAllScreenings());
+        return modelAndView;
     }
 
 }
