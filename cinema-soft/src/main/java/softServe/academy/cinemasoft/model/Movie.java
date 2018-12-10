@@ -53,7 +53,7 @@ public class Movie {
     @Column(nullable = false)
     private String duration;
    
-    @Column
+
     private double rating;
 
 	public Category getCategory() {
