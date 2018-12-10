@@ -33,12 +33,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="tel">
-                            <a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a>
-
-                            <a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
-
-                            <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
-
+                            <a href="register.html">Register</a>
+                            <a href="login.html">Login</a>
+                            <a href="logout.html">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -103,19 +100,19 @@
     <div class="container section negative-margin contact">
         <div class="row">
             <div class="col-sm-12">
-                <h2>Edit Screening</h2>
+                <h2>Edit Category</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <form action="#" th:object="${screening}"  th:action="@{/editScreening/{id}(id=${screening.id})}" method="post">
+                <form action="#" th:object="${category}"  th:action="@{/editCategory/{id}(id=${category.id})}" method="post">
 
                     <div class="form-group">
-                        <label>Start Hour *</label>
-                        <input th:field ="*{startTime}" type="text" />
+                        <label>Enter new category name*</label>
+                        <input th:field ="*{nameOfCategory}" type="text" />
                     </div>
                     <div class="form-group right-align">
-                        <button type="submit" class="btn btn-ghost">Edit screening</button>
+                        <button type="submit" class="btn btn-ghost">Edit category</button>
                     </div>
                 </form>
             </div>

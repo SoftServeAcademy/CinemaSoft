@@ -5,9 +5,9 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import softServe.academy.cinemasoft.model.Category;
 import softServe.academy.cinemasoft.model.Movie;
 import softServe.academy.cinemasoft.repository.MovieRepository;
 
@@ -37,15 +37,13 @@ public class MovieServiceImpl implements MovieService{
         }
     }
 	
-	public void editMovie(int id) {
-	        Movie movie = this.movieRepository
-	        		.findById(id)
-	                .orElse(null);
-
-	        if(movie == null) return;
-	        
-	        this.movieRepository.saveAndFlush(movie);		
+	public Movie editMovie(Movie movie) {	       
+	        this.movieRepository.saveAndFlush(movie);
+	        return movie;
 	}
+	public void editPostMovie(Movie movie) {
+		movieRepository.save(movie);
+}
 
 	@Override
 	public Movie findMovie(int id) {
@@ -53,9 +51,18 @@ public class MovieServiceImpl implements MovieService{
 	}
 
 	@Override
+	public List<Movie> findAll(Sort sort){
+		return movieRepository.findAll(sort);
+	}
+
+	@Override
 	public Movie getMovieById(int id) {
 		return movieRepository.getOne(id);
 	}
 
-
+//	@Override
+//	public List<Movie> getAllByRating(){
+//		//return movieRepository.findAllByOrOrderByRatingDesc();
+//      // return movieRepository.findByOrderByRatingDesc();
+//	}
 }

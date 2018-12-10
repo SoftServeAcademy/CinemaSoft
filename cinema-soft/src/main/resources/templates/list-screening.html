@@ -32,10 +32,13 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-sm-12">								
-								<div class="tel">																										
-									<a href="register.html">Register</a>
-									<a href="login.html">Login</a>					
-									<a href="logout.html">Logout</a>																	    																		
+								<div class="tel">
+									<a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a>
+
+									<a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
+
+									<a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+
 								</div>
 							</div>
 						</div>
@@ -60,18 +63,18 @@
 						    <li class="dropdown">
 								<a href="admin.html">Admin</a>
 								<ul class="dropdown-menu">
-									<li><a href="add-movie.html">Add movie</a></li>
-									<li><a href="add-category.html">Add category</a></li>
-									<li><a href="list-category.html">List category</a></li>
-									<li><a href="add-screening.html">Add screening</a></li>
-									<li><a href="list-screening.html">List screening</a></li>
+									<li><a th:href="@{/add}" method="post">Add movie</a></li>
+									<li><a th:href="@{/addCategory}" method="get">Add category</a></li>
+									<li><a th:href="@{/categories}" method="get">List category</a></li>
+									<li><a th:href="@{/addScreening}" method="post">Add screening</a></li>
+									<li><a th:href="@{/listScreening}" method="get">List screening</a></li>
 								</ul>	
 							</li>
 							<li>
-								<a href="index.html">Home</a>
+								<a th:href="@{/index}" method="get">Home</a>
 							</li>
 							<li>
-								<a href="program.html">Program</a>
+								<a th:href="@{/movieSchedule}" method="get">Program</a>
 							</li>
 							<li>
 								<a href="book-ticket.html">Book ticket</a>
@@ -100,38 +103,26 @@
 			<div class="container section negative-margin contact">
 				<div class="row">
 					<div class="col-sm-12">
-						<h2>List screening</h2>
+						<h2>List of screenings</h2>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						<form>							
-							<div class="form-group">																								
-									<div class="form-group">
-										<select name="movie">
-										  <option value="text" selected>Choose date</option>
-										  <option value="1">1</option>
-										  <option value="2">2</option>
-										  <option value="2">3</option>
-										</select>											
-									</div>	
-									<div class="form-group">
-										<button class="btn btn-ghost">Edit</button>
-										<button class="btn btn-ghost">Delete</button>
-									</div> </br>			
-									<div class="form-group">
-										<select name="movie">
-										  <option value="text" selected>Choose Start hour</option>
-										  <option value="1">1</option>
-										  <option value="2">2</option>
-										  <option value="3">3</option>
-										</select>												
-									</div>
-									<div class="form-group">
-										<button class="btn btn-ghost">Edit</button>
-										<button class="btn btn-ghost">Delete</button>
-									</div>			
-							</div>																					
+						<form><! ------>
+							<table class="table table-hover">
+								<a class="btn btn-ghost" th:href="@{/addScreening}" method="post">Add Screening</a>
+								<thead>
+								<tr>
+									<th scope="col">Start Time</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr class="table-danger" th:each="screening : ${screening}">
+									<td th:text="${screening.startTime}" ></td> <td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >Edit</a><a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >delete</a></td>
+								</tr>
+								</tbody>
+							</table>
+							<! ------>
 						</form>
 					</div>
 				</div>

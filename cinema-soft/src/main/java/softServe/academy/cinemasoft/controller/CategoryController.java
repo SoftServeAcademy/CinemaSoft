@@ -1,6 +1,7 @@
 package softServe.academy.cinemasoft.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,12 +22,7 @@ import java.nio.file.Files;
 public class CategoryController {
 
     private CategoryService categoryService;
-    //  private MovieService movieService;
     private MovieService movieService;
-//    @Autowired
-//    public CategoryController(CategoryService categoryService) {
-//        this.categoryService = categoryService;
-//    }
 
     @Autowired
     public CategoryController(CategoryService categoryService, MovieService movieService) {
@@ -67,6 +63,7 @@ public class CategoryController {
 
     @RequestMapping(value = "/editCategory", method = RequestMethod.POST, params = {"edit"})
     public String editCategoryView(@ModelAttribute("category") Category category) {
+    	System.out.println(category);
         return "redirect:/categories";
     }
 
@@ -78,7 +75,7 @@ public class CategoryController {
     @GetMapping("/index")
     public ModelAndView showAllMovies(Model model) {
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("movies", movieService.getAllMovie());
+        modelAndView.addObject("movies", movieService.findAll(new Sort(Sort.Direction.DESC, "rating")));
         return modelAndView;
     }
 
@@ -87,6 +84,29 @@ public class CategoryController {
 //        return "movie";
 //    }
 
+
+    @GetMapping(value = "/movie/{id}")
+    public ModelAndView showMovieById(@PathVariable("id") int id) {
+        ModelAndView modelAndView = new ModelAndView("movie");
+        modelAndView.addObject("selectMovie", movieService.getMovieById(id));
+        return modelAndView;
+    }
+
+    @GetMapping("/editCategory/{id}")
+   public ModelAndView showEditCategoryView(@PathVariable("id") int id){
+        Category selectedCategory = categoryService.getCategoryById(id);
+        ModelAndView modelAndView = new ModelAndView("edit-category");
+        modelAndView.addObject("category", selectedCategory);
+        return modelAndView;
+    }
+
+    @PostMapping("editCategory/{id}")
+    public String editCategory(@ModelAttribute("category") Category category, @PathVariable("id") int id){
+        String newName = category.getNameOfCategory();
+        categoryService.editCategory(id, newName);
+        return "redirect:/categories";
+    }
+=======
 //    @GetMapping(value = "/movie/{id}")
 //    public ModelAndView showMovieById(@PathVariable("id") int id) {
 //        ModelAndView modelAndView = new ModelAndView("movie");

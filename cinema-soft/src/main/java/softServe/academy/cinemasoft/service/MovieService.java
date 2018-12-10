@@ -2,6 +2,7 @@ package softServe.academy.cinemasoft.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import softServe.academy.cinemasoft.model.Movie;
 
 public interface MovieService {
@@ -12,10 +13,13 @@ public interface MovieService {
 
     void deleteMovie(int id);
 
-    void editMovie(int id);
+    Movie editMovie(Movie movie);
 
     Movie findMovie(int id);
 
+    List<Movie> findAll(Sort sort);
+
     Movie getMovieById(int id);
 
+	 void editPostMovie(Movie movie);
 }

@@ -32,10 +32,13 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-sm-12">								
-								<div class="tel">																										
-									<a href="register">Register</a>
-									<a href="login">Login</a>					
-									<a href="logout">Logout</a>																	    																		
+								<div class="tel">
+									<a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a>
+
+									<a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
+
+									<a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+
 								</div>
 							</div>
 						</div>
@@ -119,23 +122,21 @@
 
                                 <o1>Cast:</o1>
 									<li th:text="${selectMovie.cast}"></li>
+                                <o1>Duration:</o1>
 									<li th:text="${selectMovie.duration}"></li>
+                                <o1>Rating</o1>
 									<li th:text="${selectMovie.rating}"></li>
-                                    <h1 th:text="${selectMovie.trailer}" ></h1>
-									<div class="star-rating">
-										<i class="material-icons">star_rate</i>
-										<i class="material-icons">star_rate</i>
-										<i class="material-icons">star_rate</i>
-										<i class="material-icons">star_rate</i>
-										<i class="material-icons">star_rate</i>
-									</div>
+                                <o1>Description</o1>
+                                    <li th:text="${selectMovie.description}" ></li>
+                                <o1>Trailer</o1>
+                                <li th:text="${selectMovie.trailer}"></li>
 								<!--</ul>-->
 								
 								
 								<!--<p>Humans and Transformers are at war, Optimus Prime is gone. The key to saving our future lies buried in the secrets of the past, in the hidden history of Transformers on Earth.</p>-->
-                                <p th:text="${selectMovie.trailer}">/p>
 
-                                <p>Optimus Prime finds his home planet, Cybertron, now a dead planet, in which he comes to find he was responsible for killing. He finds a way to bring the planet back to life, but in order to do so, he needs to find an artifact, which is on Earth.</p>
+
+                                <!--<p>Optimus Prime finds his home planet, Cybertron, now a dead planet, in which he comes to find he was responsible for killing. He finds a way to bring the planet back to life, but in order to do so, he needs to find an artifact, which is on Earth.</p>-->
 
 							</div>
                             </div>
