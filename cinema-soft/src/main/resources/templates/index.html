@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -196,7 +198,9 @@
 			</div>
 		</div>
 
+
 		<tr th:each="movie : ${movies}"></tr>
+
 		Rating category
 		<div class="container section" id="afterHeader">
 			<div class="row">
@@ -228,13 +232,17 @@
 										<i th:text="${movie.rating}" ></i>
 
 									</div>
+
 								</div>
 								<div class="btn-group">
 									<!--<a th:href="@{/edit-movie/{id}(id=${movie.id})}" class="btn btn-ghost">Edit</a>-->
 									<!--<a th:href="@{/delete-movie/{id}(id=${movie.id})}" class="btn btn-ghost"  >Delete </a>-->
 								</div>
 							</div>
+                        </tr>
+
 						</tr>
+
 					</div>
 				</div>
 			</div>
