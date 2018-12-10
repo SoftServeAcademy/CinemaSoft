@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"> 
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -196,7 +198,9 @@
 			</div>
 		</div>
 
-        <tr th:each="movie : ${movies}"></tr>
+
+		<tr th:each="movie : ${movies}"></tr>
+
 		Rating category
 		<div class="container section" id="afterHeader">
 			<div class="row">
@@ -207,43 +211,43 @@
 							<li><a href="#rating">Top rated movies</a></li>
 						</ul>
 
-                        <tr th:each="movie, stat : ${movies}">
-						<div id="rating">
-							<div class="movie-slide">
-								<div class="movie-poster">
-									<aside>
-										<div>
-											<a href="@{/movie/{id}(id=${movie.id})}" class="read-more">read more</a>
-                                            <form action="#" th:object="${movie}" th:action="@{/movie/{id}(id=${movie.id})}"></form>
-											<span class="date">Released: 7 Mar, 2017</span>
-										</div>
-									</aside>
-									<a href="#">
-										<img src="http://via.placeholder.com/265x340.jpg" alt="Movie title" />
-                                        <!--<img th:src="*{'data:${movie.cover};base64,'+image}" alt="" />-->
-                                    </a>
+						<tr th:each="movie, stat : ${movies}">
+							<div id="rating">
+								<div class="movie-slide">
+									<div class="movie-poster">
+										<aside>
+											<div>
+												<a th:href="@{/movie/{id}(id=${movie.id})}" >read more</a>
+												<form action="#" th:object="${movie}" th:action="@{/movie/{id}(id=${movie.id})}"></form>
+												<span class="date">Released: 7 Mar, 2017</span>
+											</div>
+										</aside>
+										<a href="#">
+											<img src="http://via.placeholder.com/265x340.jpg" alt="Movie title" />
+										</a>
+									</div>
+									<h4  th:text="${movie.title}"></h4>
+
+									<div class="star-rating">
+										<i th:text="${movie.rating}" ></i>
+
+									</div>
+
 								</div>
-								<h4  th:text="${movie.title}"></h4>
-                                <!--<h5 th:text="${movie.rating}"></h5>-->
-								<div class="star-rating">
-									<i th:text="${movie.rating}" ></i>
-									<!--<i class="material-icons">star_rate</i>-->
-									<!--<i class="material-icons">star_rate</i>-->
-									<!--<i class="material-icons">star_rate</i>-->
-									<!--<i class="material-icons">star_rate</i>-->
+								<div class="btn-group">
+									<!--<a th:href="@{/edit-movie/{id}(id=${movie.id})}" class="btn btn-ghost">Edit</a>-->
+									<!--<a th:href="@{/delete-movie/{id}(id=${movie.id})}" class="btn btn-ghost"  >Delete </a>-->
 								</div>
 							</div>
-							<div class="btn-group">
-								<a th:href="@{/edit-movie/{id}(id=${movie.id})}" class="btn btn-ghost">Edit</a>
-								<a th:href="@{/delete-movie/{id}(id=${movie.id})}" class="btn btn-ghost"  >Delete </a>				
-							</div>
-						</div>
                         </tr>
+
+						</tr>
+
 					</div>
-				</div> 
+				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
 
 	<!-- Footer -->
 	<footer>

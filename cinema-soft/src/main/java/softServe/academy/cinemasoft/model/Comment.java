@@ -7,12 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
+@Table(name = "comment")
 public class Comment {
 
 	@Id
@@ -23,20 +26,22 @@ public class Comment {
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	Date dateOfComment;
 	
-	@OneToMany(mappedBy = "comment")
-	private List<Movie> movie;
+	@ManyToOne
+	private Movie movie;
 	
 	public Comment() {
 		this.dateOfComment = new Date();
 	}
 
-	public List<Movie> getMovie() {
+	public Movie getMovie() {
 		return movie;
 	}
-
-	public void setMovie(List<Movie> movie) {
+	
+	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -61,13 +66,5 @@ public class Comment {
 	public void setDateOfComment(Date dateOfComment) {
 		this.dateOfComment = dateOfComment;
 	}
-
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
 
 }

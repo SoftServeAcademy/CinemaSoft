@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import softServe.academy.cinemasoft.model.Movie;
@@ -50,9 +51,18 @@ public class MovieServiceImpl implements MovieService{
 	}
 
 	@Override
+	public List<Movie> findAll(Sort sort){
+		return movieRepository.findAll(sort);
+	}
+
+	@Override
 	public Movie getMovieById(int id) {
 		return movieRepository.getOne(id);
 	}
 
-
+//	@Override
+//	public List<Movie> getAllByRating(){
+//		//return movieRepository.findAllByOrOrderByRatingDesc();
+//      // return movieRepository.findByOrderByRatingDesc();
+//	}
 }
