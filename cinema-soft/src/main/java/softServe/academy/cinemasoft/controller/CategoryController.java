@@ -106,7 +106,6 @@ public class CategoryController {
         categoryService.editCategory(id, newName);
         return "redirect:/categories";
     }
-=======
 //    @GetMapping(value = "/movie/{id}")
 //    public ModelAndView showMovieById(@PathVariable("id") int id) {
 //        ModelAndView modelAndView = new ModelAndView("movie");

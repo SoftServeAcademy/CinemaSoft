@@ -145,8 +145,8 @@
 						</br>
 						<div class="form-group right-align">
 									<button class="btn btn-ghost">Book ticket</button>
-									<button class="btn btn-ghost">Edit</button>
-									<button class="btn btn-ghost">Delete</button>
+									<a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-ghost">Edit</a>
+									<a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-ghost">Delete</a>
 						</div>
 					</div>
 					<div class="col-sm-4 col-sm-push-1">

@@ -41,8 +41,8 @@ public class Movie {
 		this.comment = comment;
 	}
 
-	@Column(nullable = false)
-    private byte[] cover;
+//	@Column(nullable = false)
+//    private byte[] cover;
 
 	@Column(nullable = false)
     private String trailer;
@@ -136,13 +136,13 @@ public class Movie {
 		this.description = description;
 	}
 
-	public byte[] getCover() {
-		return cover;
-	}
-
-	public void setCover(byte[] cover) {
-		this.cover = cover;
-	}
+//	public byte[] getCover() {
+//		return cover;
+//	}
+//
+//	public void setCover(byte[] cover) {
+//		this.cover = cover;
+//	}
 
 	public Movie(Integer id, String title, String director, String trailer, String description, String duration,
 			double rating, String cast, byte[] cover ) {
@@ -154,7 +154,7 @@ public class Movie {
 		this.duration = duration;
 		this.rating = rating;
 		this.cast = cast;
-		this.cover = cover;
+		//this.cover = cover;
 	}
 
 	public Movie() {
