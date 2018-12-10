@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import softServe.academy.cinemasoft.model.Category;
 import softServe.academy.cinemasoft.model.Comment;
 import softServe.academy.cinemasoft.model.Movie;
+import softServe.academy.cinemasoft.repository.CommentRepository;
 import softServe.academy.cinemasoft.repository.MovieRepository;
 import softServe.academy.cinemasoft.service.CategoryService;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,11 +25,13 @@ public class CategoryController {
 
     private CategoryService categoryService;
     private MovieService movieService;
+    private CommentRepository commentRepository;
 
     @Autowired
-    public CategoryController(CategoryService categoryService, MovieService movieService) {
+    public CategoryController(CategoryService categoryService, MovieService movieService,CommentRepository commentRepository) {
         this.categoryService = categoryService;
         this.movieService = movieService;
+        this.commentRepository =  commentRepository;
     }
 
     @GetMapping("/add-category")
@@ -91,6 +94,7 @@ public class CategoryController {
         ModelAndView modelAndView = new ModelAndView("movie");
         modelAndView.addObject("selectMovie", movieService.getMovieById(id));
         model.addAttribute("comment", new Comment());
+        model.addAttribute("comments", commentRepository.findByMovie(movieService.getMovieById(id)));
         return modelAndView;
     }
 

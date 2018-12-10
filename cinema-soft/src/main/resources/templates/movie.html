@@ -170,56 +170,21 @@
 					<div class="col-sm-7">
 						<h2>Comments</h2>
 						<div class="comments">
-							<div class="row">
+						  
+							<div class="row" th:each="com:${comments}">
 								<div class="col-sm-2">
 									<img src="/images/avatar.png" class="Luke Barrett" />
 								</div>
 								<div class="col-sm-9">
-									<span class="date">February 2, at 2:34pm</span>
+									<span th:text="${com.dateOfComment}" class="date"></span>
 									<h4 class="no-underline">Luke Barrett</h4>
-									<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima.</p>
+									<p th:text="${com.content}"></p>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									<img src="/images/avatar.png" class="Keith Cox" />
-								</div>
-								<div class="col-sm-9">
-									<span class="date">February 2, at 2:34pm</span>
-									<h4 class="no-underline">Keith Cox</h4>
-									<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima.</p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									<img src="/images/avatar.png" class="Gabriel Norris" />
-								</div>
-								<div class="col-sm-9">
-									<span class="date">February 2, at 2:34pm</span>
-									<h4 class="no-underline">Gabriel Norris</h4>
-									<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima.</p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									<img src="/images/avatar.png" class="Luke Barrett" />
-								</div>
-								<div class="col-sm-9">
-									<span class="date">February 2, at 2:34pm</span>
-									<h4 class="no-underline">Luke Barrett</h4>
-									<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima.</p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									<img src="/images/avatar.png" class="Gabriel Norris" />
-								</div>
-								<div class="col-sm-9">
-									<span class="date">February 2, at 2:34pm</span>
-									<h4 class="no-underline">Gabriel Norris</h4>
-									<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima.</p>
-								</div>
-							</div>
+							
+							
+	
+							
 						</div>
 					</div>
 					
