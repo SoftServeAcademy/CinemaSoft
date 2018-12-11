@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import softServe.academy.cinemasoft.model.Movie;
+import softServe.academy.cinemasoft.service.CategoryService;
 import softServe.academy.cinemasoft.service.MovieService;
 
 @Controller
@@ -21,12 +22,20 @@ public class MovieController {
 	
 
 
-	@Autowired
-    private MovieService movieService;
-    
-	@GetMapping("/add-movie")
+	private final MovieService movieService;
+
+	private final CategoryService categoryService;
+
+    @Autowired
+    public MovieController(MovieService movieService, CategoryService categoryService) {
+        this.movieService = movieService;
+        this.categoryService = categoryService;
+    }
+
+    @GetMapping("/add-movie")
     public String addMovie(Model model) {
         model.addAttribute("movie", new Movie());
+        model.addAttribute("categories",this.categoryService.findAll());
         return "add-movie";
     }
 
