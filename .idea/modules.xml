@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/CinemaSoft.iml" filepath="$PROJECT_DIR$/.idea/CinemaSoft.iml" />
       <module fileurl="file://$PROJECT_DIR$/cinema-soft/src/main/main.iml" filepath="$PROJECT_DIR$/cinema-soft/src/main/main.iml" />
       <module fileurl="file://$PROJECT_DIR$/cinema-soft/src/test/test.iml" filepath="$PROJECT_DIR$/cinema-soft/src/test/test.iml" />
     </modules>
