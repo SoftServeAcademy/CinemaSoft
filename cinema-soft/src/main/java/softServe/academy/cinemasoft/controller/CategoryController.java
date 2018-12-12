@@ -62,8 +62,7 @@ public class CategoryController {
 
     @RequestMapping(value = "/editCategory", method = RequestMethod.POST, params = {"delete"})
     public String deleteCategoryView(@ModelAttribute("category") Category category) {
-       // List<Movie> allMoviesFromSelectedCategory =
-        // movieService.deleteMoviesFromSelectedCategory(allMoviesFromSelectedCategory);
+
         categoryService.removeCategory(category);
         return "redirect:/categories";
     }
