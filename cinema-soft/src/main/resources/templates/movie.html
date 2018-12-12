@@ -121,7 +121,6 @@
                         <h3 th:text="${selectMovie.title}"></h3>
                         <i>Director:</i>
                         <li th:text="${selectMovie.director}"></li>
-
                         <o1>Cast:</o1>
                         <li th:text="${selectMovie.cast}"></li>
                         <o1>Duration:</o1>
@@ -132,6 +131,8 @@
                         <li th:text="${selectMovie.description}"></li>
                         <o1>Trailer</o1>
                         <li th:text="${selectMovie.trailer}"></li>
+                        <o1>Category</o1>
+                        <li th:text="${selectMovie.category.nameOfCategory}" ></li>
                     </div>
                 </div>
             </div>

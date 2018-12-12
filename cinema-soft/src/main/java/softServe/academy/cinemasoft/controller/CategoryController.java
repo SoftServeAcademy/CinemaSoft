@@ -19,6 +19,7 @@ import softServe.academy.cinemasoft.service.MovieService;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
 
 @Controller
 public class CategoryController {
@@ -61,6 +62,8 @@ public class CategoryController {
 
     @RequestMapping(value = "/editCategory", method = RequestMethod.POST, params = {"delete"})
     public String deleteCategoryView(@ModelAttribute("category") Category category) {
+       // List<Movie> allMoviesFromSelectedCategory =
+        // movieService.deleteMoviesFromSelectedCategory(allMoviesFromSelectedCategory);
         categoryService.removeCategory(category);
         return "redirect:/categories";
     }
