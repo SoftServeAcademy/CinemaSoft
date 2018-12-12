@@ -106,7 +106,7 @@
 
 <div class="container section single-movie">
     <div class="row">
-        <div class="col-sm-7">
+        <div class="col-sm-7" th:object="${selectMovie}">
 
             <h2>Movie</h2>
 
@@ -115,8 +115,7 @@
 
                     <img src="http://via.placeholder.com/265x340" alt="Transformers: The Last Knight" class="poster">
                 </div>
-                <div action="#" th:object="${selectMovie}" th:action="@{/movie/{id}(id=${selectMovie.id})}"
-                     method="get">
+
                     <div class="col-sm-7">
                         <h3 th:text="${selectMovie.title}"></h3>
                         <i>Director:</i>
@@ -133,15 +132,14 @@
                         <li th:text="${selectMovie.trailer}"></li>
                         <o1>Category</o1>
                         <li th:text="${selectMovie.category.nameOfCategory}" ></li>
-                    </div>
                 </div>
             </div>
 
             </br>
             <div class="form-group right-align">
               <!--  <button class="btn btn-ghost">Book ticket</button>-->
-                <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-ghost">Edit</a>
-                <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-ghost">Delete</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/edit-movie/{id}(id=${selectMovie.id})}" class="btn btn-ghost">Edit</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" data-method="delete" th:href="@{/delete-movie/{id}(id=${selectMovie.id})}"  class="btn btn-ghost">Delete</a>
             </div>
         </div>
         <div class="col-sm-4 col-sm-push-1">
