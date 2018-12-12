@@ -1,6 +1,5 @@
 package softServe.academy.cinemasoft.model;
 
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class Category {
     @Column(unique = true)
     private String nameOfCategory;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "category", fetch = FetchType.LAZY)
     private List<Movie> movies;
 
     public Category() {

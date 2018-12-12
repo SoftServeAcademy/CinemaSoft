@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cinemasoft</title>
-    <link rel="icon" type="image/png" href="images/favicon.png"/>
+    <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <link href="/css/slick.css" rel="stylesheet">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/venobox.css" rel="stylesheet">
@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--[if IE 9]>
-    <link href="css/ie9.css" rel="stylesheet">
+    <link href="/css/ie9.css" rel="stylesheet">
     <![endif]-->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -86,8 +86,8 @@
     </div>
     <!-- Hero-->
 
-    <div id="content_hero" style="background-image:url(images/background.jpg)">
-        <img src="images/scroll-arrow.svg" alt="Scroll down" class="scroll"/>
+    <div id="content_hero" style="background-image:url(/images/background.jpg)">
+        <img src="/images/scroll-arrow.svg" alt="Scroll down" class="scroll"/>
 
         <!-- Content -->
         <div class="container">
@@ -106,7 +106,7 @@
 
 <div class="container section single-movie">
     <div class="row">
-        <div class="col-sm-7">
+        <div class="col-sm-7" th:object="${selectMovie}">
 
             <h2>Movie</h2>
 
@@ -115,13 +115,11 @@
 
                     <img src="http://via.placeholder.com/265x340" alt="Transformers: The Last Knight" class="poster">
                 </div>
-                <div action="#" th:object="${selectMovie}" th:action="@{/movie/{id}(id=${selectMovie.id})}"
-                     method="get">
+
                     <div class="col-sm-7">
                         <h3 th:text="${selectMovie.title}"></h3>
                         <i>Director:</i>
                         <li th:text="${selectMovie.director}"></li>
-
                         <o1>Cast:</o1>
                         <li th:text="${selectMovie.cast}"></li>
                         <o1>Duration:</o1>
@@ -132,15 +130,16 @@
                         <li th:text="${selectMovie.description}"></li>
                         <o1>Trailer</o1>
                         <li th:text="${selectMovie.trailer}"></li>
-                    </div>
+                        <o1>Category</o1>
+                        <li th:text="${selectMovie.category.nameOfCategory}" ></li>
                 </div>
             </div>
 
             </br>
             <div class="form-group right-align">
               <!--  <button class="btn btn-ghost">Book ticket</button>-->
-                <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-ghost">Edit</a>
-                <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-ghost">Delete</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/edit-movie/{id}(id=${selectMovie.id})}" class="btn btn-ghost">Edit</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" data-method="delete" th:href="@{/delete-movie/{id}(id=${selectMovie.id})}"  class="btn btn-ghost">Delete</a>
             </div>
         </div>
         <div class="col-sm-4 col-sm-push-1">

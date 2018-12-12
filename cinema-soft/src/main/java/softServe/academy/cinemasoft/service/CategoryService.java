@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import softServe.academy.cinemasoft.model.Category;
 import softServe.academy.cinemasoft.repository.CategoryRepository;
+import softServe.academy.cinemasoft.repository.MovieRepository;
 
 import java.util.List;
 
@@ -11,14 +12,16 @@ import java.util.List;
 public class CategoryService {
 
     private CategoryRepository categoryRepository;
+    private MovieRepository movieRepository;
 
     @Autowired
-    public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository, MovieRepository movieRepository) {
         this.categoryRepository = categoryRepository;
+        this.movieRepository = movieRepository;
     }
 
 
-    public Category addCategory(Category categoryToAdd){
+    public Category addCategory(Category categoryToAdd) {
         return this.categoryRepository.save(categoryToAdd);
     }
 
@@ -26,20 +29,22 @@ public class CategoryService {
         categoryRepository.delete(category);
     }
 
-    public List<Category> findAll(){
+    public List<Category> findAll() {
         return categoryRepository.findAll();
     }
 
-    public Category getCategoryById(int id){
+    public Category getCategoryById(int id) {
         return categoryRepository.getOne(id);
     }
 
-    public void editCategory(int id, String newName){
+    public void editCategory(int id, String newName) {
         Category current = categoryRepository.getOne(id);
-        if(current != null){
+        if (current != null) {
             String newCategoryName = newName;
             current.setNameOfCategory(newCategoryName);
             categoryRepository.save(current);
         }
     }
+
+
 }

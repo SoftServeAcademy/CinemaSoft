@@ -1,30 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9c7b458d-4782-4763-a7c3-d76de9122dcf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/edit-category.html" afterDir="false" />
+    <list default="true" id="9c7b458d-4782-4763-a7c3-d76de9122dcf" name="Default Changelist" comment="Merge branch 'master' of https://github.com/SoftServeAcademy/CinemaSoft into feature/screening&#10;&#10;# Please enter a commit message to explain why this merge is necessary,&#10;# especially if it merges an updated upstream into a topic branch.&#10;#&#10;# Lines starting with '#' will be ignored, and an empty message aborts&#10;# the commit.&#10;Updating older version">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/CinemaSoftApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/CinemaSoftApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/controller/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/controller/CommentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/controller/MovieController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/model/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/model/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/model/Comment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/model/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/model/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/repository/CommentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/repository/MovieRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/repository/MovieRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/model/MovieSchedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/model/MovieSchedule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/model/Screening.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/model/Screening.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/service/CategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/service/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/service/MovieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/service/MovieService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/service/MovieServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/service/MovieServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/add-movie.html" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/add-movie.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/add-screening.html" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/add-screening.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/edit-screening.html" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/edit-screening.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/list-screening.html" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/list-screening.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/add-category.html" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/add-category.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/edit-movie.html" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/edit-movie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/list-category.html" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/list-category.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/movie.html" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/movie.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/cinema-soft/src/main/resources/templates/register.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,25 +26,18 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.git/COMMIT_EDITMSG">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.git/MERGE_MSG">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/.git/MERGE_MSG" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -72,9 +57,87 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CinemaSoft" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CinemaSoft" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CinemaSoft" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CinemaSoft" type="462c0819:PsiDirectoryNode" />
+              <item name="cinema-soft" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CinemaSoft" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CinemaSoft" type="462c0819:PsiDirectoryNode" />
+              <item name="cinema-soft" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CinemaSoft" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CinemaSoft" type="462c0819:PsiDirectoryNode" />
+              <item name="cinema-soft" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CinemaSoft" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CinemaSoft" type="462c0819:PsiDirectoryNode" />
+              <item name="cinema-soft" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CinemaSoft" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CinemaSoft" type="462c0819:PsiDirectoryNode" />
+              <item name="cinema-soft" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="softServe" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CinemaSoft" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CinemaSoft" type="462c0819:PsiDirectoryNode" />
+              <item name="cinema-soft" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="softServe" type="462c0819:PsiDirectoryNode" />
+              <item name="academy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CinemaSoft" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CinemaSoft" type="462c0819:PsiDirectoryNode" />
+              <item name="cinema-soft" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="softServe" type="462c0819:PsiDirectoryNode" />
+              <item name="academy" type="462c0819:PsiDirectoryNode" />
+              <item name="cinemasoft" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CinemaSoft" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CinemaSoft" type="462c0819:PsiDirectoryNode" />
+              <item name="cinema-soft" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="softServe" type="462c0819:PsiDirectoryNode" />
+              <item name="academy" type="462c0819:PsiDirectoryNode" />
+              <item name="cinemasoft" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -82,6 +145,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -115,7 +179,7 @@
   <component name="ToolWindowManager">
     <frame x="434" y="151" width="1900" height="905" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25543478" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26086956" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -154,10 +218,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.git/MERGE_MSG">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="17">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cinema-soft/src/main/java/softServe/academy/cinemasoft/config/SecurityConfig.java">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
@@ -165,6 +232,17 @@
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>10</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>

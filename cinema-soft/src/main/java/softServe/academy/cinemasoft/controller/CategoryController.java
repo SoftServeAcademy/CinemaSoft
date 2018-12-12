@@ -19,6 +19,7 @@ import softServe.academy.cinemasoft.service.MovieService;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
 
 @Controller
 public class CategoryController {
@@ -61,6 +62,7 @@ public class CategoryController {
 
     @RequestMapping(value = "/editCategory", method = RequestMethod.POST, params = {"delete"})
     public String deleteCategoryView(@ModelAttribute("category") Category category) {
+
         categoryService.removeCategory(category);
         return "redirect:/categories";
     }
@@ -68,13 +70,8 @@ public class CategoryController {
     @RequestMapping(value = "/editCategory", method = RequestMethod.POST, params = {"edit"})
     public String editCategoryView(@ModelAttribute("category") Category category) {
     	System.out.println(category);
-        return "redirect:/categories";
+        return "edit-category";
     }
-
-//    @GetMapping("/index")
-//    public String showIndexView(){
-//        return "index";
-//    }
 
     @GetMapping("/")
     public ModelAndView showAllMovies(Model model) {
@@ -82,12 +79,6 @@ public class CategoryController {
         modelAndView.addObject("movies", movieService.findAll(new Sort(Sort.Direction.DESC, "rating")));
         return modelAndView;
     }
-
-//    @GetMapping("/movie")
-//    public String showMovie() {
-//        return "movie";
-//    }
-
 
     @GetMapping(value = "/movie/{id}")
     public ModelAndView showMovieById(@PathVariable("id") int id,Model model) {
@@ -112,10 +103,4 @@ public class CategoryController {
         categoryService.editCategory(id, newName);
         return "redirect:/categories";
     }
-//    @GetMapping(value = "/movie/{id}")
-//    public ModelAndView showMovieById(@PathVariable("id") int id) {
-//        ModelAndView modelAndView = new ModelAndView("movie");
-//        modelAndView.addObject("selectMovie", movieService.getMovieById(id));
-//        return modelAndView;
-//    }
 }

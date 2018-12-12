@@ -46,5 +46,4 @@ public class MovieSchedule {
     public void setDayOfWeek(String dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
-
 }

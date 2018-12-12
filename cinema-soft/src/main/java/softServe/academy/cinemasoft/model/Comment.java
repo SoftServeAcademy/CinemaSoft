@@ -1,7 +1,6 @@
 package softServe.academy.cinemasoft.model;
 
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -33,7 +31,6 @@ public class Comment {
     @JoinColumn(nullable = false,name = "userId")
 	private User user;
 
-	
 	public Comment() {
 		this.dateOfComment = new Date();
 	}
