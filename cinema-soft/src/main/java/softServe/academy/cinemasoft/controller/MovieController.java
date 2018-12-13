@@ -66,12 +66,14 @@ public class MovieController {
 
         model.addAttribute("movie", movieService.editMovie(movie));
         model.addAttribute("categories", this.categoryService.findAll());
+        MultipartFile file = null;
+        model.addAttribute("imageFile", file);
 
         return "edit-movie";
     }
 
     @PostMapping("/edit-movie/{id}")
-    public String editMovie(@PathVariable int id, @ModelAttribute("movie") Movie movie, BindingResult bindingResult,Model model) {
+    public String editMovie(@PathVariable int id, @ModelAttribute("movie") Movie movie, BindingResult bindingResult,Model model,@ModelAttribute("fileImage") MultipartFile imageFile) throws IOException {
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 System.out.println(error);
@@ -79,10 +81,12 @@ public class MovieController {
             return "redirect:/edit-movie";
         }
 
+        byte[] cover = imageFile.getBytes();
+        movie.setCover(cover);
         movieService.editPostMovie(movie);
 
-        String image = Base64.getEncoder().encodeToString(movieService.getMovieById(id).getCover());
-        model.addAttribute("image",image);
+       // String image = Base64.getEncoder().encodeToString(movieService.getMovieById(id).getCover());
+       // model.addAttribute("image",image);
         return "redirect:/movie/" + movie.getId();
     }
 
