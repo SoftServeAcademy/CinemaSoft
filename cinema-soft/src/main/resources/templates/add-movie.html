@@ -108,7 +108,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-6">
-				<form action="#" th:object="${movie}"  th:action="@{/add-movie}" method="post">
+				<form action="#" th:object="${movie}"  th:action="@{/add-movie}" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Title *</label>
 						<input th:field="*{title}" type="text"/>
@@ -127,8 +127,12 @@
 					</div>
 					<div class="form-group">
 						<label>Cover *</label>
-						<input  th:field="*{cover}" type="file" id="cover"
-							   name="cover" accept="image/png, image/jpeg">
+						<div th:object="${imageFile}">
+							<input  type="file" id="cover"
+									name="imageFile">
+						</div>
+						<!--<input  th:field="*{cover}" type="file" id="cover"
+							   name="cover">-->
 					</div>
 					<div class="form-group">
 						<select name="category" th:field="*{category}">

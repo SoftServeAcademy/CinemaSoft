@@ -19,6 +19,7 @@ import softServe.academy.cinemasoft.service.MovieService;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -86,6 +87,8 @@ public class CategoryController {
         modelAndView.addObject("selectMovie", movieService.getMovieById(id));
         model.addAttribute("comment", new Comment());
         model.addAttribute("comments", commentRepository.findByMovie(movieService.getMovieById(id)));
+        String image = Base64.getEncoder().encodeToString(movieService.getMovieById(id).getCover());
+       model.addAttribute("image",image);
         return modelAndView;
     }
 

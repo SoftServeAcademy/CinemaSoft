@@ -58,6 +58,7 @@ public class Comment {
 	public void setDateOfComment(Date dateOfComment) {
 		this.dateOfComment = dateOfComment;
 	}
+
 	public Movie getMovie() {
 		return movie;
 	}
