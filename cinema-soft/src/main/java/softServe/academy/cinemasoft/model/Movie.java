@@ -1,3 +1,4 @@
+
 package softServe.academy.cinemasoft.model;
 
 import javax.persistence.CascadeType;

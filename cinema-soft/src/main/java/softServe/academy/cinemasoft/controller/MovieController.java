@@ -5,6 +5,7 @@ import softServe.academy.cinemasoft.model.Movie;
 import softServe.academy.cinemasoft.service.CategoryService;
 import softServe.academy.cinemasoft.service.MovieService;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

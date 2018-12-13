@@ -1,4 +1,6 @@
+
 package softServe.academy.cinemasoft.controller;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 import softServe.academy.cinemasoft.model.Comment;
 import softServe.academy.cinemasoft.model.User;
