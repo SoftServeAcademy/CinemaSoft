@@ -5,8 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import softServe.academy.cinemasoft.model.Movie;
 
-import java.util.List;
-
 
 @Repository
 public interface MovieRepository  extends JpaRepository<Movie, Integer>{

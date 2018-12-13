@@ -9,18 +9,12 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import softServe.academy.cinemasoft.model.Category;
 import softServe.academy.cinemasoft.model.Comment;
-import softServe.academy.cinemasoft.model.Movie;
 import softServe.academy.cinemasoft.repository.CommentRepository;
-import softServe.academy.cinemasoft.repository.MovieRepository;
 import softServe.academy.cinemasoft.service.CategoryService;
 import org.springframework.web.servlet.ModelAndView;
 import softServe.academy.cinemasoft.service.MovieService;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Base64;
-import java.util.List;
 
 @Controller
 public class CategoryController {
@@ -78,9 +72,11 @@ public class CategoryController {
     public ModelAndView showAllMovies(Model model) {
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("movies", movieService.findAll(new Sort(Sort.Direction.DESC, "rating")));
+        modelAndView.addObject("categories", categoryService.findAll());
         return modelAndView;
     }
 
+    
     @GetMapping(value = "/movie/{id}")
     public ModelAndView showMovieById(@PathVariable("id") int id,Model model) {
         ModelAndView modelAndView = new ModelAndView("movie");

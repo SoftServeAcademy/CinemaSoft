@@ -1,7 +1,5 @@
 package softServe.academy.cinemasoft.service;
 
-import org.springframework.http.ResponseEntity;
-import softServe.academy.cinemasoft.model.Auditorium;
 import softServe.academy.cinemasoft.repository.ScreeningRepository;
 import softServe.academy.cinemasoft.model.Screening;
 
