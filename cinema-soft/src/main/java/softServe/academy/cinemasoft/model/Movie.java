@@ -2,6 +2,7 @@ package softServe.academy.cinemasoft.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +35,7 @@ public class Movie {
     @ManyToOne
     private Category category;
 
-    @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "movie", fetch = FetchType.LAZY)
     private List<Comment> comment;
 
     @OneToMany

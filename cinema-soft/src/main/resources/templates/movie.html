@@ -76,9 +76,9 @@
                     <li>
                         <a href="/program">Program</a>
                     </li>
-                  <!--  <li>
-                        <a href="book-ticket">Book ticket</a>
-                    </li>-->
+                    <!--  <li>
+                          <a href="book-ticket">Book ticket</a>
+                      </li>-->
                 </ul>
             </div>
         </div>
@@ -116,30 +116,34 @@
                     <img src="http://via.placeholder.com/265x340" alt="Transformers: The Last Knight" class="poster">
                 </div>
 
-                    <div class="col-sm-7">
-                        <h3 th:text="${selectMovie.title}"></h3>
-                        <i>Director:</i>
-                        <li th:text="${selectMovie.director}"></li>
-                        <o1>Cast:</o1>
-                        <li th:text="${selectMovie.cast}"></li>
-                        <o1>Duration:</o1>
-                        <li th:text="${selectMovie.duration}"></li>
-                        <o1>Rating</o1>
-                        <li th:text="${selectMovie.rating}"></li>
-                        <o1>Description</o1>
-                        <li th:text="${selectMovie.description}"></li>
-                        <o1>Trailer</o1>
-                        <li th:text="${selectMovie.trailer}"></li>
-                        <o1>Category</o1>
-                        <li th:text="${selectMovie.category.nameOfCategory}" ></li>
+                <div class="col-sm-7">
+                    <h3 th:text="${selectMovie.title}"></h3>
+                    <i>Director:</i>
+                    <li th:text="${selectMovie.director}"></li>
+                    <o1>Cast:</o1>
+                    <li th:text="${selectMovie.cast}"></li>
+                    <o1>Duration:</o1>
+                    <li th:text="${selectMovie.duration}"></li>
+                    <o1>Rating</o1>
+                    <li th:text="${selectMovie.rating}"></li>
+                    <o1>Description</o1>
+                    <li th:text="${selectMovie.description}"></li>
+                    <o1>Trailer</o1>
+                    <li th:text="${selectMovie.trailer}"></li>
+                    <o1>Category</o1>
+                    <li th:text="${selectMovie.category.nameOfCategory}"></li>
                 </div>
             </div>
 
             </br>
             <div class="form-group right-align">
-              <!--  <button class="btn btn-ghost">Book ticket</button>-->
-                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/edit-movie/{id}(id=${selectMovie.id})}" class="btn btn-ghost">Edit</a>
-                <a sec:authorize="hasRole('ROLE_ADMIN')" data-method="delete" th:href="@{/delete-movie/{id}(id=${selectMovie.id})}"  class="btn btn-ghost">Delete</a>
+                <!--  <button class="btn btn-ghost">Book ticket</button>-->
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/edit-movie/{id}(id=${selectMovie.id})}"
+                   class="btn btn-ghost">Edit</a>
+                <br>
+                <form action="#" th:action="@{/delete-movie/{id}(id=${selectMovie.id})}" th:method="delete">
+                    <button sec:authorize="hasRole('ROLE_ADMIN')" type="submit" id="submitButton" class="btn btn-ghost">Delete</button>
+                </form>
             </div>
         </div>
         <div class="col-sm-4 col-sm-push-1">
@@ -185,7 +189,7 @@
         </div>
 
 
-        <div  sec:authorize="isAuthenticated()" class="col-sm-4 col-sm-push-1">
+        <div sec:authorize="isAuthenticated()" class="col-sm-4 col-sm-push-1">
             <h2>Leave a comment</h2>
             <form action="#" th:object="${comment}" th:action="@{/addComment}" method="post">
                 <div th:object="${selectMovie}">
