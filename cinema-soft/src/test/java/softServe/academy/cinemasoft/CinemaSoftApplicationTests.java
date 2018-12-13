@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft;
+package softserve.academy.cinemasoft;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

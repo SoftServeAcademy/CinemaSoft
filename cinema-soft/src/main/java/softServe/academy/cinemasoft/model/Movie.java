@@ -1,6 +1,4 @@
-package softServe.academy.cinemasoft.model;
-
-import org.hibernate.annotations.Type;
+package softserve.academy.cinemasoft.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

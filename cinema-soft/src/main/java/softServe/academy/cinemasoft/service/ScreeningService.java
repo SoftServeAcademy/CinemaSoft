@@ -1,9 +1,7 @@
-package softServe.academy.cinemasoft.service;
+package softserve.academy.cinemasoft.service;
 
-import org.springframework.http.ResponseEntity;
-import softServe.academy.cinemasoft.model.Auditorium;
-import softServe.academy.cinemasoft.repository.ScreeningRepository;
-import softServe.academy.cinemasoft.model.Screening;
+import softserve.academy.cinemasoft.repository.ScreeningRepository;
+import softserve.academy.cinemasoft.model.Screening;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

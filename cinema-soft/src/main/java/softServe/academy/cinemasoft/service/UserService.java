@@ -1,9 +1,8 @@
-package softServe.academy.cinemasoft.service;
+package softserve.academy.cinemasoft.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Service;
-import softServe.academy.cinemasoft.dto.UserDTO;
-import softServe.academy.cinemasoft.model.User;
+import softserve.academy.cinemasoft.dto.UserDTO;
+import softserve.academy.cinemasoft.model.User;
 
 
 public interface UserService extends UserDetailsService {
