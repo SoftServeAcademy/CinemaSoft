@@ -9,12 +9,14 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import softServe.academy.cinemasoft.model.Category;
 import softServe.academy.cinemasoft.model.Comment;
+import softServe.academy.cinemasoft.model.Movie;
 import softServe.academy.cinemasoft.repository.CommentRepository;
 import softServe.academy.cinemasoft.service.CategoryService;
 import org.springframework.web.servlet.ModelAndView;
 import softServe.academy.cinemasoft.service.MovieService;
 
 import java.util.Base64;
+import java.util.List;
 
 @Controller
 public class CategoryController {
@@ -24,10 +26,10 @@ public class CategoryController {
     private CommentRepository commentRepository;
 
     @Autowired
-    public CategoryController(CategoryService categoryService, MovieService movieService,CommentRepository commentRepository) {
+    public CategoryController(CategoryService categoryService, MovieService movieService, CommentRepository commentRepository) {
         this.categoryService = categoryService;
         this.movieService = movieService;
-        this.commentRepository =  commentRepository;
+        this.commentRepository = commentRepository;
     }
 
     @GetMapping("/add-category")
@@ -64,32 +66,41 @@ public class CategoryController {
 
     @RequestMapping(value = "/editCategory", method = RequestMethod.POST, params = {"edit"})
     public String editCategoryView(@ModelAttribute("category") Category category) {
-    	System.out.println(category);
+        System.out.println(category);
         return "edit-category";
     }
 
     @GetMapping("/")
     public ModelAndView showAllMovies(Model model) {
+
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("movies", movieService.findAll(new Sort(Sort.Direction.DESC, "rating")));
         modelAndView.addObject("categories", categoryService.findAll());
+
+        //load cover for each movie
+        List<Movie> allMovies = movieService.findAll();
+        for (int i = 0; i < allMovies.size(); i++) {
+            String currentCover = Base64.getEncoder().encodeToString(allMovies.get(i).getCover());
+            model.addAttribute("image", currentCover);
+        }
         return modelAndView;
     }
 
-    
+
     @GetMapping(value = "/movie/{id}")
-    public ModelAndView showMovieById(@PathVariable("id") int id,Model model) {
+    public ModelAndView showMovieById(@PathVariable("id") int id, Model model) {
         ModelAndView modelAndView = new ModelAndView("movie");
         modelAndView.addObject("selectMovie", movieService.getMovieById(id));
         model.addAttribute("comment", new Comment());
         model.addAttribute("comments", commentRepository.findByMovie(movieService.getMovieById(id)));
+
         String image = Base64.getEncoder().encodeToString(movieService.getMovieById(id).getCover());
-       model.addAttribute("image",image);
+        model.addAttribute("image", image);
         return modelAndView;
     }
 
     @GetMapping("/editCategory/{id}")
-   public ModelAndView showEditCategoryView(@PathVariable("id") int id){
+    public ModelAndView showEditCategoryView(@PathVariable("id") int id) {
         Category selectedCategory = categoryService.getCategoryById(id);
         ModelAndView modelAndView = new ModelAndView("edit-category");
         modelAndView.addObject("category", selectedCategory);
@@ -97,7 +108,7 @@ public class CategoryController {
     }
 
     @PostMapping("editCategory/{id}")
-    public String editCategory(@ModelAttribute("category") Category category, @PathVariable("id") int id){
+    public String editCategory(@ModelAttribute("category") Category category, @PathVariable("id") int id) {
         String newName = category.getNameOfCategory();
         categoryService.editCategory(id, newName);
         return "redirect:/categories";

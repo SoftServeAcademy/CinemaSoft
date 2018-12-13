@@ -135,7 +135,6 @@
 										<span class="certificate">
 											15
 										</span>
-
                             </div>
                         </div>
                     </div>
@@ -156,7 +155,6 @@
 										<span class="certificate">
 											PG
 										</span>
-
                             </div>
                         </div>
                     </div>
@@ -171,17 +169,9 @@
     <div class="container section" id="afterHeader">
         <div class="row">
             <div class="col-sm-12">
-                <div class="live-search">
-                    <input type="text" id="search" placeholder="Search a movie">
-                    <i class="material-icons">search</i>
-                </div>
                 <div class="tabs movies" th:each="category : ${categories}">
                     <ul >
                         <li><a href="#category.nameOfCategory" th:text="${category.nameOfCategory}"></a></li>
-                        <!--<li href="#comedy"></li>-->
-                        <!--<li><a href="#horror">Horror</a></li>-->
-                        <!--<li><a href="#romantic">Romantic</a></li>-->
-                        <!--<li><a href="#fantasy">Fantasy</a></li>-->
                     </ul>
                     <div id="${category.nameOfCategory}">
                         <div class="movie-slide">
@@ -189,8 +179,8 @@
                                 <aside>
                                     <div th:each="movie : ${category.movies}">
                                         <div id="rating">
-                                            <!--<div class="movie-slide">-->
-                                                <!--<div class="movie-poster">-->
+                                            <div class="movie-slide">
+                                                <div class="movie-poster">
                                                     <aside>
                                                         <div>
                                                             <a th:href="@{/movie/{id}(id=${movie.id})}">read more</a>
@@ -199,9 +189,9 @@
                                                         </div>
                                                     </aside>
                                                     <a href="#">
-                                                        <img th:src="@{'data:image/png;base64,' + ${image} }" />
+                                                        <img th:src="@{'data:image/png;base64,' + ${image}}" />
                                                     </a>
-                                                <!--</div>-->
+                                                </div>
                                                 <h4 th:text="${movie.title}"></h4>
                                                 <div class="star-rating">
                                                     <i th:text="${movie.rating}"></i>
@@ -209,13 +199,16 @@
                                             <!--</div>-->
                                         </div>
                                     </div>
+                                    </div>
                                 </aside>
+
                             </div>
                         </div>
 
                 </div>
             </div>
         </div>
+
 
 
 
@@ -266,7 +259,7 @@
         </div>
     </footer>
 
-</div>
+
 
 <script src="js/jquery-2.2.4.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
@@ -279,4 +272,5 @@
 <script src="https://use.fontawesome.com/4dfd2d448a.js"></script>
 <script src="js/custom.js"></script>
 </body>
+
 </html>
