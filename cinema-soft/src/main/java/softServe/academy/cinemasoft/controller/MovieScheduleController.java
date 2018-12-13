@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.controller;
+package softserve.academy.cinemasoft.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,8 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import softServe.academy.cinemasoft.model.MovieSchedule;
-import softServe.academy.cinemasoft.service.MovieScheduleService;
+import softserve.academy.cinemasoft.model.MovieSchedule;
+import softserve.academy.cinemasoft.service.MovieScheduleService;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.model;
+package softserve.academy.cinemasoft.model;
 
 import java.util.Date;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.service;
+package softserve.academy.cinemasoft.service;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import softServe.academy.cinemasoft.model.Movie;
-import softServe.academy.cinemasoft.repository.MovieRepository;
+import softserve.academy.cinemasoft.model.Movie;
+import softserve.academy.cinemasoft.repository.MovieRepository;
 
 @Service
 @Transactional

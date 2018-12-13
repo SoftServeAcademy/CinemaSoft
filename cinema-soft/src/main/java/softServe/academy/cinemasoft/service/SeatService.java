@@ -1,12 +1,12 @@
-package softServe.academy.cinemasoft.service;
+package softserve.academy.cinemasoft.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import softServe.academy.cinemasoft.model.Seat;
-import softServe.academy.cinemasoft.repository.SeatRepository;
+import softserve.academy.cinemasoft.model.Seat;
+import softserve.academy.cinemasoft.repository.SeatRepository;
 
 @Service
 public class SeatService {

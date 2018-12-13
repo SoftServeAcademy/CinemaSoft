@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft;
+package softserve.academy.cinemasoft;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

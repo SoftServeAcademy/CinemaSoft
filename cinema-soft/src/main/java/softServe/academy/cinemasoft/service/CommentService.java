@@ -1,15 +1,15 @@
-package softServe.academy.cinemasoft.service;
+package softserve.academy.cinemasoft.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import softServe.academy.cinemasoft.model.Comment;
-import softServe.academy.cinemasoft.model.Movie;
-import softServe.academy.cinemasoft.model.User;
-import softServe.academy.cinemasoft.repository.CommentRepository;
-import softServe.academy.cinemasoft.repository.MovieRepository;
+import softserve.academy.cinemasoft.model.Comment;
+import softserve.academy.cinemasoft.model.Movie;
+import softserve.academy.cinemasoft.model.User;
+import softserve.academy.cinemasoft.repository.CommentRepository;
+import softserve.academy.cinemasoft.repository.MovieRepository;
 
 @Service
 public class CommentService {

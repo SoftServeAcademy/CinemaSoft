@@ -1,8 +1,8 @@
-package softServe.academy.cinemasoft.controller;
+package softserve.academy.cinemasoft.controller;
 
-import softServe.academy.cinemasoft.service.UserService;
-import softServe.academy.cinemasoft.dto.UserDTO;
-import softServe.academy.cinemasoft.model.User;
+import softserve.academy.cinemasoft.service.UserService;
+import softserve.academy.cinemasoft.dto.UserDTO;
+import softserve.academy.cinemasoft.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
