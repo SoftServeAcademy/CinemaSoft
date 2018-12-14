@@ -114,9 +114,15 @@
 									<!--<label>Movie *</label>-->
 									<!--<input th:field ="*{movie.id}" type="text" />-->
 								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label>Auditorium *</label>-->
+									<!--<input th:field ="*{auditorium}" type="text" />-->
+								<!--</div>-->
 								<div class="form-group">
-									<label>Auditorium *</label>
-									<input th:field ="*{auditorium}" type="text" />
+								<select name="auditoriums" th:field="*{auditorium}">
+									<option value="text" selected>Choose auditorium</option>
+									<option th:each="auditorium : ${auditoriums}" th:value="${auditorium.id}" th:text="${auditorium}" ></option>
+								</select>
 								</div>
 								<div class="form-group">
 									<label>Start Time *</label>

@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import softServe.academy.cinemasoft.model.Auditorium;
 import softServe.academy.cinemasoft.model.Screening;
 import softServe.academy.cinemasoft.service.ScreeningService;
+import softServe.academy.cinemasoft.service.AuditoriumService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Controller;
 public class ScreeningController {
 
     private ScreeningService screeningService;
+    private AuditoriumService auditoriumService;
 
     @Autowired
     public ScreeningController(ScreeningService screeningService){
@@ -25,6 +28,7 @@ public class ScreeningController {
     @GetMapping(value = "/addScreening")
     public String addScreening(Model model){
         model.addAttribute("screening", new Screening());
+        model.addAttribute("auditoriums", new Auditorium());
         return "add-screening";
     }
 
