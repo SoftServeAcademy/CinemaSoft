@@ -12,6 +12,9 @@ import softServe.academy.cinemasoft.service.AuditoriumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Controller
 public class ScreeningController {
@@ -20,15 +23,16 @@ public class ScreeningController {
     private AuditoriumService auditoriumService;
 
     @Autowired
-    public ScreeningController(ScreeningService screeningService){
+    public ScreeningController(ScreeningService screeningService, AuditoriumService auditoriumService){
         this.screeningService = screeningService;
+        this.auditoriumService = auditoriumService;
     }
 
     //ADD
     @GetMapping(value = "/addScreening")
     public String addScreening(Model model){
         model.addAttribute("screening", new Screening());
-        model.addAttribute("auditoriums", new Auditorium());
+        model.addAttribute("auditoriums", this.auditoriumService.findAll());
         return "add-screening";
     }
 

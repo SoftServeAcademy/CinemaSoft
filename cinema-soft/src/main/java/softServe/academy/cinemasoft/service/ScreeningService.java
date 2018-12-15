@@ -2,6 +2,7 @@ package softServe.academy.cinemasoft.service;
 
 import org.springframework.http.ResponseEntity;
 import softServe.academy.cinemasoft.model.Auditorium;
+import softServe.academy.cinemasoft.repository.AuditoriumRepository;
 import softServe.academy.cinemasoft.repository.ScreeningRepository;
 import softServe.academy.cinemasoft.model.Screening;
 
@@ -23,7 +24,6 @@ public class ScreeningService {
     public List<Screening> findAllScreenings(){
         return this.screeningRepository.findAll();
     }
-
 
     public Screening addScreening(Screening screening){
         Screening screening1 = new Screening();
