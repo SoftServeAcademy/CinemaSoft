@@ -113,12 +113,12 @@
 								<a class="btn btn-ghost" th:href="@{/addScreening}" method="post">Add Screening</a>
 								<thead>
 								<tr>
-									<th scope="col">Auditorium</th> <th scope="col">Start Time</th>
+									<th scope="col">Movie</th><th scope="col">Auditorium</th> <th scope="col">Start Time</th>
 								</tr>
 								</thead>
 								<tbody>
 								<tr class="table-danger" th:each="screening : ${screening}">
-									</td><td th:text="${screening.auditorium.id}"></td> <td th:text="${screening.startTime}"></td> <td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >Edit</a><a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >delete</a></td>
+									<td th:text="${movie}"></td><td th:text="${screening.auditorium.id}"></td> <td th:text="${screening.startTime}"></td> <td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >Edit</a><a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >delete</a></td>
 									<!--<td th:text="${screening.startTime}"></td> <td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >Edit</a><a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >delete</a></td> --->
 								</tr>
 								</tbody>

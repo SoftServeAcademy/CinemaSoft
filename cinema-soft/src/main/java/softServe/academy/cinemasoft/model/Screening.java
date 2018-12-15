@@ -48,11 +48,11 @@ public class Screening {
         this.startTime = startTime;
     }
 ///
-    public void setMovieProjection(Movie moviet) {
+    public void setMovie(Movie movie) {
         this.movie = movie;
     }
 
-    public Movie getMovieProjection(){
+    public Movie getMovie(){
         return movie;
     }
 //

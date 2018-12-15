@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import softServe.academy.cinemasoft.model.Auditorium;
 import softServe.academy.cinemasoft.model.Screening;
+import softServe.academy.cinemasoft.service.MovieService;
 import softServe.academy.cinemasoft.service.ScreeningService;
 import softServe.academy.cinemasoft.service.AuditoriumService;
 
@@ -21,11 +22,13 @@ public class ScreeningController {
 
     private ScreeningService screeningService;
     private AuditoriumService auditoriumService;
+    private MovieService movieService;
 
     @Autowired
-    public ScreeningController(ScreeningService screeningService, AuditoriumService auditoriumService){
+    public ScreeningController(ScreeningService screeningService, AuditoriumService auditoriumService, MovieService movieService){
         this.screeningService = screeningService;
         this.auditoriumService = auditoriumService;
+        this.movieService = movieService;
     }
 
     //ADD
@@ -33,6 +36,7 @@ public class ScreeningController {
     public String addScreening(Model model){
         model.addAttribute("screening", new Screening());
         model.addAttribute("auditoriums", this.auditoriumService.findAll());
+        model.addAttribute("movie", this.movieService.getAllMovie());
         return "add-screening";
     }
 
@@ -70,6 +74,8 @@ public class ScreeningController {
     public ModelAndView listScreening(Model model){
         ModelAndView modelAndView = new ModelAndView("list-screening");
         modelAndView.addObject("screening", screeningService.findAllScreenings());
+        modelAndView.addObject("movie", this.movieService.getAllMovie());
+        modelAndView.addObject("auditorium", this.auditoriumService.findAll());
         return modelAndView;
     }
 
