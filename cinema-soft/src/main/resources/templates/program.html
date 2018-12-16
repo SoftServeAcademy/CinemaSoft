@@ -216,10 +216,10 @@
 						<td th:text="${movieSchedule.description}">1</td>
 						<td th:text="${movieSchedule.hours}">1</td>
 						<td th:text="${movieSchedule.dayOfWeek}">1</td>
-						<form action="#" th:action="@{/removeMovieSchedule/{id}(id=${movieSchedule.id})}" th:method="delete">
+						<td><form action="#" th:action="@{/removeMovieSchedule/{id}(id=${movieSchedule.id})}" th:method="delete">
 							<button type="submit" id="submitButton" class="btn btn-ghost">Delete</button>
 							<!--sec:authorize="hasRole('ROLE_ADMIN')"-->
-						</form>
+						</form></td>
 					</tr>
 					</tbody>
 				</table>
