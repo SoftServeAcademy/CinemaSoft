@@ -1,6 +1,7 @@
 package softServe.academy.cinemasoft.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,11 @@ public class MovieScheduleController {
     @Autowired
     public MovieScheduleController(MovieScheduleService movieScheduleService){
         this.movieScheduleService = movieScheduleService;
+    }
+
+    @GetMapping("/program")
+    public String program() {
+        return "program";
     }
 
     @PostMapping("/movieSchedule")
@@ -48,14 +54,10 @@ public class MovieScheduleController {
         return ResponseEntity.ok(movieScheduleService.findAll());
     }
 
-    @GetMapping("/program")
-    public String program() {
-        return "program";
-    }
-
     @GetMapping("/movieSchedule")
     public ModelAndView getMovieSchedule(Model model) {
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("program");
+//        modelAndView.addObject("movieSchedules", movieScheduleService.findAll(new Sort(Sort.Direction.DESC, "hours"));
         modelAndView.addObject("movieSchedules", movieScheduleService.findAll());
         return modelAndView;
     }
@@ -77,10 +79,39 @@ public class MovieScheduleController {
         return  "redirect:/movieSchedule";
     }
 
-    @DeleteMapping("/editMovieSchedule")
+    @DeleteMapping("/deleteMovieSchedule")
     public String deleteMovieScheduleView(@ModelAttribute("movieSchedule") MovieSchedule movieSchedule) {
         movieScheduleService.deleteMovieSchedule(movieSchedule);
         return  "redirect:/movieSchedule";
     }
+
+//    //EDIT
+//    @GetMapping("/editMovieSchedule/{id}")
+//    public ModelAndView editMovieSchedule(@PathVariable("id") int id, MovieSchedule movieSchedule){
+////        movieSchedule = movieScheduleService.getMovieScheduleById(id);
+//        ModelAndView mav = new ModelAndView("editMovieSchedule");
+//        mav.addObject("movieSchedule", movieSchedule);
+//        return mav;
+//    }
+//
+//    @PostMapping("/editMovieSchedule/{id}")
+//    public String postEditMovieSchedule(@ModelAttribute("movieSchedule") MovieSchedule movieSchedule,@PathVariable("id") int Id){
+//        movieScheduleService.editMovieSchedule(movieSchedule);
+//        return "redirect:/listMovieSchedule";
+//    }
+
+    @DeleteMapping("/removeMovieSchedule/{id}")
+    public String deleteMovieScheduleById(@PathVariable("id") int id){
+        movieScheduleService.deleteMovieScheduleById(id);
+        return "redirect:/movieSchedule";
+    }
+
+//    //List Movie Schedule
+//    @GetMapping(value = "/listMovieSchedule")
+//    public ModelAndView listMovieSchedule(Model model){
+//        ModelAndView modelAndView = new ModelAndView("listMovieSchedule");
+//        modelAndView.addObject("movieSchedule", movieScheduleService.findAll());
+//        return modelAndView;
+//    }
 
 }
