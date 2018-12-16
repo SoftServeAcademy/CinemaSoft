@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import softServe.academy.cinemasoft.model.Auditorium;
+import softServe.academy.cinemasoft.model.Movie;
 import softServe.academy.cinemasoft.model.Screening;
 import softServe.academy.cinemasoft.service.MovieService;
 import softServe.academy.cinemasoft.service.ScreeningService;
@@ -43,8 +44,13 @@ public class ScreeningController {
     //ADD
     @PostMapping("/addScreening")
     public String createScreening(@ModelAttribute("screening") Screening screening){
-        screeningService.createScreening(screening);
-        return "redirect:/listScreening";
+        //screening validation
+        String string = screening.getStartTime();
+        if (screeningService.isValid(string)){
+            screeningService.createScreening(screening);
+            return "redirect:/listScreening";
+        }
+        return "redirect:/addScreening";
     }
 
     //DELETE
@@ -60,12 +66,20 @@ public class ScreeningController {
        // screening = screeningService.getScreeningById(id);
         ModelAndView mav = new ModelAndView("edit-screening");
         mav.addObject("screening", screening);
+        mav.addObject("auditorium", this.auditoriumService.findAll());
+        mav.addObject("movie", this.movieService.getAllMovie());
         return mav;
     }
 
     @PostMapping(value = "/editScreening/{id}")
-    public String postEditScreening(@ModelAttribute("screening") Screening screening,@PathVariable("id") int Id){
+    public String postEditScreening(@ModelAttribute("screening") Screening screening,
+                                    @ModelAttribute("auditorium") Auditorium auditorium,
+                                    @ModelAttribute("movie") Movie movie,
+                                    @PathVariable("id") int Id){
         screeningService.editPostScreening(screening);
+        auditoriumService.addAuditorium(auditorium);
+        movieService.editMovie(movie);
+
         return "redirect:/listScreening";
     }
 

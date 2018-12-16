@@ -36,7 +36,7 @@ public class Movie {
     @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
     private List<Comment> comment;
 
-    @OneToMany
+    @OneToMany(mappedBy = "movie")
     private List<Screening> screenings;
 
 

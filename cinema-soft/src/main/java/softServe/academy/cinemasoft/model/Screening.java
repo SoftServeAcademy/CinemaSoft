@@ -1,6 +1,8 @@
 package softServe.academy.cinemasoft.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "screening")
@@ -10,6 +12,8 @@ public class Screening {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer Id;
+    @NotNull
+    @Size(min=5, max=5)
     private String startTime;
 
     @ManyToOne
@@ -19,9 +23,9 @@ public class Screening {
     private Auditorium auditorium;
 
     @ManyToOne
-    @JoinTable(name = "SCREENING_MOVIE",
-            joinColumns = @JoinColumn(name = "screening_id"),
-            inverseJoinColumns = @JoinColumn(name = "movie_id"))
+//    @JoinTable(name = "SCREENING_MOVIE",
+//            joinColumns = @JoinColumn(name = "screening_id"),
+//            inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private Movie movie;
 
     public Screening(){

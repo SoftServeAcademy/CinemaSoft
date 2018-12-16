@@ -110,18 +110,31 @@
             <div class="col-sm-6">
                 <form action="#" th:object="${screening}"  th:action="@{/editScreening/{id}(id=${screening.id})}" method="post">
 
+                    <!--<div class="form-group">-->
+                        <!--<label>Auditorium*</label>-->
+                        <!--<input th:field ="*{auditorium}" type="text" />-->
+                    <!--</div>-->
+
                     <div class="form-group">
-                        <label>Auditorium*</label>
-                        <input th:field ="*{auditorium}" type="text" />
+                        <select name="movie" th:field="*{movie}">
+                            <option value="text" selected>Choose Movie</option>
+                            <option th:each="movie : ${movie}" th:value="${movie.id}" th:text="${movie.title}" ></option>
+                        </select>
                     </div>
 
+                    <div class="form-group">
+                        <select name="auditorium" th:field="*{auditorium}">
+                            <option value="text" selected>Choose auditorium</option>
+                            <option th:each="auditorium : ${auditorium}" th:value="${auditorium.id}" th:text="${auditorium.id}" ></option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label>Start Hour *</label>
                         <input th:field ="*{startTime}" type="text" />
                     </div>
-                    <div class="form-group right-align">
+                    <form class="form-group right-align">
                         <button type="submit" class="btn btn-ghost">Edit screening</button>
-                    </div>
+                    </form>
                 </form>
             </div>
         </div>
