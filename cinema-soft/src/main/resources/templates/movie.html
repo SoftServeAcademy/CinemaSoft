@@ -183,6 +183,10 @@
                         <h4 th:text="${com.user.email}" class="no-underline"></h4>
                         <p th:text="${com.content}"></p>
                     </div>
+
+                    <form action="#" th:action="@{/removeComment/{id}(id=${com.id})}" th:method="delete">
+                        <button sec:authorize="hasRole('ROLE_ADMIN')" type="submit" id="submitButton1" class="btn btn-ghost">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>
