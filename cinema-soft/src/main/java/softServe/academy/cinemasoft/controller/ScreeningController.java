@@ -1,11 +1,8 @@
 package softServe.academy.cinemasoft.controller;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import softServe.academy.cinemasoft.model.Auditorium;
-import softServe.academy.cinemasoft.model.Movie;
 import softServe.academy.cinemasoft.model.Screening;
 import softServe.academy.cinemasoft.service.MovieService;
 import softServe.academy.cinemasoft.service.ScreeningService;
@@ -13,9 +10,6 @@ import softServe.academy.cinemasoft.service.AuditoriumService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
@@ -44,7 +38,6 @@ public class ScreeningController {
     //ADD
     @PostMapping("/addScreening")
     public String createScreening(@ModelAttribute("screening") Screening screening){
-        //screening validation
         String string = screening.getStartTime();
         if (screeningService.isValid(string)){
             screeningService.createScreening(screening);
@@ -54,7 +47,7 @@ public class ScreeningController {
     }
 
     //DELETE
-    @GetMapping(value ="/removeScreening/{id}")
+    @DeleteMapping(value ="/removeScreening/{id}")
     public String deleteScreening(@PathVariable("id") int id){
         screeningService.deleteScreening(id);
         return "redirect:/listScreening";
@@ -72,13 +65,9 @@ public class ScreeningController {
     }
 
     @PostMapping(value = "/editScreening/{id}")
-    public String postEditScreening(@ModelAttribute("screening") Screening screening,
-                                    @ModelAttribute("auditorium") Auditorium auditorium,
-                                    @ModelAttribute("movie") Movie movie,
-                                    @PathVariable("id") int Id){
+    public String postEditScreening(@ModelAttribute("screening") Screening screening, @PathVariable("id") int Id, Model model){
+
         screeningService.editPostScreening(screening);
-        auditoriumService.addAuditorium(auditorium);
-        movieService.editMovie(movie);
 
         return "redirect:/listScreening";
     }

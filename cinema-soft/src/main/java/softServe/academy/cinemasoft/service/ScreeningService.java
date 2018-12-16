@@ -1,8 +1,5 @@
 package softServe.academy.cinemasoft.service;
 
-import org.springframework.http.ResponseEntity;
-import softServe.academy.cinemasoft.model.Auditorium;
-import softServe.academy.cinemasoft.repository.AuditoriumRepository;
 import softServe.academy.cinemasoft.repository.ScreeningRepository;
 import softServe.academy.cinemasoft.model.Screening;
 
@@ -39,18 +36,14 @@ public class ScreeningService {
     }
 
     public boolean isValid(String string){
-        if(string.contains(":")) {
+            if (!string.contains(":")){
+                return false;
+            }
             String[] array = string.split(":");
             int hours = Integer.parseInt(array[0]);
             int minutes = Integer.parseInt(array[1]);
-            if (1 <= hours && hours < 24 && minutes >= 0 && minutes <= 59) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
+
+            return  (1 <= hours && hours < 24 && minutes >= 0 && minutes <= 59);
     }
 
     public Screening getScreeningById(int id) {
