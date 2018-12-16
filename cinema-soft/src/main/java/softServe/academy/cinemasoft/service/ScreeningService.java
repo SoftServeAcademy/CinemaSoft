@@ -39,11 +39,15 @@ public class ScreeningService {
     }
 
     public boolean isValid(String string){
-        String[] array = string.split(":");
-        int hours = Integer.parseInt(array[0]);
-        int minutes = Integer.parseInt(array[1]);
-        if (1 <= hours && hours < 24 && minutes >= 0 && minutes <= 59){
-            return true;
+        if(string.contains(":")) {
+            String[] array = string.split(":");
+            int hours = Integer.parseInt(array[0]);
+            int minutes = Integer.parseInt(array[1]);
+            if (1 <= hours && hours < 24 && minutes >= 0 && minutes <= 59) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
