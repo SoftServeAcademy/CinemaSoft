@@ -68,17 +68,18 @@
                             <li><a href="/categories">List category</a></li>
                             <li><a href="/addScreening">Add screening</a></li>
                             <li><a href="/listScreening">List screening</a></li>
+                            <li><a href="/addMovieSchedule">Add movie schedule</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="/">Home</a>
                     </li>
                     <li>
-                        <a href="/program">Program</a>
+                        <a href="program">Program</a>
                     </li>
                     <!--  <li>
-                          <a href="book-ticket">Book ticket</a>
-                      </li>-->
+                       <a href="book-ticket">Book ticket</a>
+                   </li>-->
                 </ul>
             </div>
         </div>
@@ -147,21 +148,12 @@
         </div>
         <div class="col-sm-4 col-sm-push-1">
             <h2>Program</h2>
-            <ul class="show-times">
-                <li><i>Monday</i> <span class="time past">13:00</span> <span class="time">16:00</span> <span
-                        class="time">19:30</span> <span class="time">22:00</span></li>
-                <li><i>Tuesday</i> <span class="time past">13:00</span> <span class="time">15:30</span> <span
-                        class="time">19:30</span> <span class="time">22:00</span></li>
-                <li class="today"><i>Today</i> <span class="time past">12:00</span> <span class="time">16:00</span>
-                    <span class="time">19:30</span> <span class="time">22:00</span></li>
-                <li><i>Thursday</i> <span class="time past">13:00</span> <span class="time">16:00</span> <span
-                        class="time">20:15</span> <span class="time">22:00</span></li>
-                <li><i>Friday</i> <span class="time past">13:00</span> <span class="time">14:45</span> <span
-                        class="time">19:30</span> <span class="time">22:00</span></li>
-                <li><i>Saturday</i> <span class="time past">14:15</span> <span class="time">16:00</span> <span
-                        class="time">19:30</span> <span class="time">22:00</span></li>
-                <li><i>Sunday</i> <span class="time past">13:00</span> <span class="time">16:00</span> <span
-                        class="time">19:30</span> <span class="time">22:20</span></li>
+            <ul class="show-times" th:each="screening:${screenings}">
+                <li>
+                    <i th:text="${screening.auditorium.name}"></i>
+                    <span th:text="${screening.startTime}" class="time past"></span>
+                </li>
+
             </ul>
         </div>
     </div>

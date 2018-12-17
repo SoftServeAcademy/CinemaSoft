@@ -104,7 +104,7 @@ public class MovieController {
         modelAndView.addObject("selectMovie", movieService.getMovieById(id));
         model.addAttribute("comment", new Comment());
         model.addAttribute("comments", commentRepository.findByMovie(movieService.getMovieById(id)));
-
+        model.addAttribute("screenings", movieService.getMovieById(id).getScreenings());
         String image = Base64.getEncoder().encodeToString(movieService.getMovieById(id).getCover());
         model.addAttribute("image", image);
         return modelAndView;
