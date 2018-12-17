@@ -53,4 +53,9 @@ public class ScreeningService {
     public void editPostScreening(Screening screening) {
         screeningRepository.save(screening);
     }
+
+    public Screening findById(int id){
+       return this.screeningRepository.findById(id);
+    }
+
 }

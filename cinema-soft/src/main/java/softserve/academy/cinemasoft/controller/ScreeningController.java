@@ -58,7 +58,8 @@ public class ScreeningController {
     public ModelAndView editScreening(@PathVariable("id") int id, Screening screening){
        // screening = screeningService.getScreeningById(id);
         ModelAndView mav = new ModelAndView("edit-screening");
-        mav.addObject("screening", screening);
+        Screening temp = this.screeningService.findById(id);
+        mav.addObject("screening", temp);
         mav.addObject("auditorium", this.auditoriumService.findAll());
         mav.addObject("movie", this.movieService.getAllMovie());
         return mav;
