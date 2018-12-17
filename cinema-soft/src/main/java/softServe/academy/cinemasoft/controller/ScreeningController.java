@@ -76,10 +76,9 @@ public class ScreeningController {
     @GetMapping(value = "/listScreening")
     public ModelAndView listScreening(Model model){
         ModelAndView modelAndView = new ModelAndView("list-screening");
-        modelAndView.addObject("screening", screeningService.findAllScreenings());
+        modelAndView.addObject("screenings", screeningService.findAllScreenings());
         modelAndView.addObject("movie", this.movieService.getAllMovie());
         modelAndView.addObject("auditorium", this.auditoriumService.findAll());
         return modelAndView;
     }
-
 }

@@ -60,28 +60,27 @@
 					
 					<div class="navbar-collapse collapse">
 						<ul id="menu-primary" class="nav navbar-nav">
-							<ul id="menu-primary" class="nav navbar-nav">
-								<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
-									<a href="admin">Admin</a>
-									<ul class="dropdown-menu">
-										<li><a href="/add-movie">Add movie</a></li>
-										<li><a href="/add-category">Add category</a></li>
-										<li><a href="/categories">List category</a></li>
-										<li><a href="/addScreening">Add screening</a></li>
-										<li><a href="/listScreening">List screening</a></li>
-										<li><a href="/addMovieSchedule">Add movie schedule</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="/">Home</a>
-								</li>
-								<li>
-									<a href="program">Program</a>
-								</li>
-								<!--  <li>
-                                   <a href="book-ticket">Book ticket</a>
-                               </li>-->
-							</ul>
+							<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
+								<a href="admin">Admin</a>
+								<ul class="dropdown-menu">
+									<li><a href="/add-movie">Add movie</a></li>
+									<li><a href="/add-category">Add category</a></li>
+									<li><a href="/categories">List category</a></li>
+									<li><a href="/addScreening">Add screening</a></li>
+									<li><a href="/listScreening">List screening</a></li>
+									<li><a href="/addMovieSchedule">Add movie schedule</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="/">Home</a>
+							</li>
+							<li>
+								<a href="program">Program</a>
+							</li>
+							<!--  <li>
+                               <a href="book-ticket">Book ticket</a>
+                           </li>-->
+						</ul>
 					</div>
 				</div>
 				
@@ -110,7 +109,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						<form><! ------>
+						<! ------>
 							<table class="table table-hover">
 								<a class="btn btn-ghost" th:href="@{/addScreening}" method="post">Add Screening</a>
 								<thead>
@@ -119,13 +118,16 @@
 								</tr>
 								</thead>
 								<tbody>
-								<tr class="table-danger" th:each="screening : ${screening}">
-									<td th:text="${screening.movie.title}"></td><td th:text="${screening.auditorium.id}"></td> <td th:text="${screening.startTime}"></td>
+								<tr class="table-danger" th:each="screening : ${screenings}">
+									<td th:text="${screening.movie.title}"></td>
+									<td th:text="${screening.auditorium.id}"></td>
+									<td th:text="${screening.startTime}"></td>
 									<td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >Edit</a>
 										<!--<a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >delete</a></td>-->
-									<td><form th:action="@{/removeScreening/{id}(id=${screening.id})}" th:method="delete" >
-										<input type="hidden" name="_method" value="delete" />
-										<button class="btn btn-secondary" type="submit">Delete</button>
+									<td>
+
+									<form action="#" th:action="@{/removeScreening/{id}(id=${screening.id})}" th:method="delete">
+										<button type="submit" id="submitButton" class="btn btn-ghost">Delete</button>
 									</form>
 									</td>
 									</td>
@@ -134,7 +136,7 @@
 								</tbody>
 							</table>
 							<! ------>
-						</form>
+
 					</div>
 				</div>
 			</div>

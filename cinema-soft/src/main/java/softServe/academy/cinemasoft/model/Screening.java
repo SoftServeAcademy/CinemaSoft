@@ -23,9 +23,7 @@ public class Screening {
     private Auditorium auditorium;
 
     @ManyToOne
-//    @JoinTable(name = "SCREENING_MOVIE",
-//            joinColumns = @JoinColumn(name = "screening_id"),
-//            inverseJoinColumns = @JoinColumn(name = "movie_id"))
+
     private Movie movie;
 
     public Screening(){
