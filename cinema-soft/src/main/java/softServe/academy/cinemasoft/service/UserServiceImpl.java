@@ -29,9 +29,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private  BCryptPasswordEncoder encoder;
 
-
-
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);

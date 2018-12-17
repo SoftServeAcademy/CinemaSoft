@@ -1,7 +1,10 @@
 package softServe.academy.cinemasoft.controller;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import softServe.academy.cinemasoft.model.Comment;
 import softServe.academy.cinemasoft.model.Movie;
+import softServe.academy.cinemasoft.repository.CommentRepository;
 import softServe.academy.cinemasoft.service.CategoryService;
 import softServe.academy.cinemasoft.service.MovieService;
 
@@ -24,13 +27,15 @@ import java.util.Base64;
 @Controller
 public class MovieController {
     private final MovieService movieService;
+    private CommentRepository commentRepository;
 
     private final CategoryService categoryService;
 
     @Autowired
-    public MovieController(MovieService movieService, CategoryService categoryService) {
+    public MovieController(MovieService movieService, CategoryService categoryService, CommentRepository commentRepository) {
         this.movieService = movieService;
         this.categoryService = categoryService;
+        this.commentRepository = commentRepository;
     }
 
     @GetMapping("/add-movie")
@@ -44,17 +49,15 @@ public class MovieController {
     }
 
     @PostMapping("/add-movie")
-    public String addMovieFromView(@ModelAttribute("movie") Movie movie, BindingResult bindingResult,@ModelAttribute("fileImage") MultipartFile imageFile) throws IOException {
+    public String addMovieFromView(@ModelAttribute("movie") Movie movie, BindingResult bindingResult, @ModelAttribute("fileImage") MultipartFile imageFile) throws IOException {
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 System.out.println(error);
             }
             return "redirect:/add-movie";
         }
-        System.out.println(Base64.getEncoder().encodeToString(imageFile.getBytes()));
         byte[] cover = imageFile.getBytes();
         movie.setCover(cover);
-      //  System.out.println(Base64.getEncoder().encodeToString(movie.getCover()));
         movieService.addMovie(movie);
 
         return "redirect:/";
@@ -73,7 +76,7 @@ public class MovieController {
     }
 
     @PostMapping("/edit-movie/{id}")
-    public String editMovie(@PathVariable int id, @ModelAttribute("movie") Movie movie, BindingResult bindingResult,Model model,@ModelAttribute("fileImage") MultipartFile imageFile) throws IOException {
+    public String editMovie(@PathVariable int id, @ModelAttribute("movie") Movie movie, BindingResult bindingResult, Model model, @ModelAttribute("fileImage") MultipartFile imageFile) throws IOException {
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 System.out.println(error);
@@ -85,8 +88,6 @@ public class MovieController {
         movie.setCover(cover);
         movieService.editPostMovie(movie);
 
-       // String image = Base64.getEncoder().encodeToString(movieService.getMovieById(id).getCover());
-       // model.addAttribute("image",image);
         return "redirect:/movie/" + movie.getId();
     }
 
@@ -97,4 +98,15 @@ public class MovieController {
         return "redirect:/";
     }
 
+    @GetMapping(value = "/movie/{id}")
+    public ModelAndView showMovieById(@PathVariable("id") int id, Model model) {
+        ModelAndView modelAndView = new ModelAndView("movie");
+        modelAndView.addObject("selectMovie", movieService.getMovieById(id));
+        model.addAttribute("comment", new Comment());
+        model.addAttribute("comments", commentRepository.findByMovie(movieService.getMovieById(id)));
+
+        String image = Base64.getEncoder().encodeToString(movieService.getMovieById(id).getCover());
+        model.addAttribute("image", image);
+        return modelAndView;
+    }
 }

@@ -77,8 +77,6 @@ public class ScreeningController {
     public ModelAndView listScreening(Model model){
         ModelAndView modelAndView = new ModelAndView("list-screening");
         modelAndView.addObject("screenings", screeningService.findAllScreenings());
-        modelAndView.addObject("movie", this.movieService.getAllMovie());
-        modelAndView.addObject("auditorium", this.auditoriumService.findAll());
         return modelAndView;
     }
 }

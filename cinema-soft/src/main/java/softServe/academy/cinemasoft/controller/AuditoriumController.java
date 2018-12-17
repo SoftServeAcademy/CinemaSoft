@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import softServe.academy.cinemasoft.model.Auditorium;
 import softServe.academy.cinemasoft.service.AuditoriumService;
 
@@ -58,5 +57,4 @@ public class AuditoriumController {
 		auditoriumService.removeAuditorium(auditorium);
 		return "redirect:/auditoriums";
 	}
-
 }

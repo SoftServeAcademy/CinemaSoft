@@ -50,10 +50,6 @@ public class CommentService {
         return commentRepository.findAll();
     }
 
-    public List<Comment> findByMovie(Movie movie) {
-        return commentRepository.findByMovie(movie);
-    }
-
     public Comment findById(int id){
         return commentRepository.findById(id);
     }

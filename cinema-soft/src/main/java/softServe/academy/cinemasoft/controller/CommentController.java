@@ -57,6 +57,4 @@ public class CommentController {
 
         return "redirect:/movie/"+comment.getMovie().getId();
     }
-
-
 }

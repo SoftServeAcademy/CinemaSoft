@@ -36,12 +36,7 @@ public class MovieScheduleService {
         return movieScheduleRepository.findAll();
     }
 
-    public MovieSchedule getMovieScheduleById(Integer id){
-        return movieScheduleRepository.getOne(id);
-    }
-
     public void editMovieSchedule(MovieSchedule movieSchedule) {
         movieScheduleRepository.save(movieSchedule);
     }
-
 }

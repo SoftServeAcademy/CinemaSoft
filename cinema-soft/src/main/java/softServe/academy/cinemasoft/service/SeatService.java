@@ -29,5 +29,4 @@ public class SeatService {
 	public List<Seat> findAll() {
 		return seatRepository.findAll();
 	}
-
 }

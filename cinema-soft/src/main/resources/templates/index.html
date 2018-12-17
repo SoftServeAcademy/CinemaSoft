@@ -190,7 +190,11 @@
                                                         </div>
                                                     </aside>
                                                     <a href="#">
+                                                        <div th:with="id=${movie.id}">
+                                                        <div th:with="image=${images.get(id)}">
                                                         <img th:src="@{'data:image/png;base64,' + ${image}}" />
+                                                        </div>
+                                                        </div>
                                                     </a>
                                                 </div>
                                                 <h4 th:text="${movie.title}"></h4>
@@ -235,7 +239,11 @@
                                         </div>
                                     </aside>
                                     <a href="#">
-                                        <img th:src="@{'data:image/png;base64,' + ${image} }" />
+                                        <div th:with="id=${movie.id}">
+                                            <div th:with="image=${images.get(id)}">
+                                                <img th:src="@{'data:image/png;base64,' + ${image}}" />
+                                            </div>
+                                        </div>
                                     </a>
                                 </div>
                                 <h4 th:text="${movie.title}"></h4>

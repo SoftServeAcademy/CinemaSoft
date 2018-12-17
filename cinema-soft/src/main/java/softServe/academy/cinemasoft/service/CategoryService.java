@@ -42,7 +42,6 @@ public class CategoryService {
     }
 
     public Category findCategoryById(int id){
-
         return this.categoryRepository.findById(id).orElse(null);
     }
 }

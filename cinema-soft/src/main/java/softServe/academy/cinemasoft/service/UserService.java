@@ -4,7 +4,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import softServe.academy.cinemasoft.dto.UserDTO;
 import softServe.academy.cinemasoft.model.User;
 
-
 public interface UserService extends UserDetailsService {
     User findUserByEmail(String email);
     User saveUser(UserDTO userDTO);

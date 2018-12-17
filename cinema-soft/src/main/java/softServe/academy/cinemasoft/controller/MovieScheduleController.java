@@ -50,4 +50,17 @@ public class MovieScheduleController {
         movieScheduleService.deleteMovieScheduleById(id);
         return "redirect:/program";
     }
+
+    //Edit Movie Schedule
+    @GetMapping("/editMovieSchedule/{id}")
+    public ModelAndView editMovieSchedule(@PathVariable("id") int id, MovieSchedule movieSchedule) {
+        ModelAndView editMS = new ModelAndView("editMovieSchedule");
+        editMS.addObject("movieSchedule", movieSchedule);
+        return editMS;
+    }
+    @PostMapping("/editMovieSchedule/{id}")
+    public String editMovieSchedule(@ModelAttribute("movieSchedule") MovieSchedule movieSchedule, @PathVariable("id") int Id) {
+        movieScheduleService.editMovieSchedule(movieSchedule);
+        return "redirect:/program";
+    }
 }

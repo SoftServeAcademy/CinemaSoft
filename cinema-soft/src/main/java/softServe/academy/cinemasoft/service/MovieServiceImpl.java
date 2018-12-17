@@ -64,10 +64,4 @@ public class MovieServiceImpl implements MovieService{
 	public Movie getMovieById(int id) {
 		return movieRepository.getOne(id);
 	}
-
-//	@Override
-//	public List<Movie> getAllByRating(){
-//		//return movieRepository.findAllByOrOrderByRatingDesc();
-//      // return movieRepository.findByOrderByRatingDesc();
-//	}
 }

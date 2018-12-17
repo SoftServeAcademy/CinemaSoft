@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import softServe.academy.cinemasoft.service.MovieService;
 
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -58,19 +59,19 @@ public class CategoryController {
     }
 
     @DeleteMapping("/deleteCategory/{id}")
-    public String deleteCategory(@PathVariable int id){
+    public String deleteCategory(@PathVariable int id) {
 
         categoryService.removeCategory(id);
         return "redirect:/categories";
     }
 
     @GetMapping("/editCategory/{id}")
-    public String editCategory(@PathVariable int id, Model model){
+    public String editCategory(@PathVariable int id, Model model) {
 
         Category category = categoryService.findCategoryById(id);
         model.addAttribute("category", category);
-        return "edit-category";
 
+        return "edit-category";
     }
 
     @GetMapping("/")
@@ -82,23 +83,13 @@ public class CategoryController {
 
         //load cover for each movie
         List<Movie> allMovies = movieService.findAll();
+        HashMap<Integer, String> movieCovers = new HashMap<>();
         for (int i = 0; i < allMovies.size(); i++) {
             String currentCover = Base64.getEncoder().encodeToString(allMovies.get(i).getCover());
-            model.addAttribute("image", currentCover);
+            movieCovers.put(allMovies.get(i).getId(), currentCover);
         }
-        return modelAndView;
-    }
 
-
-    @GetMapping(value = "/movie/{id}")
-    public ModelAndView showMovieById(@PathVariable("id") int id, Model model) {
-        ModelAndView modelAndView = new ModelAndView("movie");
-        modelAndView.addObject("selectMovie", movieService.getMovieById(id));
-        model.addAttribute("comment", new Comment());
-        model.addAttribute("comments", commentRepository.findByMovie(movieService.getMovieById(id)));
-
-        String image = Base64.getEncoder().encodeToString(movieService.getMovieById(id).getCover());
-        model.addAttribute("image", image);
+        model.addAttribute("images", movieCovers);
         return modelAndView;
     }
 

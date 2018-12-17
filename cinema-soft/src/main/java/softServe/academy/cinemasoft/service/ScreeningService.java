@@ -46,10 +46,6 @@ public class ScreeningService {
             return  (1 <= hours && hours < 24 && minutes >= 0 && minutes <= 59);
     }
 
-    public Screening getScreeningById(int id) {
-        return screeningRepository.getOne(id);
-    }
-
     public void createScreening(Screening screening){
         screeningRepository.save(screening);
     }
