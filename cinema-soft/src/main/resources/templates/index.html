@@ -61,7 +61,7 @@
             <div class="navbar-collapse collapse">
                 <ul id="menu-primary" class="nav navbar-nav">
                     <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
-                        <a href="admin">Admin</a>
+                        <a >Admin</a>
                         <ul class="dropdown-menu">
                             <li><a href="/add-movie">Add movie</a></li>
                             <li><a href="/add-category">Add category</a></li>
@@ -107,17 +107,7 @@
                 <div class="container">
                     <div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1"
                          data-opacity="0" data-translatey="100">
-                        <div class="col-md-9">
-                            <span class="title">Action, Adventure, Fantasy</span>
-                            <h1>End of the World: Part II</h1>
-                            <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-                                Mirum est notare quam littera gothica, quam nunc putamus parum.</p>
-                            <div class="buttons">
-										<span class="certificate">
-											PG
-										</span>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -189,7 +179,7 @@
                                                                   th:action="@{/movie/{id}(id=${movie.id})}"></form>
                                                         </div>
                                                     </aside>
-                                                    <a href="#">
+                                                    <a >
                                                         <div th:with="id=${movie.id}">
                                                         <div th:with="image=${images.get(id)}">
                                                         <img th:src="@{'data:image/png;base64,' + ${image}}" />
@@ -238,7 +228,7 @@
                                             <span class="date">Released: 7 Mar, 2017</span>
                                         </div>
                                     </aside>
-                                    <a href="#">
+                                    <a >
                                         <div th:with="id=${movie.id}">
                                             <div th:with="image=${images.get(id)}">
                                                 <img th:src="@{'data:image/png;base64,' + ${image}}" />
@@ -262,7 +252,7 @@
     <footer>
         <div class="container">
             <div class="copyright">
-                <p>2018 &copy; cinemasoft / <a href="http://www.klevermedia.co.uk">Web design by softServe Academy</a>
+                <p>2018 &copy; cinemasoft
                 </p>
             </div>
         </div>

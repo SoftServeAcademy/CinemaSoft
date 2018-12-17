@@ -42,6 +42,18 @@ public class MovieServiceImpl implements MovieService{
 	        return movie;
 	}
 	public void editPostMovie(Movie movie) {
+//		Movie temp = new Movie();
+//		temp.setId(movie.getId());
+//		temp.setCast(movie.getCast());
+//		temp.setCategory(movie.getCategory());
+//		temp.setComment(movie.getComment());
+//		temp.setDescription(movie.getDescription());
+//		temp.setDuration(movie.getDuration());
+//		temp.setDirector(movie.getDirector());
+//		temp.setTitle(movie.getTitle());
+//		temp.setTrailer(movie.getTrailer());
+//		temp.setRating(movie.getRating());
+//		temp.setCover(movie.getCover());
 		movieRepository.save(movie);
 }
 

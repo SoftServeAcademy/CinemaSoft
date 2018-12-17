@@ -12,6 +12,11 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 import java.util.ArrayList;
@@ -28,12 +33,18 @@ public class Movie {
     @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
 
+    @NotNull
+    @Size(min=2, max=40)
     @Column(nullable = false, unique = true)
     private String title;
 
+    @NotNull
+    @Size(min=2, max=40)
     @Column(nullable = false)
     private String director;
 
+    @NotNull
+    @Size(min=2, max=40)
     @Column(nullable = false)
     private String cast;
 
@@ -43,21 +54,32 @@ public class Movie {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "movie", fetch = FetchType.LAZY)
     private List<Comment> comment;
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "movie")
     private List<Screening> screenings;
 
     @Lob
     private byte[] cover;
 
+    @NotNull
+    @Size(min=2, max=40)
     @Column(nullable = false)
     private String trailer;
 
+    @NotNull
+    @Size(min=2, max=40)
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
-    private String duration;
 
+    @Column(nullable = false)
+    @NotNull
+    @Min(30)
+    @Max(240)
+    private int duration;
+
+    @NotNull
+    @Min(1)
+    @Max(5)
     private double rating;
 
     public Category getCategory() {
@@ -108,11 +130,11 @@ public class Movie {
         this.description = discription;
     }
 
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
@@ -164,7 +186,7 @@ public class Movie {
         this.screenings = screenings;
     }
 
-    public Movie(Integer id, String title, String director, String trailer, String description, String duration,
+    public Movie(Integer id, String title, String director, String trailer, String description, int duration,
                  double rating, String cast, byte[] cover) {
         this.id = id;
         this.title = title;
