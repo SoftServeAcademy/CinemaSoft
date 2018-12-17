@@ -115,14 +115,21 @@
 								<a class="btn btn-ghost" th:href="@{/addScreening}" method="post">Add Screening</a>
 								<thead>
 								<tr>
-									 <th scope="col">Auditorium</th> <th scope="col">Start Time</th>
+									<th scope="col">Movie</th><th scope="col">Auditorium</th> <th scope="col">Start Time</th>
 								</tr>
 								</thead>
 								<tbody>
 								<tr class="table-danger" th:each="screening : ${screening}">
-									<!--<td th:text="${screening.movie}"></td>-->
-									<td th:text="${screening.auditorium.id}"></td> <td th:text="${screening.startTime}"></td> <td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >Edit</a><a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >delete</a></td>
-									<!--<td th:text="${screening.startTime}"></td> <td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >Edit</a><a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >delete</a></td> --->
+									<td th:text="${screening.movie.title}"></td><td th:text="${screening.auditorium.id}"></td> <td th:text="${screening.startTime}"></td>
+									<td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >Edit</a>
+										<!--<a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >delete</a></td>-->
+									<td><form th:action="@{/removeScreening/{id}(id=${screening.id})}" th:method="delete" >
+										<input type="hidden" name="_method" value="delete" />
+										<button class="btn btn-secondary" type="submit">Delete</button>
+									</form>
+									</td>
+									</td>
+
 								</tr>
 								</tbody>
 							</table>

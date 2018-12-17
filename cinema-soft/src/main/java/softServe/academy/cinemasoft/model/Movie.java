@@ -13,8 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 @Entity
@@ -41,7 +43,7 @@ public class Movie {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "movie", fetch = FetchType.LAZY)
     private List<Comment> comment;
 
-    @OneToMany
+    @OneToMany(mappedBy = "movie")
     private List<Screening> screenings;
 
     @Lob

@@ -29,6 +29,9 @@ public class AuditoriumService {
 	public List<Auditorium> findAll() {
 		return auditoriumRepository.findAll();
 	}
-	
+
+	public Auditorium getAuditoriumById(int id) {
+		return auditoriumRepository.getOne(id);
+	}
 
 }

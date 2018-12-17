@@ -22,7 +22,6 @@ public class ScreeningService {
         return this.screeningRepository.findAll();
     }
 
-
     public Screening addScreening(Screening screening){
         Screening screening1 = new Screening();
         screening1.setStartTime(screening.getStartTime());
@@ -34,6 +33,17 @@ public class ScreeningService {
         if (s != null) {
             this.screeningRepository.delete(s);
         }
+    }
+
+    public boolean isValid(String string){
+            if (!string.contains(":")){
+                return false;
+            }
+            String[] array = string.split(":");
+            int hours = Integer.parseInt(array[0]);
+            int minutes = Integer.parseInt(array[1]);
+
+            return  (1 <= hours && hours < 24 && minutes >= 0 && minutes <= 59);
     }
 
     public Screening getScreeningById(int id) {
