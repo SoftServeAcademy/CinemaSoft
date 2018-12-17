@@ -55,7 +55,8 @@ public class MovieScheduleController {
     @GetMapping("/editMovieSchedule/{id}")
     public ModelAndView editMovieSchedule(@PathVariable("id") int id, MovieSchedule movieSchedule) {
         ModelAndView editMS = new ModelAndView("editMovieSchedule");
-        editMS.addObject("movieSchedule", movieSchedule);
+        MovieSchedule temp = movieScheduleService.findById(id);
+        editMS.addObject("movieSchedule", temp);
         return editMS;
     }
     @PostMapping("/editMovieSchedule/{id}")
