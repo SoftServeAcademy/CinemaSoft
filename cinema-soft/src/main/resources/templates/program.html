@@ -201,12 +201,13 @@
 						<td th:text="${movieSchedule.description}">1</td>
 						<td th:text="${movieSchedule.hours}">1</td>
 						<td th:text="${movieSchedule.dayOfWeek}">1</td>
-						<td><form action="#" th:action="@{/removeMovieSchedule/{id}(id=${movieSchedule.id})}" th:method="delete">
-							<button sec:authorize="hasRole('ROLE_ADMIN')" type="submit" id="submitButton" class="btn btn-ghost">Delete</button>
-
-						</form></td>
 						<td><form action="#" th:action="@{/editMovieSchedule/{id}(id=${movieSchedule.id})}" th:method="get">
-							<button sec:authorize="hasRole('ROLE_ADMIN')" type="submit" id="submitButton" class="btn btn-ghost">Edit</button>
+							<button  type="submit" id="submitButton" class="btn btn-ghost">Edit</button>
+							<!--sec:authorize="hasRole('ROLE_ADMIN')"-->
+						</form></td>
+						<td><form action="#" th:action="@{/removeMovieSchedule/{id}(id=${movieSchedule.id})}" th:method="delete">
+							<button  type="submit" id="submitButton" class="btn btn-ghost">Delete</button>
+							<!--sec:authorize="hasRole('ROLE_ADMIN')"-->
 						</form></td>
 					</tr>
 					</tbody>
