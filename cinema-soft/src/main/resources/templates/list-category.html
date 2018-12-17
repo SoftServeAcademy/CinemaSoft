@@ -68,6 +68,7 @@
 									<li><a href="/categories">List category</a></li>
 									<li><a href="/addScreening">Add screening</a></li>
 									<li><a href="/listScreening">List screening</a></li>
+									<li><a href="/addMovieSchedule">Add movie schedule</a></li>
 								</ul>
 							</li>
 							<li>
@@ -108,16 +109,26 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						<form method="post" th:action="@{/editCategory}">
-							<div class="form-group">
-								<select name="category">
-									<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.nameOfCategory}">
-									</option>
-								</select>&nbsp
-								<input type="submit" name="edit" class="btn btn-ghost" value="Edit" />
-								<input type="submit" name="delete" class="btn btn-ghost" value="Delete" />
+						<!--<form method="post" th:action="@{/editCategory}">-->
+							<div class="form-group" th:each="category : ${categories}">
+								<p th:text="${category.nameOfCategory}">  </p>
+
+								<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/editCategory/{id}(id=${category.id})}"
+								   class="btn btn-ghost">Edit</a>
+
+								<form action="#" th:action="@{/deleteCategory/{id}(id=${category.id})}" th:method="delete">
+									<button sec:authorize="hasRole('ROLE_ADMIN')" type="submit" id="submitButton" class="btn btn-ghost">Delete</button>
+								</form>
+
+
+								<!--<select name="category">-->
+									<!--<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.nameOfCategory}">-->
+									<!--</option>-->
+								<!--</select>&nbsp-->
+								<!--<input type="submit" name="edit" class="btn btn-ghost" value="Edit" />-->
+								<!--<input type="submit" name="delete" class="btn btn-ghost" value="Delete" />-->
 							</div>																					
-						</form>
+						<!--</form>-->
 					</div>
 				</div>
 			</div>

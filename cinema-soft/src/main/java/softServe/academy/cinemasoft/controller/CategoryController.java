@@ -57,17 +57,20 @@ public class CategoryController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editCategory", method = RequestMethod.POST, params = {"delete"})
-    public String deleteCategoryView(@ModelAttribute("category") Category category) {
+    @DeleteMapping("/deleteCategory/{id}")
+    public String deleteCategory(@PathVariable int id){
 
-        categoryService.removeCategory(category);
+        categoryService.removeCategory(id);
         return "redirect:/categories";
     }
 
-    @RequestMapping(value = "/editCategory", method = RequestMethod.POST, params = {"edit"})
-    public String editCategoryView(@ModelAttribute("category") Category category) {
-        System.out.println(category);
+    @GetMapping("/editCategory/{id}")
+    public String editCategory(@PathVariable int id, Model model){
+
+        Category category = categoryService.findCategoryById(id);
+        model.addAttribute("category", category);
         return "edit-category";
+
     }
 
     @GetMapping("/")
@@ -96,14 +99,6 @@ public class CategoryController {
 
         String image = Base64.getEncoder().encodeToString(movieService.getMovieById(id).getCover());
         model.addAttribute("image", image);
-        return modelAndView;
-    }
-
-    @GetMapping("/editCategory/{id}")
-    public ModelAndView showEditCategoryView(@PathVariable("id") int id) {
-        Category selectedCategory = categoryService.getCategoryById(id);
-        ModelAndView modelAndView = new ModelAndView("edit-category");
-        modelAndView.addObject("category", selectedCategory);
         return modelAndView;
     }
 

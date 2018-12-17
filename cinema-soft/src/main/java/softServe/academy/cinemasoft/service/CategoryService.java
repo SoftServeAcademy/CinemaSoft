@@ -25,8 +25,8 @@ public class CategoryService {
         return this.categoryRepository.save(categoryToAdd);
     }
 
-    public void removeCategory(Category category) {
-        categoryRepository.delete(category);
+    public void removeCategory(int id) {
+        categoryRepository.deleteById(id);
     }
 
     public List<Category> findAll() {
@@ -44,6 +44,11 @@ public class CategoryService {
             current.setNameOfCategory(newCategoryName);
             categoryRepository.save(current);
         }
+    }
+
+    public Category findCategoryById(int id){
+
+        return this.categoryRepository.findById(id).orElse(null);
     }
 
 
