@@ -1,12 +1,12 @@
-package softServe.academy.cinemasoft.controller;
+package softserve.academy.cinemasoft.controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import softServe.academy.cinemasoft.model.Screening;
-import softServe.academy.cinemasoft.service.MovieService;
-import softServe.academy.cinemasoft.service.ScreeningService;
-import softServe.academy.cinemasoft.service.AuditoriumService;
+import softserve.academy.cinemasoft.model.Screening;
+import softserve.academy.cinemasoft.service.MovieService;
+import softserve.academy.cinemasoft.service.ScreeningService;
+import softserve.academy.cinemasoft.service.AuditoriumService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

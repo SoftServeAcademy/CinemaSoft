@@ -1,5 +1,5 @@
 
-package softServe.academy.cinemasoft.model;
+package softserve.academy.cinemasoft.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

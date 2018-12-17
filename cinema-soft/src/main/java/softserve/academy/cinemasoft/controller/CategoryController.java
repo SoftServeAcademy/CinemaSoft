@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.controller;
+package softserve.academy.cinemasoft.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -7,13 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import softServe.academy.cinemasoft.model.Category;
-import softServe.academy.cinemasoft.model.Comment;
-import softServe.academy.cinemasoft.model.Movie;
-import softServe.academy.cinemasoft.repository.CommentRepository;
-import softServe.academy.cinemasoft.service.CategoryService;
+import softserve.academy.cinemasoft.model.Category;
+import softserve.academy.cinemasoft.model.Comment;
+import softserve.academy.cinemasoft.model.Movie;
+import softserve.academy.cinemasoft.repository.CommentRepository;
+import softserve.academy.cinemasoft.service.CategoryService;
 import org.springframework.web.servlet.ModelAndView;
-import softServe.academy.cinemasoft.service.MovieService;
+import softserve.academy.cinemasoft.service.MovieService;
 
 import java.util.Base64;
 import java.util.HashMap;

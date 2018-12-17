@@ -1,10 +1,10 @@
-package softServe.academy.cinemasoft.service;
+package softserve.academy.cinemasoft.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import softServe.academy.cinemasoft.model.Category;
-import softServe.academy.cinemasoft.repository.CategoryRepository;
-import softServe.academy.cinemasoft.repository.MovieRepository;
+import softserve.academy.cinemasoft.model.Category;
+import softserve.academy.cinemasoft.repository.CategoryRepository;
+import softserve.academy.cinemasoft.repository.MovieRepository;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.model;
+package softserve.academy.cinemasoft.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

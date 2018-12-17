@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.dto;
+package softserve.academy.cinemasoft.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

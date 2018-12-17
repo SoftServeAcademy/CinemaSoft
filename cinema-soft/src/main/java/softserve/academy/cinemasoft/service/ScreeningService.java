@@ -1,7 +1,7 @@
-package softServe.academy.cinemasoft.service;
+package softserve.academy.cinemasoft.service;
 
-import softServe.academy.cinemasoft.repository.ScreeningRepository;
-import softServe.academy.cinemasoft.model.Screening;
+import softserve.academy.cinemasoft.repository.ScreeningRepository;
+import softserve.academy.cinemasoft.model.Screening;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

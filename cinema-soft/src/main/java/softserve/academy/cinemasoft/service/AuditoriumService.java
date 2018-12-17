@@ -1,12 +1,12 @@
-package softServe.academy.cinemasoft.service;
+package softserve.academy.cinemasoft.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import softServe.academy.cinemasoft.model.Auditorium;
-import softServe.academy.cinemasoft.repository.AuditoriumRepository;
+import softserve.academy.cinemasoft.model.Auditorium;
+import softserve.academy.cinemasoft.repository.AuditoriumRepository;
 
 @Service
 public class AuditoriumService {

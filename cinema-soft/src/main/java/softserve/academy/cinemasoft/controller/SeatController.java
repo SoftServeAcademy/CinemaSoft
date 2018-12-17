@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.controller;
+package softserve.academy.cinemasoft.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import softServe.academy.cinemasoft.model.Seat;
-import softServe.academy.cinemasoft.service.SeatService;
+import softserve.academy.cinemasoft.model.Seat;
+import softserve.academy.cinemasoft.service.SeatService;
 
 @Controller
 public class SeatController {

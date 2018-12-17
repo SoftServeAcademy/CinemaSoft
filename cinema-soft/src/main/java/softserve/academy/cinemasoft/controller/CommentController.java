@@ -1,5 +1,5 @@
 
-package softServe.academy.cinemasoft.controller;
+package softserve.academy.cinemasoft.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
-import softServe.academy.cinemasoft.model.Comment;
-import softServe.academy.cinemasoft.model.User;
-import softServe.academy.cinemasoft.service.CommentService;
-import softServe.academy.cinemasoft.service.UserService;
+import softserve.academy.cinemasoft.model.Comment;
+import softserve.academy.cinemasoft.model.User;
+import softserve.academy.cinemasoft.service.CommentService;
+import softserve.academy.cinemasoft.service.UserService;
 
 @Controller
 public class CommentController {

@@ -1,12 +1,12 @@
-package softServe.academy.cinemasoft.controller;
+package softserve.academy.cinemasoft.controller;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import softServe.academy.cinemasoft.model.Comment;
-import softServe.academy.cinemasoft.model.Movie;
-import softServe.academy.cinemasoft.repository.CommentRepository;
-import softServe.academy.cinemasoft.service.CategoryService;
-import softServe.academy.cinemasoft.service.MovieService;
+import softserve.academy.cinemasoft.model.Comment;
+import softserve.academy.cinemasoft.model.Movie;
+import softserve.academy.cinemasoft.repository.CommentRepository;
+import softserve.academy.cinemasoft.service.CategoryService;
+import softserve.academy.cinemasoft.service.MovieService;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

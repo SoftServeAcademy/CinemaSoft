@@ -1,4 +1,4 @@
-package softServe.academy.cinemasoft.config;
+package softserve.academy.cinemasoft.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

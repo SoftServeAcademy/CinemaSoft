@@ -1,9 +1,9 @@
-package softServe.academy.cinemasoft.service;
+package softserve.academy.cinemasoft.service;
 
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
-import softServe.academy.cinemasoft.model.Movie;
+import softserve.academy.cinemasoft.model.Movie;
 
 public interface MovieService {
 
