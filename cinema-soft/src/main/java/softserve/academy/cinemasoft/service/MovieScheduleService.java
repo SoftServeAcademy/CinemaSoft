@@ -39,4 +39,8 @@ public class MovieScheduleService {
     public void editMovieSchedule(MovieSchedule movieSchedule) {
         movieScheduleRepository.save(movieSchedule);
     }
+
+    public MovieSchedule findById(int id){
+        return this.movieScheduleRepository.findById(id);
+    }
 }

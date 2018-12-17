@@ -122,7 +122,7 @@
 									<td th:text="${screening.movie.title}"></td>
 									<td th:text="${screening.auditorium.id}"></td>
 									<td th:text="${screening.startTime}"></td>
-									<td><a th:href="@{/editScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >Edit</a>
+									<td><a class="btn btn-ghost" th:href="@{/editScreening/{id}(id=${screening.id})}"  method="get" >Edit</a>
 										<!--<a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >delete</a></td>-->
 									<td>
 
