@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cinemasoft</title>
+    <title>cinemasoft</title>
     <link rel="icon" type="image/png" href="images/favicon.png"/>
     <link href="css/slick.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -47,8 +47,8 @@
 
         <div class="container">
             <div class="navbar-header">
-                <a href="index" class="logo.png" title="Cinemasoft">
-                    <img src="images/logo.png" alt="Cinemasoft">
+                <a href="index" class="logo.png" title="cinemasoft">
+                    <img src="images/logo.png" alt="cinemasoft">
                 </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -68,6 +68,7 @@
                             <li><a href="/categories">List category</a></li>
                             <li><a href="/addScreening">Add screening</a></li>
                             <li><a href="/listScreening">List screening</a></li>
+                            <li><a href="/addMovieSchedule">Add movie schedule</a></li>
                         </ul>
                     </li>
                     <li>
@@ -135,7 +136,6 @@
 										<span class="certificate">
 											15
 										</span>
-
                             </div>
                         </div>
                     </div>
@@ -156,7 +156,6 @@
 										<span class="certificate">
 											PG
 										</span>
-
                             </div>
                         </div>
                     </div>
@@ -168,6 +167,50 @@
     </div>
 
     <!-- Filters category -->
+    <div class="container section" id="afterHeader">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="tabs movies" th:each="category : ${categories}">
+                    <ul >
+                        <li><a href="#category.nameOfCategory" th:text="${category.nameOfCategory}"></a></li>
+                    </ul>
+                    <div id="${category.nameOfCategory}">
+                        <div class="movie-slide">
+                            <div class="movie-poster">
+                                <aside>
+                                    <div th:each="movie : ${category.movies}">
+                                        <div id="rating">
+                                            <div class="movie-slide">
+                                                <div class="movie-poster">
+                                                    <aside>
+                                                        <div>
+                                                            <a th:href="@{/movie/{id}(id=${movie.id})}">read more</a>
+                                                            <form action="#" th:object="${movie}"
+                                                                  th:action="@{/movie/{id}(id=${movie.id})}"></form>
+                                                        </div>
+                                                    </aside>
+                                                    <a href="#">
+                                                        <img th:src="@{'data:image/png;base64,' + ${image}}" />
+                                                    </a>
+                                                </div>
+                                                <h4 th:text="${movie.title}"></h4>
+                                                <div class="star-rating">
+                                                    <i th:text="${movie.rating}"></i>
+                                                </div>
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+                                    </div>
+                                </aside>
+
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+
+
 
 
     <div class="container section" id="afterHeader">
@@ -192,7 +235,7 @@
                                         </div>
                                     </aside>
                                     <a href="#">
-                                        <img src="http://via.placeholder.com/265x340.jpg" alt="Movie title"/>
+                                        <img th:src="@{'data:image/png;base64,' + ${image} }" />
                                     </a>
                                 </div>
                                 <h4 th:text="${movie.title}"></h4>
@@ -211,13 +254,13 @@
     <footer>
         <div class="container">
             <div class="copyright">
-                <p>2018 &copy; Cinemasoft / <a href="http://www.klevermedia.co.uk">Web design by Softserve Academy</a>
+                <p>2018 &copy; cinemasoft / <a href="http://www.klevermedia.co.uk">Web design by softServe Academy</a>
                 </p>
             </div>
         </div>
     </footer>
 
-</div>
+
 
 <script src="js/jquery-2.2.4.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
@@ -230,4 +273,5 @@
 <script src="https://use.fontawesome.com/4dfd2d448a.js"></script>
 <script src="js/custom.js"></script>
 </body>
+
 </html>

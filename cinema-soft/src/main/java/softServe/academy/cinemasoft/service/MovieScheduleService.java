@@ -25,12 +25,23 @@ public class MovieScheduleService {
         movieScheduleRepository.delete(movieSchedule);
     }
 
+    public void deleteMovieScheduleById(int id){
+        MovieSchedule msid = movieScheduleRepository.getOne(id);
+        if (msid != null) {
+            this.movieScheduleRepository.delete(msid);
+        }
+    }
+
     public List<MovieSchedule> findAll(){
         return movieScheduleRepository.findAll();
     }
 
     public MovieSchedule getMovieScheduleById(Integer id){
         return movieScheduleRepository.getOne(id);
+    }
+
+    public void editMovieSchedule(MovieSchedule movieSchedule) {
+        movieScheduleRepository.save(movieSchedule);
     }
 
 }

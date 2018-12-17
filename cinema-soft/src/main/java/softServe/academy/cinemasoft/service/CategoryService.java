@@ -20,21 +20,16 @@ public class CategoryService {
         this.movieRepository = movieRepository;
     }
 
-
     public Category addCategory(Category categoryToAdd) {
         return this.categoryRepository.save(categoryToAdd);
     }
 
-    public void removeCategory(Category category) {
-        categoryRepository.delete(category);
+    public void removeCategory(int id) {
+        categoryRepository.deleteById(id);
     }
 
     public List<Category> findAll() {
         return categoryRepository.findAll();
-    }
-
-    public Category getCategoryById(int id) {
-        return categoryRepository.getOne(id);
     }
 
     public void editCategory(int id, String newName) {
@@ -46,5 +41,8 @@ public class CategoryService {
         }
     }
 
+    public Category findCategoryById(int id){
 
+        return this.categoryRepository.findById(id).orElse(null);
+    }
 }

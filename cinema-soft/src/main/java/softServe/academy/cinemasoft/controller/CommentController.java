@@ -1,23 +1,20 @@
+
 package softServe.academy.cinemasoft.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import softServe.academy.cinemasoft.model.Comment;
-import softServe.academy.cinemasoft.model.Movie;
 import softServe.academy.cinemasoft.model.User;
 import softServe.academy.cinemasoft.service.CommentService;
 import softServe.academy.cinemasoft.service.UserService;
@@ -55,8 +52,10 @@ public class CommentController {
     // DELETE
     @DeleteMapping(value = "/removeComment/{id}")
     public String removeComment(@PathVariable("id") int Id) {
+        Comment comment = this.commentService.findById(Id);
         commentService.removeComment(Id);
-        return "redirect:/movie";
+
+        return "redirect:/movie/"+comment.getMovie().getId();
     }
 
 

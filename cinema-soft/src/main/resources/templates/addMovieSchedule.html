@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>cinemasoft</title>
-    <link rel="icon" type="image/png" href="images/favicon.png" />
-    <link href="/css/slick.css" rel="stylesheet">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/venobox.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet">
+    <title>Cinemasoft</title>
+    <link rel="icon" type="image/png" href="images/favicon.png"/>
+    <link href="css/slick.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/venobox.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--[if IE 9]>
@@ -33,9 +33,12 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="tel">
-                            <a href="register.html">Register</a>
-                            <a href="login.html">Login</a>
-                            <a href="logout.html">Logout</a>
+                            <a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a>
+
+                            <a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
+
+                            <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+
                         </div>
                     </div>
                 </div>
@@ -44,8 +47,8 @@
 
         <div class="container">
             <div class="navbar-header">
-                <a href="index.html" class="logo.png" title="cinemasoft">
-                    <img src="/images/logo.png" alt="cinemasoft">
+                <a href="index" class="logo.png" title="Cinemasoft">
+                    <img src="images/logo.png" alt="Cinemasoft">
                 </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -84,12 +87,13 @@
     </div>
     <!-- Hero-->
 
-    <div id="content_hero" style="background-image:url(/images/background.jpg)">
-        <img src="/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+    <div id="content_hero" style="background-image:url(images/background.jpg)">
+        <img src="images/scroll-arrow.svg" alt="Scroll down" class="scroll"/>
 
         <!-- Content -->
         <div class="container">
-            <div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
+            <div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0"
+                 data-translatey="100">
                 <div class="col-md-9">
                     <span class="title"></span>
                 </div>
@@ -101,20 +105,39 @@
     <div class="container section negative-margin contact">
         <div class="row">
             <div class="col-sm-12">
-                <h2>Edit Category</h2>
+                <h2>Add Movie To Schedule</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <form action="#" th:object="${category}"  th:action="@{/editCategory/{id}(id=${category.id})}" method="post">
 
-                    <div class="form-group">
-                        <label>Enter new category name*</label>
-                        <input th:field ="*{nameOfCategory}" type="text" />
+                <form action="#" th:object="${movieSchedule}" th:action="@{/addMovieSchedule}" method="post">
+                    <div class="form-group col-lg-6">
+                        <label class="col-form-label col-form-label-lg" for="inputLarge">Movie Name:</label>
+                        <input th:field="*{movieName}" class="form-control form-control-lg" type="text"
+                               placeholder="Enter movie name here" id="inputLarge">
                     </div>
-                    <div class="form-group right-align">
-                        <button type="submit" class="btn btn-ghost">Edit category</button>
+
+                    <div class="form-group col-lg-6">
+                        <label class="col-form-label col-form-label-lg" for="inputLarge">Movie description:</label>
+                        <input th:field="*{description}" class="form-control form-control-lg" type="text"
+                               placeholder="Enter movie description" id="inputLarge">
                     </div>
+
+                    <div class="form-group col-lg-6">
+                        <label class="col-form-label col-form-label-lg" for="inputLarge">Presenting time:</label>
+                        <input th:field="*{hours}" class="form-control form-control-lg" type="text"
+                               placeholder="Enter hours here" id="inputLarge">
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <label class="col-form-label col-form-label-lg" for="inputLarge">Day for presenting:</label>
+                        <input th:field="*{dayOfWeek}" class="form-control form-control-lg" type="text"
+                               placeholder="Enter day for presentation" id="inputLarge">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                </form>
                 </form>
             </div>
         </div>
@@ -124,22 +147,23 @@
     <footer>
         <div class="container">
             <div class="copyright">
-                <p>2018 &copy; cinemasoft  /  <a href="http://www.klevermedia.co.uk">Web design by softServe Academy</a></p>
+                <p>2018 &copy; Cinemasoft / <a href="http://www.klevermedia.co.uk">Web design by Softserve Academy</a>
+                </p>
             </div>
         </div>
     </footer>
 
 </div>
 
-<script src="/js/jquery-2.2.4.min.js"></script>
-<script src="/js/jquery-ui.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/headhesive.min.js"></script>
-<script src="/js/matchHeight.min.js"></script>
-<script src="/js/modernizr.custom.js"></script>
-<script src="/js/slick.min.js"></script>
-<script src="/js/venobox.min.js"></script>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/headhesive.min.js"></script>
+<script src="js/matchHeight.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/venobox.min.js"></script>
 <script src="https://use.fontawesome.com/4dfd2d448a.js"></script>
-<script src="/js/custom.js"></script>
+<script src="js/custom.js"></script>
 </body>
 </html>

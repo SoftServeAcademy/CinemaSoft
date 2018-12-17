@@ -20,6 +20,7 @@ public interface MovieService {
     List<Movie> findAll(Sort sort);
 
     Movie getMovieById(int id);
+     List<Movie> findAll();
 
 	 void editPostMovie(Movie movie);
 }

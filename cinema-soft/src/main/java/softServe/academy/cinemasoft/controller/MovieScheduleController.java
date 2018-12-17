@@ -1,8 +1,6 @@
 package softServe.academy.cinemasoft.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import softServe.academy.cinemasoft.model.MovieSchedule;
 import softServe.academy.cinemasoft.service.MovieScheduleService;
 
-import java.util.List;
 
 @Controller
 public class MovieScheduleController {
@@ -24,38 +21,9 @@ public class MovieScheduleController {
         this.movieScheduleService = movieScheduleService;
     }
 
-    @PostMapping("/movieSchedule")
-    @ResponseBody
-    public ResponseEntity<?> createMovieSchedule(@RequestBody MovieSchedule movieSchedule){
-        movieScheduleService.createMovieSchedule(movieSchedule);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
-    @GetMapping("/movieSchedule/{id}")
-    @ResponseBody
-    public ResponseEntity<?> getMovieScheduleById(@PathVariable Integer id){
-        MovieSchedule result = movieScheduleService.getMovieScheduleById(id);
-        if (result !=null){
-            return ResponseEntity.ok(result);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @GetMapping("/movieSchedules")
-    @ResponseBody
-    public ResponseEntity<List<MovieSchedule>> findAllMovieSchedules(){
-        return ResponseEntity.ok(movieScheduleService.findAll());
-    }
-
     @GetMapping("/program")
-    public String program() {
-        return "program";
-    }
-
-    @GetMapping("/movieSchedule")
     public ModelAndView getMovieSchedule(Model model) {
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("program");
         modelAndView.addObject("movieSchedules", movieScheduleService.findAll());
         return modelAndView;
     }
@@ -74,13 +42,12 @@ public class MovieScheduleController {
             }
         }
         movieScheduleService.createMovieSchedule(movieSchedule);
-        return  "redirect:/movieSchedule";
+        return  "redirect:/program";
     }
 
-    @DeleteMapping("/editMovieSchedule")
-    public String deleteMovieScheduleView(@ModelAttribute("movieSchedule") MovieSchedule movieSchedule) {
-        movieScheduleService.deleteMovieSchedule(movieSchedule);
-        return  "redirect:/movieSchedule";
+    @DeleteMapping("/removeMovieSchedule/{id}")
+    public String deleteMovieScheduleById(@PathVariable("id") int id){
+        movieScheduleService.deleteMovieScheduleById(id);
+        return "redirect:/program";
     }
-
 }

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cinemasoft</title>
+    <title>cinemasoft</title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <link href="/css/slick.css" rel="stylesheet">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -47,8 +47,8 @@
 
         <div class="container">
             <div class="navbar-header">
-                <a href="index" class="logo.png" title="Cinemasoft">
-                    <img src="/images/logo.png" alt="Cinemasoft">
+                <a href="index" class="logo.png" title="cinemasoft">
+                    <img src="/images/logo.png" alt="cinemasoft">
                 </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -76,9 +76,9 @@
                     <li>
                         <a href="/program">Program</a>
                     </li>
-                  <!--  <li>
-                        <a href="book-ticket">Book ticket</a>
-                    </li>-->
+                    <!--  <li>
+                          <a href="book-ticket">Book ticket</a>
+                      </li>-->
                 </ul>
             </div>
         </div>
@@ -112,34 +112,37 @@
 
             <div class="row">
                 <div class="col-sm-5">
-
-                    <img src="http://via.placeholder.com/265x340" alt="Transformers: The Last Knight" class="poster">
+                    <img th:src="@{'data:image/png;base64,' + ${image} }" />
                 </div>
 
-                    <div class="col-sm-7">
-                        <h3 th:text="${selectMovie.title}"></h3>
-                        <i>Director:</i>
-                        <li th:text="${selectMovie.director}"></li>
-                        <o1>Cast:</o1>
-                        <li th:text="${selectMovie.cast}"></li>
-                        <o1>Duration:</o1>
-                        <li th:text="${selectMovie.duration}"></li>
-                        <o1>Rating</o1>
-                        <li th:text="${selectMovie.rating}"></li>
-                        <o1>Description</o1>
-                        <li th:text="${selectMovie.description}"></li>
-                        <o1>Trailer</o1>
-                        <li th:text="${selectMovie.trailer}"></li>
-                        <o1>Category</o1>
-                        <li th:text="${selectMovie.category.nameOfCategory}" ></li>
+                <div class="col-sm-7">
+                    <h3 th:text="${selectMovie.title}"></h3>
+                    <i>Director:</i>
+                    <li th:text="${selectMovie.director}"></li>
+                    <o1>Cast:</o1>
+                    <li th:text="${selectMovie.cast}"></li>
+                    <o1>Duration:</o1>
+                    <li th:text="${selectMovie.duration}"></li>
+                    <o1>Rating</o1>
+                    <li th:text="${selectMovie.rating}"></li>
+                    <o1>Description</o1>
+                    <li th:text="${selectMovie.description}"></li>
+                    <o1>Trailer</o1>
+                    <li th:text="${selectMovie.trailer}"></li>
+                    <o1>Category</o1>
+                    <li th:text="${selectMovie.category.nameOfCategory}"></li>
                 </div>
             </div>
 
             </br>
             <div class="form-group right-align">
-              <!--  <button class="btn btn-ghost">Book ticket</button>-->
-                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/edit-movie/{id}(id=${selectMovie.id})}" class="btn btn-ghost">Edit</a>
-                <a sec:authorize="hasRole('ROLE_ADMIN')" data-method="delete" th:href="@{/delete-movie/{id}(id=${selectMovie.id})}"  class="btn btn-ghost">Delete</a>
+                <!--  <button class="btn btn-ghost">Book ticket</button>-->
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/edit-movie/{id}(id=${selectMovie.id})}"
+                   class="btn btn-ghost">Edit</a>
+                <br>
+                <form action="#" th:action="@{/delete-movie/{id}(id=${selectMovie.id})}" th:method="delete">
+                    <button sec:authorize="hasRole('ROLE_ADMIN')" type="submit" id="submitButton" class="btn btn-ghost">Delete</button>
+                </form>
             </div>
         </div>
         <div class="col-sm-4 col-sm-push-1">
@@ -180,12 +183,16 @@
                         <h4 th:text="${com.user.email}" class="no-underline"></h4>
                         <p th:text="${com.content}"></p>
                     </div>
+
+                    <form action="#" th:action="@{/removeComment/{id}(id=${com.id})}" th:method="delete">
+                        <button sec:authorize="hasRole('ROLE_ADMIN')" type="submit" id="submitButton1" class="btn btn-ghost">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>
 
 
-        <div  sec:authorize="isAuthenticated()" class="col-sm-4 col-sm-push-1">
+        <div sec:authorize="isAuthenticated()" class="col-sm-4 col-sm-push-1">
             <h2>Leave a comment</h2>
             <form action="#" th:object="${comment}" th:action="@{/addComment}" method="post">
                 <div th:object="${selectMovie}">
@@ -209,7 +216,7 @@
 <footer>
     <div class="container">
         <div class="copyright">
-            <p>2018 &copy; Cinemasoft / <a href="http://www.klevermedia.co.uk">Web design by Softserve Academy</a></p>
+            <p>2018 &copy; cinemasoft / <a href="http://www.klevermedia.co.uk">Web design by softServe Academy</a></p>
         </div>
     </div>
 </footer>
