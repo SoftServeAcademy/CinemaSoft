@@ -20,7 +20,6 @@ public class CategoryService {
         this.movieRepository = movieRepository;
     }
 
-
     public Category addCategory(Category categoryToAdd) {
         return this.categoryRepository.save(categoryToAdd);
     }
@@ -31,10 +30,6 @@ public class CategoryService {
 
     public List<Category> findAll() {
         return categoryRepository.findAll();
-    }
-
-    public Category getCategoryById(int id) {
-        return categoryRepository.getOne(id);
     }
 
     public void editCategory(int id, String newName) {
@@ -50,6 +45,4 @@ public class CategoryService {
 
         return this.categoryRepository.findById(id).orElse(null);
     }
-
-
 }
