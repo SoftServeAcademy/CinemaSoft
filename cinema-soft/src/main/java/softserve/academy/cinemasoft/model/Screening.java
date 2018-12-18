@@ -14,7 +14,6 @@ public class Screening {
     private Integer Id;
 
     @NotNull
-    @Size(min=5, max=5)
     private String startTime;
 
     @ManyToOne
@@ -24,7 +23,6 @@ public class Screening {
     private Auditorium auditorium;
 
     @ManyToOne
-
     private Movie movie;
 
     public Screening(){

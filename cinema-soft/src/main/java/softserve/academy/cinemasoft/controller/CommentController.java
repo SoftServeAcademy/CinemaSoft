@@ -34,7 +34,7 @@ public class CommentController {
     private MovieService movieService;
 
     @Autowired
-    public CommentController(CommentService commentService, UserService userService,MovieRepository movieRepository,MovieService movieService) {
+    public CommentController(CommentService commentService, UserService userService, MovieRepository movieRepository, MovieService movieService) {
         this.commentService = commentService;
         this.userService = userService;
         this.movieRepository = movieRepository;
@@ -44,10 +44,9 @@ public class CommentController {
     @PostMapping("/addComment")
     public String addComment(@ModelAttribute("comment") Comment comment, @ModelAttribute("movieId") int movieId, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            for (ObjectError error : bindingResult.getAllErrors()) {
-                System.out.println(error);
-            }
+
         }
+
         UserDetails user = (UserDetails) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
         User userEntity = this.userService.findUserByEmail(user.getUsername());
@@ -57,7 +56,7 @@ public class CommentController {
         comment.setUser(userEntity);
         comment.setMovie(movie);
 
-        Comment savedComment=commentService.addComment(comment);
+        Comment savedComment = commentService.saveComment(comment);
 
         movie.addComment(savedComment);
         this.movieRepository.save(movie);
@@ -72,6 +71,6 @@ public class CommentController {
         Comment comment = this.commentService.findById(Id);
         commentService.removeComment(Id);
 
-        return "redirect:/movie/"+comment.getMovie().getId();
+        return "redirect:/movie/" + comment.getMovie().getId();
     }
 }

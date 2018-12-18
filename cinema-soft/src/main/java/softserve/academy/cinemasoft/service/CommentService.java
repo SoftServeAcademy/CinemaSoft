@@ -25,7 +25,7 @@ public class CommentService {
         this.movieRepository = movieRepository;
     }
 
-    public Comment addComment(Comment comment) {
+    public Comment saveComment(Comment comment) {
         Date date = new Date();
         comment.setDateOfComment(date);
 

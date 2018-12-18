@@ -35,11 +35,20 @@ public class ScreeningService {
         }
     }
 
-    public boolean isValid(String string){
+    public boolean isValid(String string)throws NumberFormatException{
             if (!string.contains(":")){
                 return false;
             }
             String[] array = string.split(":");
+            if(array.length<2){
+                return false;
+            }
+            if(array[0].isEmpty()){
+                return false;
+            }
+            if(array[1].isEmpty()){
+                return false;
+            }
             int hours = Integer.parseInt(array[0]);
             int minutes = Integer.parseInt(array[1]);
 

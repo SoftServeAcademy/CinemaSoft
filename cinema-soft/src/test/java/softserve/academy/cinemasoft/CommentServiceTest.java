@@ -4,6 +4,7 @@ package softserve.academy.cinemasoft;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +15,21 @@ import softserve.academy.cinemasoft.model.Comment;
 import softserve.academy.cinemasoft.model.Movie;
 import softserve.academy.cinemasoft.model.User;
 import softserve.academy.cinemasoft.repository.CommentRepository;
-import softserve.academy.cinemasoft.repository.MovieRepository;
 import softserve.academy.cinemasoft.service.CommentService;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 public class CommentServiceTest {
 
     @Autowired
+    @InjectMocks
     private CommentService commentService;
 
-    @MockBean
+    @Mock
     private CommentRepository commentRepository;
 
     private User user;
@@ -39,6 +40,7 @@ public class CommentServiceTest {
     public void setUp() {
         movie= new Movie();
         user = new User();
+
         when(commentRepository.save(any(Comment.class))).thenAnswer(
                 invocation ->{
                     Comment c = invocation.getArgument(0);
@@ -54,7 +56,7 @@ public class CommentServiceTest {
         comment.setMovie(movie);
         comment.setUser(user);
         comment.setContent("test");
-        comment = commentService.addComment(comment);
+        comment = commentService.saveComment(comment);
 
         assertThat(comment.getDateOfComment()).isNotNull();
     }

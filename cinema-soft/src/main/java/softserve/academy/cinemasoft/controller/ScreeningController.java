@@ -39,11 +39,16 @@ public class ScreeningController {
     @PostMapping("/addScreening")
     public String createScreening(@ModelAttribute("screening") Screening screening){
         String string = screening.getStartTime();
-        if (screeningService.isValid(string)){
-            screeningService.createScreening(screening);
-            return "redirect:/listScreening";
+        try {
+            if (screeningService.isValid(string)) {
+                screeningService.createScreening(screening);
+                return "redirect:/listScreening";
+            }
+            return "redirect:/addScreening";
+        }catch (NumberFormatException ex){
+            return "redirect:/addScreening";
         }
-        return "redirect:/addScreening";
+
     }
 
     //DELETE
