@@ -12,6 +12,7 @@ public class Screening {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer Id;
+
     @NotNull
     @Size(min=5, max=5)
     private String startTime;

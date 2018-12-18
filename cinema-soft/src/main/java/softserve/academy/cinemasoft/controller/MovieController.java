@@ -1,5 +1,6 @@
 package softserve.academy.cinemasoft.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import softserve.academy.cinemasoft.model.Comment;
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import softserve.academy.cinemasoft.utils.BASE64DecodedMultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Base64;
 
@@ -49,12 +52,14 @@ public class MovieController {
     }
 
     @PostMapping("/add-movie")
-    public String addMovieFromView(@ModelAttribute("movie") Movie movie, BindingResult bindingResult, @ModelAttribute("fileImage") MultipartFile imageFile) throws IOException {
+    public String addMovieFromView(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult, @ModelAttribute("fileImage") MultipartFile imageFile,
+                                   Model model) throws IOException {
+
         if (bindingResult.hasErrors()) {
-            for (ObjectError error : bindingResult.getAllErrors()) {
-                System.out.println(error);
-            }
-            return "redirect:/add-movie";
+            model.addAttribute("categories", this.categoryService.findAll());
+            MultipartFile file = null;
+            model.addAttribute("imageFile", file);
+            return "add-movie";
         }
         byte[] cover = imageFile.getBytes();
         movie.setCover(cover);
@@ -83,9 +88,12 @@ public class MovieController {
             }
             return "redirect:/edit-movie";
         }
-
-        byte[] cover = imageFile.getBytes();
-        movie.setCover(cover);
+        if (imageFile.isEmpty()) {
+            movie.setCover(movieService.getMovieById(id).getCover());
+        } else {
+            byte[] cover = imageFile.getBytes();
+            movie.setCover(cover);
+        }
         movieService.editPostMovie(movie);
 
         return "redirect:/movie/" + movie.getId();

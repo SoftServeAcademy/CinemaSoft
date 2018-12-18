@@ -61,7 +61,7 @@
             <div class="navbar-collapse collapse">
                 <ul id="menu-primary" class="nav navbar-nav">
                     <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
-                        <a href="admin">Admin</a>
+                        <a >Admin</a>
                         <ul class="dropdown-menu">
                             <li><a href="/add-movie">Add movie</a></li>
                             <li><a href="/add-category">Add category</a></li>
@@ -118,14 +118,14 @@
 
                     <div class="form-group">
                         <select name="movie" th:field="*{movie}">
-                            <option value="text" selected>Choose Movie</option>
+
                             <option th:each="movie : ${movie}" th:value="${movie.id}" th:text="${movie.title}" ></option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <select name="auditorium" th:field="*{auditorium}">
-                            <option value="text" selected>Choose auditorium</option>
+
                             <option th:each="auditorium : ${auditorium}" th:value="${auditorium.id}" th:text="${auditorium.id}" ></option>
                         </select>
                     </div>

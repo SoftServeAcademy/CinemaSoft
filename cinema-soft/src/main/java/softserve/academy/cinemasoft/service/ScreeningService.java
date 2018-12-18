@@ -43,7 +43,7 @@ public class ScreeningService {
             int hours = Integer.parseInt(array[0]);
             int minutes = Integer.parseInt(array[1]);
 
-            return  (1 <= hours && hours < 24 && minutes >= 0 && minutes <= 59);
+            return  (0 <= hours && hours < 24 && minutes >= 0 && minutes <= 59);
     }
 
     public void createScreening(Screening screening){
@@ -53,4 +53,9 @@ public class ScreeningService {
     public void editPostScreening(Screening screening) {
         screeningRepository.save(screening);
     }
+
+    public Screening findById(int id){
+       return this.screeningRepository.findById(id);
+    }
+
 }

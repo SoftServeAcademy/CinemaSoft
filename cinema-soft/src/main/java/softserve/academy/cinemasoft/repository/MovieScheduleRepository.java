@@ -7,4 +7,5 @@ import softserve.academy.cinemasoft.model.MovieSchedule;
 @Repository
 public interface MovieScheduleRepository extends JpaRepository<MovieSchedule, Integer>{
 
+    MovieSchedule findById(int id);
 }
