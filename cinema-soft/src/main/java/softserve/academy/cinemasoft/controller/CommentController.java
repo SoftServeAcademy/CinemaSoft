@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 import softserve.academy.cinemasoft.model.Comment;
+import softserve.academy.cinemasoft.model.Movie;
 import softserve.academy.cinemasoft.model.User;
+import softserve.academy.cinemasoft.repository.MovieRepository;
 import softserve.academy.cinemasoft.service.CommentService;
+import softserve.academy.cinemasoft.service.MovieService;
 import softserve.academy.cinemasoft.service.UserService;
 
 @Controller
@@ -26,10 +29,16 @@ public class CommentController {
 
     private final UserService userService;
 
+    private MovieRepository movieRepository;
+
+    private MovieService movieService;
+
     @Autowired
-    public CommentController(CommentService commentService, UserService userService) {
+    public CommentController(CommentService commentService, UserService userService,MovieRepository movieRepository,MovieService movieService) {
         this.commentService = commentService;
         this.userService = userService;
+        this.movieRepository = movieRepository;
+        this.movieService = movieService;
     }
 
     @PostMapping("/addComment")
@@ -43,7 +52,15 @@ public class CommentController {
                 .getAuthentication().getPrincipal();
         User userEntity = this.userService.findUserByEmail(user.getUsername());
 
-        commentService.addComment(comment,movieId,userEntity);
+        Movie movie = this.movieService.findMovie(movieId);
+
+        comment.setUser(userEntity);
+        comment.setMovie(movie);
+
+        Comment savedComment=commentService.addComment(comment);
+
+        movie.addComment(savedComment);
+        this.movieRepository.save(movie);
 
         return "redirect:/movie/" + movieId;
     }

@@ -1,5 +1,6 @@
 package softserve.academy.cinemasoft.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,19 +25,12 @@ public class CommentService {
         this.movieRepository = movieRepository;
     }
 
-    public void addComment(Comment commentToAdd, int movieId, User user) {
+    public Comment addComment(Comment comment) {
+        Date date = new Date();
+        comment.setDateOfComment(date);
 
-        Movie movie = this.movieRepository.getOne(movieId);
-        Comment comment = new Comment();
+        return this.commentRepository.save(comment);
 
-        comment.setContent(commentToAdd.getContent());
-        comment.setMovie(movie);
-        comment.setUser(user);
-
-        Comment savedComment = this.commentRepository.save(comment);
-        movie.addComment(savedComment);
-
-        this.movieRepository.save(movie);
     }
 
     public void removeComment(int id) {
@@ -50,7 +44,7 @@ public class CommentService {
         return commentRepository.findAll();
     }
 
-    public Comment findById(int id){
+    public Comment findById(int id) {
         return commentRepository.findById(id);
     }
 }

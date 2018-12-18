@@ -32,7 +32,6 @@ public class Comment {
 	private User user;
 
 	public Comment() {
-		this.dateOfComment = new Date();
 	}
 
 	public Integer getId() {
