@@ -18,6 +18,9 @@ public class Category {
 
     public Category() {
     }
+    public Category(String nameOfCategory) {
+        this.nameOfCategory = nameOfCategory;
+    }
 
     public Integer getId() {
         return id;

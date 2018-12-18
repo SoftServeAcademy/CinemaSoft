@@ -1,6 +1,7 @@
 package softserve.academy.cinemasoft.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -30,7 +31,6 @@ public class MovieServiceImpl implements MovieService{
 		return this.movieRepository.saveAndFlush(movie);
 	}
 
-
 	public void deleteMovie(int id) {
         if(this.movieRepository.findById(id).orElse(null) != null) {
             this.movieRepository.deleteById(id);
@@ -42,18 +42,6 @@ public class MovieServiceImpl implements MovieService{
 	        return movie;
 	}
 	public void editPostMovie(Movie movie) {
-//		Movie temp = new Movie();
-//		temp.setId(movie.getId());
-//		temp.setCast(movie.getCast());
-//		temp.setCategory(movie.getCategory());
-//		temp.setComment(movie.getComment());
-//		temp.setDescription(movie.getDescription());
-//		temp.setDuration(movie.getDuration());
-//		temp.setDirector(movie.getDirector());
-//		temp.setTitle(movie.getTitle());
-//		temp.setTrailer(movie.getTrailer());
-//		temp.setRating(movie.getRating());
-//		temp.setCover(movie.getCover());
 		movieRepository.save(movie);
 }
 
