@@ -110,7 +110,6 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-
                 <form action="#" th:object="${movieSchedule}" th:action="@{/addMovieSchedule}" method="post">
                     <div class="form-group col-lg-6">
                         <label class="col-form-label col-form-label-lg" for="inputLarge">Movie Name:</label>
@@ -141,9 +140,10 @@
                             <option value="Saturday">Saturday</option>
                             <option value="Sunday">Sunday</option>
                         </select>
+                    </div>
+                    <div class="form-group col-lg-6">
                         <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                     </div>
-                </form>
                 </form>
             </div>
         </div>
