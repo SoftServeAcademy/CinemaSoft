@@ -16,21 +16,21 @@ public class ScreeningServiceTest {
     @InjectMocks
     private ScreeningService screeningService;
 
-    private static final String CORRECT_HOUR_NUMBER_ONE = "08:00";
+    private static final String CORRECT_INPUT_ONE = "08:00";
 
-    private static final String CORRECT_HOUR_NUMBER_TWO = "8:00";
+    private static final String CORRECT_INPUT_TWO = "8:00";
 
-    private static final String CORRECT_HOUR_NUMBER_THREE = "08:9";
+    private static final String INCORRECT_INPUT_ONE = "88:99";
 
-    private static final String CORRECT_HOUR_NUMBER_FOUR = "8:9";
+    private static final String INCORRECT_INPUT_TWO = "08:123";
 
-    private static final String INCORRECT_HOUR_NUMBER_ONE = "88:99";
+    private static final String INCORRECT_INPUT_THREE = "998:12";
 
-    private static final String INCORRECT_HOUR_NUMBER_TWO = "08:123";
+    private static final String INCORRECT_INPUT_FOUR = "998:123";
 
-    private static final String INCORRECT_HOUR_NUMBER_THREE = "998:123";
+    private static final String INCORRECT_INPUT_FIVE = "8:9";
 
-    private static final String INCORRECT_HOUR_NUMBER_FOUR = "998:123";
+    private static final String INCORRECT_INPUT_SIX = "08:9";
 
     private static final String INCORRECT_MINUTES = "09:99";
 
@@ -40,9 +40,9 @@ public class ScreeningServiceTest {
 
     private static final String EMPTY_HOURS_AND_MINUTES = ":";
 
-    private static final String EMPTY_HOURS = "08:";
+    private static final String EMPTY_MINUTES = "08:";
 
-    private static final String EMPTY_MINUTES = ":45";
+    private static final String EMPTY_HOURS = ":45";
 
     private static final String INCORRECT_INPUT="aa:aa";
 
@@ -55,46 +55,47 @@ public class ScreeningServiceTest {
     @Test
     public void testIsValidCorrectInput() {
 
-        assertThat(screeningService.isValid(CORRECT_HOUR_NUMBER_ONE)).isTrue();
+        assertThat(screeningService.isValid(CORRECT_INPUT_ONE)).isTrue();
     }
 
     @Test
     public void testIsValidCorrectInputWithoutZeroInFrontHours() {
 
-        assertThat(screeningService.isValid(CORRECT_HOUR_NUMBER_TWO)).isTrue();
-    }
-
-    @Test
-    public void testIsValidCorrectInputWithoutZeroInFrontMinutes() {
-
-        assertThat(screeningService.isValid(CORRECT_HOUR_NUMBER_THREE)).isTrue();
-    }
-
-    @Test
-    public void testIsValidCorrectInputWithoutZeroInFrontHoursAndMinutes() {
-
-        assertThat(screeningService.isValid(CORRECT_HOUR_NUMBER_FOUR)).isTrue();
+        assertThat(screeningService.isValid(CORRECT_INPUT_TWO)).isTrue();
     }
 
     @Test
     public void testIsValidIncorrectInput() {
-        assertThat(screeningService.isValid(INCORRECT_HOUR_NUMBER_ONE)).isFalse();
+        assertThat(screeningService.isValid(INCORRECT_INPUT_ONE)).isFalse();
     }
 
     @Test
-    public void testIsValidIncorrectInputTooLongInput() {
-        assertThat(screeningService.isValid(INCORRECT_HOUR_NUMBER_TWO)).isFalse();
+    public void testIsValidIncorrectInputTooLongMinuteInput() {
+        assertThat(screeningService.isValid(INCORRECT_INPUT_TWO)).isFalse();
     }
 
     @Test
     public void testIsValidIncorrectInputTooLongHourInput() {
-        assertThat(screeningService.isValid(INCORRECT_HOUR_NUMBER_THREE)).isFalse();
+        assertThat(screeningService.isValid(INCORRECT_INPUT_THREE)).isFalse();
     }
 
     @Test
     public void testIsValidIncorrectInputTooLongHourAndMinuteInput() {
-        assertThat(screeningService.isValid(INCORRECT_HOUR_NUMBER_FOUR)).isFalse();
+        assertThat(screeningService.isValid(INCORRECT_INPUT_FOUR)).isFalse();
     }
+
+    @Test
+    public void testIsValidIncorrectInputWithoutZeroInFrontHoursAndMinutes() {
+
+        assertThat(screeningService.isValid(INCORRECT_INPUT_FIVE)).isFalse();
+    }
+
+    @Test
+    public void testIsValidIncorrectInputWithoutZeroInFrontMinutes() {
+
+        assertThat(screeningService.isValid(INCORRECT_INPUT_SIX)).isFalse();
+    }
+
 
     @Test
     public void testIsValidIncorrectMinutes() {
@@ -126,7 +127,7 @@ public class ScreeningServiceTest {
         assertThat(screeningService.isValid(EMPTY_MINUTES)).isFalse();
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void testIsValidIncorrectInputWithString() {
         assertThat(screeningService.isValid(INCORRECT_INPUT)).isFalse();
     }

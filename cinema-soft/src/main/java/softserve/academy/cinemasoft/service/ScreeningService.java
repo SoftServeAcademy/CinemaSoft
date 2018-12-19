@@ -6,6 +6,8 @@ import softserve.academy.cinemasoft.model.Screening;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @Service
@@ -13,9 +15,16 @@ public class ScreeningService {
 
     private ScreeningRepository screeningRepository;
 
+    private static final String regex = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+
+    private Pattern pattern;
+
+    private Matcher matcher;
+
     @Autowired
     public ScreeningService(ScreeningRepository screeningRepository){
         this.screeningRepository = screeningRepository;
+        pattern = Pattern.compile(regex);
     }
 
     public List<Screening> findAllScreenings(){
@@ -35,24 +44,9 @@ public class ScreeningService {
         }
     }
 
-    public boolean isValid(String string)throws NumberFormatException{
-            if (!string.contains(":")){
-                return false;
-            }
-            String[] array = string.split(":");
-            if(array.length<2){
-                return false;
-            }
-            if(array[0].isEmpty()){
-                return false;
-            }
-            if(array[1].isEmpty()){
-                return false;
-            }
-            int hours = Integer.parseInt(array[0]);
-            int minutes = Integer.parseInt(array[1]);
-
-            return  (0 <= hours && hours < 24 && minutes >= 0 && minutes <= 59);
+    public boolean isValid(String string){
+        matcher = pattern.matcher(string);
+        return matcher.matches();
     }
 
     public void createScreening(Screening screening){
