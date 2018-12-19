@@ -47,7 +47,7 @@ public class MovieServiceTest {
         Movie second = new Movie();
         Movie third = new Movie();
 
-        allMovies = List.of(first, second, third);
+  //      allMovies = List.of(first, second, third);
         when(movieRepository.findAll()).thenReturn(allMovies);
 
         when(movieRepository.saveAndFlush(any(Movie.class))).thenAnswer(

@@ -1,11 +1,16 @@
 package softserve.academy.cinemasoft.controller;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import softserve.academy.cinemasoft.dto.MovieDirectorDTO;
 import softserve.academy.cinemasoft.model.Comment;
 import softserve.academy.cinemasoft.model.Movie;
 import softserve.academy.cinemasoft.repository.CommentRepository;
+import softserve.academy.cinemasoft.repository.MovieRepository;
 import softserve.academy.cinemasoft.service.CategoryService;
 import softserve.academy.cinemasoft.service.MovieService;
 
@@ -20,25 +25,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import softserve.academy.cinemasoft.utils.BASE64DecodedMultipartFile;
+import softserve.academy.cinemasoft.specification.MovieSpecification;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 
 @Controller
 public class MovieController {
     private final MovieService movieService;
     private CommentRepository commentRepository;
-
+    private ModelMapper modelMapper;
+    private MovieRepository movieRepository;
     private final CategoryService categoryService;
 
     @Autowired
-    public MovieController(MovieService movieService, CategoryService categoryService, CommentRepository commentRepository) {
+    public MovieController(MovieService movieService, CategoryService categoryService, CommentRepository commentRepository,MovieRepository movieRepository,ModelMapper modelMapper) {
         this.movieService = movieService;
         this.categoryService = categoryService;
         this.commentRepository = commentRepository;
+        this.movieRepository = movieRepository;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/add-movie")
@@ -104,6 +114,18 @@ public class MovieController {
         movieService.deleteMovie(id);
 
         return "redirect:/";
+    }
+    @RequestMapping(method = RequestMethod.GET,value = "/test")
+    @ResponseBody
+    public List<MovieDirectorDTO> movies(){
+        List<Movie> movies = movieRepository.findAll(MovieSpecification.directorNameContains("Russo"));
+        List<MovieDirectorDTO> mappedMovies = new ArrayList<>();
+        for (Movie movie : movies) {
+            MovieDirectorDTO movieDirectorDTO = modelMapper.map(movie,MovieDirectorDTO.class);
+            mappedMovies.add(movieDirectorDTO);
+        }
+
+       return mappedMovies;
     }
 
     @GetMapping(value = "/movie/{id}")
