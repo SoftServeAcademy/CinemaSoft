@@ -33,7 +33,7 @@ public class CommentController {
     }
 
     @PostMapping("/addComment")
-    public String addComment(@ModelAttribute("comment") Comment comment, @ModelAttribute("movieId") int movieId, BindingResult bindingResult) {
+    public String createComment(@ModelAttribute("comment") Comment comment, @ModelAttribute("movieId") int movieId, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 System.out.println(error);
@@ -43,7 +43,7 @@ public class CommentController {
                 .getAuthentication().getPrincipal();
         User userEntity = this.userService.findUserByEmail(user.getUsername());
 
-        commentService.addComment(comment,movieId,userEntity);
+        commentService.addComment(comment, movieId, userEntity);
 
         return "redirect:/movie/" + movieId;
     }
@@ -55,6 +55,6 @@ public class CommentController {
         Comment comment = this.commentService.findById(Id);
         commentService.removeComment(Id);
 
-        return "redirect:/movie/"+comment.getMovie().getId();
+        return "redirect:/movie/" + comment.getMovie().getId();
     }
 }

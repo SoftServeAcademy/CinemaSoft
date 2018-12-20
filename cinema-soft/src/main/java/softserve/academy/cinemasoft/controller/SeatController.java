@@ -18,43 +18,43 @@ import softserve.academy.cinemasoft.service.SeatService;
 @Controller
 public class SeatController {
 
-	private SeatService seatService;
+    private SeatService seatService;
 
-	@Autowired
-	public SeatController(SeatService seatService) {
-		this.seatService = seatService;
-	}
+    @Autowired
+    public SeatController(SeatService seatService) {
+        this.seatService = seatService;
+    }
 
-	@GetMapping("/addSeat")
-	public String addSeatView(Model model) {
-		model.addAttribute("seat", new Seat());
-		return "addSeat";
-	}
+    @GetMapping("/addSeat")
+    public String addSeatView(Model model) {
+        model.addAttribute("seat", new Seat());
+        return "addSeat";
+    }
 
-	// ADD
-	@PostMapping("/addSeat")
-	public String addSeatFromView(@ModelAttribute("seat") Seat seat, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			for (ObjectError error : bindingResult.getAllErrors()) {
-				System.out.println(error);
-			}
-		}
-		seatService.addSeat(seat);
-		return "redirect:/addSeat";
-	}
+    // ADD
+    @PostMapping("/addSeat")
+    public String addSeatFromView(@ModelAttribute("seat") Seat seat, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            for (ObjectError error : bindingResult.getAllErrors()) {
+                System.out.println(error);
+            }
+        }
+        seatService.addSeat(seat);
+        return "redirect:/addSeat";
+    }
 
-	// GET_ALL
-	@GetMapping("/seats")
-	public ModelAndView getSeats(Model model) {
-		ModelAndView modelAndView = new ModelAndView("list-seats");
-		modelAndView.addObject("seats", seatService.findAll());
-		return modelAndView;
-	}
+    // GET_ALL
+    @GetMapping("/seats")
+    public ModelAndView getSeats(Model model) {
+        ModelAndView modelAndView = new ModelAndView("list-seats");
+        modelAndView.addObject("seats", seatService.findAll());
+        return modelAndView;
+    }
 
-	// DELETE
-	@RequestMapping(value = "/deleteSeat", method = RequestMethod.POST, params = { "delete" })
-	public String deleteSeatView(@ModelAttribute("seat") Seat seat) {
-		seatService.removeSeat(seat);
-		return "redirect:/seats";
-	}
+    // DELETE
+    @RequestMapping(value = "/deleteSeat", method = RequestMethod.POST, params = {"delete"})
+    public String deleteSeatView(@ModelAttribute("seat") Seat seat) {
+        seatService.removeSeat(seat);
+        return "redirect:/seats";
+    }
 }

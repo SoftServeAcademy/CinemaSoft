@@ -1,8 +1,11 @@
 package softserve.academy.cinemasoft.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 public class Category {
 
@@ -13,36 +16,15 @@ public class Category {
     @Column(unique = true)
     private String nameOfCategory;
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy = "category", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category", fetch = FetchType.LAZY)
     private List<Movie> movies;
 
     public Category() {
     }
+
     public Category(String nameOfCategory) {
         this.nameOfCategory = nameOfCategory;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNameOfCategory() {
-        return nameOfCategory;
-    }
-
-    public void setNameOfCategory(String nameOfCategory) {
-        this.nameOfCategory = nameOfCategory;
-    }
-
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-    }
 }

@@ -7,12 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import softserve.academy.cinemasoft.model.Category;
-import softserve.academy.cinemasoft.model.Comment;
 import softserve.academy.cinemasoft.model.Movie;
 import softserve.academy.cinemasoft.repository.CommentRepository;
 import softserve.academy.cinemasoft.service.CategoryService;
-import org.springframework.web.servlet.ModelAndView;
 import softserve.academy.cinemasoft.service.MovieService;
 
 import java.util.Base64;

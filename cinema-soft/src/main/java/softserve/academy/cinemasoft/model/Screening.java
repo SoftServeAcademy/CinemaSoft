@@ -1,10 +1,13 @@
 package softserve.academy.cinemasoft.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@Data
 @Table(name = "screening")
 public class Screening {
 
@@ -14,7 +17,7 @@ public class Screening {
     private Integer Id;
 
     @NotNull
-    @Size(min=5, max=5)
+    @Size(min = 5, max = 5)
     private String startTime;
 
     @ManyToOne
@@ -27,44 +30,12 @@ public class Screening {
 
     private Movie movie;
 
-    public Screening(){
+    public Screening() {
 
     }
 
-    public Screening(String startTime){
+    public Screening(String startTime) {
         this.startTime = startTime;
     }
 
-    public Integer getId() {
-        return Id;
-    }
-
-    public void setId(Integer id) {
-        this.Id = id;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-///
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
-
-    public Movie getMovie(){
-        return movie;
-    }
-//
-    public void setAuditorium(Auditorium auditorium) {
-        this.auditorium = auditorium;
-    }
-
-    public Auditorium getAuditorium(){
-        return auditorium;
-    }
-///
 }
