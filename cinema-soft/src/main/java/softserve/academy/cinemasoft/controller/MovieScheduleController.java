@@ -25,6 +25,7 @@ public class MovieScheduleController {
     public ModelAndView getMovieSchedule(Model model) {
         ModelAndView modelAndView = new ModelAndView("program");
         modelAndView.addObject("movieSchedules", movieScheduleService.findAll());
+
         return modelAndView;
     }
 

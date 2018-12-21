@@ -1,44 +1,49 @@
 package softserve.academy.cinemasoft.controller;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import softserve.academy.cinemasoft.model.Comment;
-import softserve.academy.cinemasoft.model.Movie;
-import softserve.academy.cinemasoft.repository.CommentRepository;
-import softserve.academy.cinemasoft.service.CategoryService;
-import softserve.academy.cinemasoft.service.MovieService;
-
-
+import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import softserve.academy.cinemasoft.utils.BASE64DecodedMultipartFile;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import softserve.academy.cinemasoft.dto.MovieDirectorDTO;
+import softserve.academy.cinemasoft.dto.MovieRatingDTO;
+import softserve.academy.cinemasoft.model.Comment;
+import softserve.academy.cinemasoft.model.Movie;
+import softserve.academy.cinemasoft.repository.CommentRepository;
+import softserve.academy.cinemasoft.repository.MovieRepository;
+import softserve.academy.cinemasoft.service.CategoryService;
+import softserve.academy.cinemasoft.service.MovieService;
+import softserve.academy.cinemasoft.specification.MovieSpecification;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
-
+import java.util.List;
 
 @Controller
+@Slf4j
 public class MovieController {
     private final MovieService movieService;
     private CommentRepository commentRepository;
+    private MovieRepository movieRepository;
+    private ModelMapper modelMapper;
 
     private final CategoryService categoryService;
 
     @Autowired
-    public MovieController(MovieService movieService, CategoryService categoryService, CommentRepository commentRepository) {
+    public MovieController(MovieService movieService, CategoryService categoryService, CommentRepository commentRepository,MovieRepository movieRepository,
+                           ModelMapper modelMapper) {
         this.movieService = movieService;
         this.categoryService = categoryService;
         this.commentRepository = commentRepository;
+        this.movieRepository = movieRepository;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/add-movie")
@@ -84,7 +89,8 @@ public class MovieController {
     public String editMovie(@PathVariable int id, @ModelAttribute("movie") Movie movie, BindingResult bindingResult, Model model, @ModelAttribute("fileImage") MultipartFile imageFile) throws IOException {
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
-                System.out.println(error);
+                log.debug("Printing errors" + error);
+               // System.out.println(error);
             }
             return "redirect:/edit-movie";
         }
@@ -116,5 +122,39 @@ public class MovieController {
         String image = Base64.getEncoder().encodeToString(movieService.getMovieById(id).getCover());
         model.addAttribute("image", image);
         return modelAndView;
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, value = "/searchByDirectorName/{name}")
+    public List<MovieDirectorDTO> movies(@PathVariable("name") String name) {
+        List<Movie> movies = movieRepository.findAll(MovieSpecification.directorNameContains(name));
+        List<MovieDirectorDTO> mappedMovies = new ArrayList<>();
+        mapMoviesDirector(movies, mappedMovies);
+
+        return mappedMovies;
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET,value = "/ratingGreaterOrEqualThan/{value}")
+    public List<MovieRatingDTO> getMoviesWithRatingGreaterOrEqualThan(@PathVariable("value") Double value){
+        List<Movie> movies = this.movieRepository.findAll(MovieSpecification.movieRatingGreaterThanOrEqualTo(value));
+        List<MovieRatingDTO> movieRatingDTO = new ArrayList<>();
+        mapMoviesRating(movies,movieRatingDTO);
+
+        return movieRatingDTO;
+    }
+
+    private void mapMoviesDirector(List<Movie> movies, List<MovieDirectorDTO> mappedMovies) {
+        for (Movie movie : movies) {
+            MovieDirectorDTO movieDirectorDTO = modelMapper.map(movie, MovieDirectorDTO.class);
+            mappedMovies.add(movieDirectorDTO);
+        }
+    }
+
+    private void mapMoviesRating(List<Movie> movies, List<MovieRatingDTO> mappedMovies) {
+        for (Movie movie : movies) {
+            MovieRatingDTO movieRatingDTO = modelMapper.map(movie, MovieRatingDTO.class);
+            mappedMovies.add(movieRatingDTO);
+        }
     }
 }
