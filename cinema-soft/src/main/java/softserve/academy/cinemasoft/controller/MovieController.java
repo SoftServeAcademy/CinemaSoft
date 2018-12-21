@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import softserve.academy.cinemasoft.dto.MovieDirectorDTO;
+import softserve.academy.cinemasoft.dto.MovieRatingDTO;
 import softserve.academy.cinemasoft.model.Comment;
 import softserve.academy.cinemasoft.model.Movie;
 import softserve.academy.cinemasoft.repository.CommentRepository;
 import softserve.academy.cinemasoft.repository.MovieRepository;
 import softserve.academy.cinemasoft.service.CategoryService;
 import softserve.academy.cinemasoft.service.MovieService;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +43,8 @@ public class MovieController {
     private final CategoryService categoryService;
 
     @Autowired
-    public MovieController(MovieService movieService, CategoryService categoryService, CommentRepository commentRepository,MovieRepository movieRepository,ModelMapper modelMapper) {
+    public MovieController(MovieService movieService, CategoryService categoryService, CommentRepository commentRepository,
+                           MovieRepository movieRepository, ModelMapper modelMapper) {
         this.movieService = movieService;
         this.categoryService = categoryService;
         this.commentRepository = commentRepository;
@@ -115,18 +116,6 @@ public class MovieController {
 
         return "redirect:/";
     }
-    @RequestMapping(method = RequestMethod.GET,value = "/test")
-    @ResponseBody
-    public List<MovieDirectorDTO> movies(){
-        List<Movie> movies = movieRepository.findAll(MovieSpecification.directorNameContains("Russo"));
-        List<MovieDirectorDTO> mappedMovies = new ArrayList<>();
-        for (Movie movie : movies) {
-            MovieDirectorDTO movieDirectorDTO = modelMapper.map(movie,MovieDirectorDTO.class);
-            mappedMovies.add(movieDirectorDTO);
-        }
-
-       return mappedMovies;
-    }
 
     @GetMapping(value = "/movie/{id}")
     public ModelAndView showMovieById(@PathVariable("id") int id, Model model) {
@@ -138,5 +127,39 @@ public class MovieController {
         String image = Base64.getEncoder().encodeToString(movieService.getMovieById(id).getCover());
         model.addAttribute("image", image);
         return modelAndView;
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, value = "/searchByDirectorName/{name}")
+    public List<MovieDirectorDTO> movies(@PathVariable("name") String name) {
+        List<Movie> movies = movieRepository.findAll(MovieSpecification.directorNameContains(name));
+        List<MovieDirectorDTO> mappedMovies = new ArrayList<>();
+        mapMoviesDirector(movies, mappedMovies);
+
+        return mappedMovies;
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET,value = "/ratingGreaterOrEqualThan/{value}")
+    public List<MovieRatingDTO> getMoviesWithRatingGreaterOrEqualThan(@PathVariable("value") Double value){
+        List<Movie> movies = this.movieRepository.findAll(MovieSpecification.movieRatingGreaterThanOrEqualTo(value));
+        List<MovieRatingDTO> movieRatingDTO = new ArrayList<>();
+        mapMoviesRating(movies,movieRatingDTO);
+
+        return movieRatingDTO;
+    }
+
+    private void mapMoviesDirector(List<Movie> movies, List<MovieDirectorDTO> mappedMovies) {
+        for (Movie movie : movies) {
+            MovieDirectorDTO movieDirectorDTO = modelMapper.map(movie, MovieDirectorDTO.class);
+            mappedMovies.add(movieDirectorDTO);
+        }
+    }
+
+    private void mapMoviesRating(List<Movie> movies, List<MovieRatingDTO> mappedMovies) {
+        for (Movie movie : movies) {
+            MovieRatingDTO movieRatingDTO = modelMapper.map(movie, MovieRatingDTO.class);
+            mappedMovies.add(movieRatingDTO);
+        }
     }
 }

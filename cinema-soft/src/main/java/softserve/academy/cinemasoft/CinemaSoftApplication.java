@@ -12,10 +12,9 @@ public class CinemaSoftApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CinemaSoftApplication.class, args);
 	}
+
 	@Bean
 	public ModelMapper modelMapper() {
-		ModelMapper modelMapper = new ModelMapper();
-		return modelMapper;
+		return new ModelMapper();
 	}
-
 }
