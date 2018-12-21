@@ -54,18 +54,18 @@ public class ScreeningController {
 
     //EDIT
     @GetMapping(value = "/editScreening/{id}")
-    public ModelAndView editScreening(@PathVariable("id") int id, Screening screening) {
-        // screening = screeningService.getScreeningById(id);
+    public ModelAndView editScreening(@PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView("edit-screening");
-        Screening temp = this.screeningService.findById(id);
-        mav.addObject("screening", temp);
+        Screening screening = new Screening();
+        screening.setId(id);
+        mav.addObject("screening", screening);
         mav.addObject("auditorium", this.auditoriumService.findAll());
         mav.addObject("movie", this.movieService.getAllMovie());
         return mav;
     }
 
     @PostMapping(value = "/editScreening/{id}")
-    public String postEditScreening(@ModelAttribute("screening") Screening screening, @PathVariable("id") int Id, Model model) {
+    public String postEditScreening(@ModelAttribute("screening") Screening screening, @PathVariable("id") int Id) {
 
         screeningService.editPostScreening(screening);
 

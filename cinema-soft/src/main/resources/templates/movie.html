@@ -144,10 +144,12 @@
         </div>
         <div class="col-sm-4 col-sm-push-1">
             <h2>Program</h2>
-            <ul class="show-times" th:each="screening:${screenings}">
+            <ul class="show-times" th:each="day : ${T(softserve.academy.cinemasoft.enums.DaysOfWeek).values()}">
                 <li>
-                    <i th:text="${screening.auditorium.name}"></i>
-                    <span th:text="${screening.startTime}" class="time past"></span>
+
+                    <i th:text="${day}"></i>
+                    <!--<i th:text="${screening.auditorium.name}"></i>-->
+                    <!--<span th:text="${screening.startTime}" class="time past"></span>-->
                 </li>
 
             </ul>
