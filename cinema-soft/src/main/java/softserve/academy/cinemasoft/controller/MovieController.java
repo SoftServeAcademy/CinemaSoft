@@ -1,9 +1,13 @@
 package softserve.academy.cinemasoft.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import softserve.academy.cinemasoft.dto.MovieDirectorDTO;
@@ -14,17 +18,6 @@ import softserve.academy.cinemasoft.repository.CommentRepository;
 import softserve.academy.cinemasoft.repository.MovieRepository;
 import softserve.academy.cinemasoft.service.CategoryService;
 import softserve.academy.cinemasoft.service.MovieService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import softserve.academy.cinemasoft.specification.MovieSpecification;
 
 import javax.validation.Valid;
@@ -33,18 +26,19 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-
 @Controller
+@Slf4j
 public class MovieController {
     private final MovieService movieService;
     private CommentRepository commentRepository;
-    private ModelMapper modelMapper;
     private MovieRepository movieRepository;
+    private ModelMapper modelMapper;
+
     private final CategoryService categoryService;
 
     @Autowired
-    public MovieController(MovieService movieService, CategoryService categoryService, CommentRepository commentRepository,
-                           MovieRepository movieRepository, ModelMapper modelMapper) {
+    public MovieController(MovieService movieService, CategoryService categoryService, CommentRepository commentRepository,MovieRepository movieRepository,
+                           ModelMapper modelMapper) {
         this.movieService = movieService;
         this.categoryService = categoryService;
         this.commentRepository = commentRepository;
@@ -95,7 +89,8 @@ public class MovieController {
     public String editMovie(@PathVariable int id, @ModelAttribute("movie") Movie movie, BindingResult bindingResult, Model model, @ModelAttribute("fileImage") MultipartFile imageFile) throws IOException {
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
-                System.out.println(error);
+                log.debug("Printing errors" + error);
+               // System.out.println(error);
             }
             return "redirect:/edit-movie";
         }

@@ -13,6 +13,7 @@ import softserve.academy.cinemasoft.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -21,18 +22,18 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private  UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private RoleRepository roleRepository;
 
     @Autowired
-    private  BCryptPasswordEncoder encoder;
+    private BCryptPasswordEncoder encoder;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
-        if (user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
@@ -40,7 +41,8 @@ public class UserServiceImpl implements UserService {
                 mapRolesToAuthorities(user.getRoles()));
     }
 
-    public User saveUser(UserDTO userDto){
+    @Override
+    public User saveUser(UserDTO userDto) {
         User user = new User();
         Role role = this.roleRepository.findByName("ROLE_USER");
 
@@ -54,15 +56,15 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    public User findUserByEmail(String email){
+    @Override
+    public User findUserByEmail(String email) {
         return this.userRepository.findByEmail(email);
     }
 
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
+
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
     }
-
-
 }

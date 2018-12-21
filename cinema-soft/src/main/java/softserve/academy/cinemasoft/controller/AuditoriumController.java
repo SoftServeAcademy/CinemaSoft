@@ -17,44 +17,44 @@ import softserve.academy.cinemasoft.service.AuditoriumService;
 @Controller
 public class AuditoriumController {
 
-	private AuditoriumService auditoriumService;
+    private AuditoriumService auditoriumService;
 
-	@Autowired
-	public AuditoriumController(AuditoriumService auditoriumService) {
-		this.auditoriumService = auditoriumService;
-	}
+    @Autowired
+    public AuditoriumController(AuditoriumService auditoriumService) {
+        this.auditoriumService = auditoriumService;
+    }
 
-	@GetMapping("/addAuditorium")
-	public String addAuditoriumView(Model model) {
-		model.addAttribute("auditorium", new Auditorium());
-		return "add-auditorium";
-	}
+    @GetMapping("/addAuditorium")
+    public String addAuditoriumView(Model model) {
+        model.addAttribute("auditorium", new Auditorium());
+        return "add-auditorium";
+    }
 
-	// ADD
-	@PostMapping("/addAuditorium")
-	public String addAuditoriumFromView(@ModelAttribute("auditorium") Auditorium auditorium,
-			BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			for (ObjectError error : bindingResult.getAllErrors()) {
-				System.out.println(error);
-			}
-		}
-		auditoriumService.addAuditorium(auditorium);
-		return "redirect:/addAuditorium";
-	}
+    // ADD
+    @PostMapping("/addAuditorium")
+    public String addAuditoriumFromView(@ModelAttribute("auditorium") Auditorium auditorium,
+                                        BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            for (ObjectError error : bindingResult.getAllErrors()) {
+                System.out.println(error);
+            }
+        }
+        auditoriumService.addAuditorium(auditorium);
+        return "redirect:/addAuditorium";
+    }
 
-	// GET_ALL
-	@GetMapping("/auditoriums")
-	public ModelAndView getAuditoriums(Model model) {
-		ModelAndView modelAndView = new ModelAndView("list-auditorium");
-		modelAndView.addObject("auditoriums", auditoriumService.findAll());
-		return modelAndView;
-	}
+    // GET_ALL
+    @GetMapping("/auditoriums")
+    public ModelAndView getAuditoriums(Model model) {
+        ModelAndView modelAndView = new ModelAndView("list-auditorium");
+        modelAndView.addObject("auditoriums", auditoriumService.findAll());
+        return modelAndView;
+    }
 
-	// DELETE
-	@RequestMapping(value = "/deleteAuditorium", method = RequestMethod.POST, params = { "delete" })
-	public String deleteAuditoriumView(@ModelAttribute("auditorium") Auditorium auditorium) {
-		auditoriumService.removeAuditorium(auditorium);
-		return "redirect:/auditoriums";
-	}
+    // DELETE
+    @RequestMapping(value = "/deleteAuditorium", method = RequestMethod.POST, params = {"delete"})
+    public String deleteAuditoriumView(@ModelAttribute("auditorium") Auditorium auditorium) {
+        auditoriumService.removeAuditorium(auditorium);
+        return "redirect:/auditoriums";
+    }
 }

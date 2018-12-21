@@ -1,46 +1,20 @@
 package softserve.academy.cinemasoft.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import softserve.academy.cinemasoft.model.MovieSchedule;
-import softserve.academy.cinemasoft.repository.MovieScheduleRepository;
 
 import java.util.List;
 
-@Service
-public class MovieScheduleService {
+public interface MovieScheduleService {
 
-    private MovieScheduleRepository movieScheduleRepository;
+    void createMovieSchedule(MovieSchedule movieSchedule);
 
-    @Autowired
-    public MovieScheduleService(MovieScheduleRepository movieScheduleRepository){
-        this.movieScheduleRepository = movieScheduleRepository;
-    }
+    void deleteMovieSchedule(MovieSchedule movieSchedule);
 
-    public void createMovieSchedule(MovieSchedule movieSchedule){
-        movieScheduleRepository.save(movieSchedule);
-    }
+    void deleteMovieScheduleById(int id);
 
-    public void deleteMovieSchedule(MovieSchedule movieSchedule) {
-        movieScheduleRepository.delete(movieSchedule);
-    }
+    List<MovieSchedule> findAll();
 
-    public void deleteMovieScheduleById(int id){
-        MovieSchedule msid = movieScheduleRepository.getOne(id);
-        if (msid != null) {
-            this.movieScheduleRepository.delete(msid);
-        }
-    }
+    void editMovieSchedule(MovieSchedule movieSchedule);
 
-    public List<MovieSchedule> findAll(){
-        return movieScheduleRepository.findAll();
-    }
-
-    public void editMovieSchedule(MovieSchedule movieSchedule) {
-        movieScheduleRepository.save(movieSchedule);
-    }
-
-    public MovieSchedule findById(int id){
-        return this.movieScheduleRepository.findById(id);
-    }
+    MovieSchedule findById(int id);
 }

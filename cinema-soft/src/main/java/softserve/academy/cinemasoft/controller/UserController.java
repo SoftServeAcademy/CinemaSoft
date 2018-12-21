@@ -31,22 +31,22 @@ public class UserController {
 
 
     @GetMapping("/register")
-    public ModelAndView getRegisterForm(Model model){
+    public ModelAndView getRegisterForm(Model model) {
         model.addAttribute("user", new UserDTO());
         return new ModelAndView("register");
     }
 
     @PostMapping("/register")
-    public String registerUserAccount(@ModelAttribute("user") UserDTO user, BindingResult bindingResult){
+    public String registerUserAccount(@ModelAttribute("user") UserDTO user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            for(ObjectError error: bindingResult.getAllErrors()){
+            for (ObjectError error : bindingResult.getAllErrors()) {
                 System.out.println(error);
             }
         }
 
         User existing = userService.findUserByEmail(user.getEmail());
 
-        if (existing != null){
+        if (existing != null) {
             return null;
         }
 

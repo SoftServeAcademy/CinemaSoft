@@ -1,50 +1,17 @@
 package softserve.academy.cinemasoft.service;
 
-import java.util.Date;
+import softserve.academy.cinemasoft.model.Comment;
+import softserve.academy.cinemasoft.model.User;
+
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+public interface CommentService {
 
-import softserve.academy.cinemasoft.model.Comment;
-import softserve.academy.cinemasoft.model.Movie;
-import softserve.academy.cinemasoft.model.User;
-import softserve.academy.cinemasoft.repository.CommentRepository;
-import softserve.academy.cinemasoft.repository.MovieRepository;
+    Comment addComment(Comment commentToAdd, int movieId, User user);
 
-@Service
-public class CommentService {
+    void removeComment(int id);
 
-    private final CommentRepository commentRepository;
+    List<Comment> findAll();
 
-    private final MovieRepository movieRepository;
-
-    @Autowired
-    public CommentService(CommentRepository commentRepository, MovieRepository movieRepository) {
-        this.commentRepository = commentRepository;
-        this.movieRepository = movieRepository;
-    }
-
-    public Comment saveComment(Comment comment) {
-        Date date = new Date();
-        comment.setDateOfComment(date);
-
-        return this.commentRepository.save(comment);
-
-    }
-
-    public void removeComment(int id) {
-        Comment commentToDelete = commentRepository.getOne(id);
-        if (commentToDelete != null) {
-            this.commentRepository.delete(commentToDelete);
-        }
-    }
-
-    public List<Comment> findAll() {
-        return commentRepository.findAll();
-    }
-
-    public Comment findById(int id) {
-        return commentRepository.findById(id);
-    }
+    Comment findById(int id);
 }

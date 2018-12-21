@@ -1,32 +1,14 @@
 package softserve.academy.cinemasoft.service;
 
+import softserve.academy.cinemasoft.model.Auditorium;
+
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+public interface AuditoriumService {
 
-import softserve.academy.cinemasoft.model.Auditorium;
-import softserve.academy.cinemasoft.repository.AuditoriumRepository;
+    Auditorium addAuditorium(Auditorium auditoriumToAdd);
 
-@Service
-public class AuditoriumService {
+    void removeAuditorium(Auditorium auditorium);
 
-	private AuditoriumRepository auditoriumRepository;
-
-	@Autowired
-	public AuditoriumService(AuditoriumRepository auditoriumRepository) {
-		this.auditoriumRepository = auditoriumRepository;
-	}
-
-	public Auditorium addAuditorium(Auditorium auditoriumToAdd) {
-		return this.auditoriumRepository.save(auditoriumToAdd);
-	}
-
-	public void removeAuditorium(Auditorium auditorium) {
-		auditoriumRepository.delete(auditorium);
-	}
-
-	public List<Auditorium> findAll() {
-		return auditoriumRepository.findAll();
-	}
+    List<Auditorium> findAll();
 }

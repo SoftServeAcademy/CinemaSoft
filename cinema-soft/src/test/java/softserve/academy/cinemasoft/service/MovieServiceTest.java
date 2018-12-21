@@ -1,19 +1,13 @@
-package softserve.academy.cinemasoft;
+package softserve.academy.cinemasoft.service;
 
-import net.bytebuddy.pool.TypePool;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import softserve.academy.cinemasoft.model.Category;
-import softserve.academy.cinemasoft.model.Comment;
 import softserve.academy.cinemasoft.model.Movie;
-import softserve.academy.cinemasoft.model.Screening;
 import softserve.academy.cinemasoft.repository.MovieRepository;
-import softserve.academy.cinemasoft.service.MovieServiceImpl;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,10 +15,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.only;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MovieServiceTest {
