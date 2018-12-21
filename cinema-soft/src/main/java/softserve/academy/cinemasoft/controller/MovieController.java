@@ -16,6 +16,7 @@ import softserve.academy.cinemasoft.model.Comment;
 import softserve.academy.cinemasoft.model.Movie;
 import softserve.academy.cinemasoft.repository.CommentRepository;
 import softserve.academy.cinemasoft.service.CategoryService;
+import softserve.academy.cinemasoft.service.CommentService;
 import softserve.academy.cinemasoft.service.MovieService;
 import softserve.academy.cinemasoft.utils.ObjectMapperUtils;
 
@@ -29,17 +30,15 @@ import java.util.List;
 @Slf4j
 public class MovieController {
     private final MovieService movieService;
-    private CommentRepository commentRepository;
-    private ModelMapper modelMapper;
     private CategoryService categoryService;
+    private CommentService commentService;
 
     @Autowired
-    public MovieController(MovieService movieService, CategoryService categoryService, CommentRepository commentRepository,
-                           ModelMapper modelMapper) {
+    public MovieController(MovieService movieService, CategoryService categoryService, CommentService commentService) {
         this.movieService = movieService;
         this.categoryService = categoryService;
-        this.commentRepository = commentRepository;
-        this.modelMapper = modelMapper;
+        this.commentService = commentService;
+
     }
 
     @GetMapping("/add-movie")
@@ -112,7 +111,7 @@ public class MovieController {
         ModelAndView modelAndView = new ModelAndView("movie");
         modelAndView.addObject("selectMovie", movieService.getMovieById(id));
         model.addAttribute("comment", new Comment());
-        model.addAttribute("comments", commentRepository.findByMovie(movieService.getMovieById(id)));
+        model.addAttribute("comments", commentService.findByMovie(movieService.getMovieById(id)));
         model.addAttribute("screenings", movieService.getMovieById(id).getScreenings());
         String image = Base64.getEncoder().encodeToString(movieService.getMovieById(id).getCover());
         model.addAttribute("image", image);

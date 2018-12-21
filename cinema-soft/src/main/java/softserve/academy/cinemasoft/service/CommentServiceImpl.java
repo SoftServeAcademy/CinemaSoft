@@ -57,4 +57,9 @@ public class CommentServiceImpl implements CommentService {
     public Comment findById(int id){
         return commentRepository.findById(id);
     }
+
+    @Override
+    public List<Comment> findByMovie(Movie movie) {
+        return this.commentRepository.findByMovie(movie);
+    }
 }
