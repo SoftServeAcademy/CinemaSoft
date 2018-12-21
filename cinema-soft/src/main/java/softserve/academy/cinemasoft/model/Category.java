@@ -26,5 +26,10 @@ public class Category {
         this.nameOfCategory = nameOfCategory;
     }
 
+    @Override
+    public String toString(){
+        return this.nameOfCategory;
+    }
+
 
 }

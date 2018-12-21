@@ -71,8 +71,7 @@ public class MovieController {
     @GetMapping("/edit-movie/{id}")
     public String editMovie(@PathVariable int id, Model model) {
         Movie movie = movieService.findMovie(id);
-
-        model.addAttribute("movie", movieService.editMovie(movie));
+        model.addAttribute("movie",movie);
         model.addAttribute("categories", this.categoryService.findAll());
         MultipartFile file = null;
         model.addAttribute("imageFile", file);
@@ -94,6 +93,7 @@ public class MovieController {
             byte[] cover = imageFile.getBytes();
             movie.setCover(cover);
         }
+
         movieService.editPostMovie(movie);
 
         return "redirect:/movie/" + movie.getId();
