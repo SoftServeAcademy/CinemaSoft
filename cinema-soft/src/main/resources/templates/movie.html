@@ -61,25 +61,19 @@
             <div class="navbar-collapse collapse">
                 <ul id="menu-primary" class="nav navbar-nav">
                     <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
-                        <a >Admin</a>
+                        <a>Admin</a>
                         <ul class="dropdown-menu">
                             <li><a href="/add-movie">Add movie</a></li>
                             <li><a href="/add-category">Add category</a></li>
                             <li><a href="/categories">List category</a></li>
                             <li><a href="/addScreening">Add screening</a></li>
                             <li><a href="/listScreening">List screening</a></li>
-                            <li><a href="/addMovieSchedule">Add movie schedule</a></li>
+
                         </ul>
                     </li>
                     <li>
                         <a href="/">Home</a>
                     </li>
-                    <li>
-                        <a href="program">Program</a>
-                    </li>
-                    <!--  <li>
-                       <a href="book-ticket">Book ticket</a>
-                   </li>-->
                 </ul>
             </div>
         </div>
@@ -113,7 +107,7 @@
 
             <div class="row">
                 <div class="col-sm-5">
-                    <img th:src="@{'data:image/png;base64,' + ${image} }" />
+                    <img th:src="@{'data:image/png;base64,' + ${image} }"/>
                 </div>
 
                 <div class="col-sm-7">
@@ -142,7 +136,9 @@
                    class="btn btn-ghost">Edit</a>
                 <br>
                 <form action="#" th:action="@{/delete-movie/{id}(id=${selectMovie.id})}" th:method="delete">
-                    <button sec:authorize="hasRole('ROLE_ADMIN')" type="submit" id="submitButton" class="btn btn-ghost">Delete</button>
+                    <button sec:authorize="hasRole('ROLE_ADMIN')" type="submit" id="submitButton" class="btn btn-ghost">
+                        Delete
+                    </button>
                 </form>
             </div>
         </div>
@@ -177,7 +173,9 @@
                     </div>
 
                     <form action="#" th:action="@{/removeComment/{id}(id=${com.id})}" th:method="delete">
-                        <button sec:authorize="hasRole('ROLE_ADMIN')" type="submit" id="submitButton1" class="btn btn-ghost">Delete</button>
+                        <button sec:authorize="hasRole('ROLE_ADMIN')" type="submit" id="submitButton1"
+                                class="btn btn-ghost">Delete
+                        </button>
                     </form>
                 </div>
             </div>

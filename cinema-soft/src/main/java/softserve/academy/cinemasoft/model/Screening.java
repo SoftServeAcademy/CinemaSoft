@@ -1,8 +1,16 @@
 package softserve.academy.cinemasoft.model;
 
 import lombok.Data;
-
-import javax.persistence.*;
+import softserve.academy.cinemasoft.enums.DaysOfWeek;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,25 +25,19 @@ public class Screening {
     private Integer Id;
 
     @NotNull
-    @Size(min = 5, max = 5)
+    @Size(min = 4, max = 5)
+    @Column(nullable = false)
     private String startTime;
 
+
     @ManyToOne
-    @JoinTable(name = "SCREENING_AUDITORIUM",
-            joinColumns = @JoinColumn(name = "screening_id"),
-            inverseJoinColumns = @JoinColumn(name = "auditorium_id"))
     private Auditorium auditorium;
 
     @ManyToOne
-
     private Movie movie;
 
-    public Screening() {
+    @Enumerated(EnumType.STRING)
+    private DaysOfWeek dayOfWeek;
 
-    }
-
-    public Screening(String startTime) {
-        this.startTime = startTime;
-    }
 
 }

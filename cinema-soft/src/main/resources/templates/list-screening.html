@@ -68,18 +68,14 @@
 									<li><a href="/categories">List category</a></li>
 									<li><a href="/addScreening">Add screening</a></li>
 									<li><a href="/listScreening">List screening</a></li>
-									<li><a href="/addMovieSchedule">Add movie schedule</a></li>
+
 								</ul>
 							</li>
 							<li>
 								<a href="/">Home</a>
 							</li>
-							<li>
-								<a href="program">Program</a>
-							</li>
-							<!--  <li>
-                               <a href="book-ticket">Book ticket</a>
-                           </li>-->
+
+
 						</ul>
 					</div>
 				</div>
@@ -114,7 +110,10 @@
 								<a class="btn btn-ghost" th:href="@{/addScreening}" method="post">Add Screening</a>
 								<thead>
 								<tr>
-									<th scope="col">Movie</th><th scope="col">Auditorium</th> <th scope="col">Start Time</th>
+									<th scope="col">Movie</th>
+									<th scope="col">Auditorium</th>
+									<th scope="col">Start Time</th>
+									<th scope="col">Day of Week</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -122,6 +121,7 @@
 									<td th:text="${screening.movie.title}"></td>
 									<td th:text="${screening.auditorium.id}"></td>
 									<td th:text="${screening.startTime}"></td>
+									<td th:text="${screening.dayOfWeek}"></td>
 									<td><a class="btn btn-ghost" th:href="@{/editScreening/{id}(id=${screening.id})}"  method="get" >Edit</a>
 										<!--<a th:href="@{/removeScreening/{id}(id=${screening.id})}" class="btn btn-ghost-xs" method="get" >delete</a></td>-->
 									<td>
