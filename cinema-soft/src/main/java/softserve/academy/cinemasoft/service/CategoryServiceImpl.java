@@ -12,12 +12,11 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     private CategoryRepository categoryRepository;
-    private MovieRepository movieRepository;
+
 
     @Autowired
-    public CategoryServiceImpl(CategoryRepository categoryRepository, MovieRepository movieRepository) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
-        this.movieRepository = movieRepository;
     }
 
     @Override
