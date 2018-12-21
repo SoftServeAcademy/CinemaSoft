@@ -7,14 +7,17 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import softserve.academy.cinemasoft.service.ScreeningService;
+import softserve.academy.cinemasoft.service.ScreeningServiceImpl;
+import softserve.academy.cinemasoft.utils.Validator;
+
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ScreeningServiceTest {
-    @Autowired
-    @InjectMocks
-    private ScreeningService screeningService;
+public class ValidatorTest {
+
+
+    private Validator validator;
 
     private static final String CORRECT_INPUT_ONE = "08:00";
 
@@ -49,87 +52,87 @@ public class ScreeningServiceTest {
 
     @Before
     public void setUp() {
-
+        this.validator = new Validator();
     }
 
     @Test
     public void testIsValidCorrectInput() {
 
-        assertThat(screeningService.isValid(CORRECT_INPUT_ONE)).isTrue();
+        assertThat(validator.isValid(CORRECT_INPUT_ONE)).isTrue();
     }
 
     @Test
     public void testIsValidCorrectInputWithoutZeroInFrontHours() {
 
-        assertThat(screeningService.isValid(CORRECT_INPUT_TWO)).isTrue();
+        assertThat(validator.isValid(CORRECT_INPUT_TWO)).isTrue();
     }
 
     @Test
     public void testIsValidIncorrectInput() {
-        assertThat(screeningService.isValid(INCORRECT_INPUT_ONE)).isFalse();
+        assertThat(validator.isValid(INCORRECT_INPUT_ONE)).isFalse();
     }
 
     @Test
     public void testIsValidIncorrectInputTooLongMinuteInput() {
-        assertThat(screeningService.isValid(INCORRECT_INPUT_TWO)).isFalse();
+        assertThat(validator.isValid(INCORRECT_INPUT_TWO)).isFalse();
     }
 
     @Test
     public void testIsValidIncorrectInputTooLongHourInput() {
-        assertThat(screeningService.isValid(INCORRECT_INPUT_THREE)).isFalse();
+        assertThat(validator.isValid(INCORRECT_INPUT_THREE)).isFalse();
     }
 
     @Test
     public void testIsValidIncorrectInputTooLongHourAndMinuteInput() {
-        assertThat(screeningService.isValid(INCORRECT_INPUT_FOUR)).isFalse();
+        assertThat(validator.isValid(INCORRECT_INPUT_FOUR)).isFalse();
     }
 
     @Test
     public void testIsValidIncorrectInputWithoutZeroInFrontHoursAndMinutes() {
 
-        assertThat(screeningService.isValid(INCORRECT_INPUT_FIVE)).isFalse();
+        assertThat(validator.isValid(INCORRECT_INPUT_FIVE)).isFalse();
     }
 
     @Test
     public void testIsValidIncorrectInputWithoutZeroInFrontMinutes() {
 
-        assertThat(screeningService.isValid(INCORRECT_INPUT_SIX)).isFalse();
+        assertThat(validator.isValid(INCORRECT_INPUT_SIX)).isFalse();
     }
 
 
     @Test
     public void testIsValidIncorrectMinutes() {
-        assertThat(screeningService.isValid(INCORRECT_MINUTES)).isFalse();
+        assertThat(validator.isValid(INCORRECT_MINUTES)).isFalse();
     }
 
     @Test
     public void testIsValidIncorrectHours() {
-        assertThat(screeningService.isValid(INCORRECT_HOURS)).isFalse();
+        assertThat(validator.isValid(INCORRECT_HOURS)).isFalse();
     }
 
     @Test
     public void testIsValidRandomStringInput() {
-        assertThat(screeningService.isValid(RANDOM_STRING)).isFalse();
+        assertThat(validator.isValid(RANDOM_STRING)).isFalse();
     }
 
     @Test
     public void testIsValidEmptyHoursAndMinutes() {
-        assertThat(screeningService.isValid(EMPTY_HOURS_AND_MINUTES)).isFalse();
+        assertThat(validator.isValid(EMPTY_HOURS_AND_MINUTES)).isFalse();
     }
 
     @Test
     public void testIsValidEmptyHours() {
-        assertThat(screeningService.isValid(EMPTY_HOURS)).isFalse();
+        assertThat(validator.isValid(EMPTY_HOURS)).isFalse();
     }
 
     @Test
     public void testIsValidEmptyMinutes() {
-        assertThat(screeningService.isValid(EMPTY_MINUTES)).isFalse();
+        assertThat(validator.isValid(EMPTY_MINUTES)).isFalse();
     }
 
     @Test
     public void testIsValidIncorrectInputWithString() {
-        assertThat(screeningService.isValid(INCORRECT_INPUT)).isFalse();
+        assertThat(validator.isValid(INCORRECT_INPUT)).isFalse();
     }
 
 
