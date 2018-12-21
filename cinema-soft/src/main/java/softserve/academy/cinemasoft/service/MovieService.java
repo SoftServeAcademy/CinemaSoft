@@ -24,4 +24,8 @@ public interface MovieService {
     List<Movie> findAll();
 
     void editPostMovie(Movie movie);
+
+    List<Movie> getMoviesWithRatingGreaterOrEqualThan(double value);
+
+    List<Movie> searchMoviesByDirectorName(String name);
 }

@@ -15,10 +15,9 @@ import softserve.academy.cinemasoft.dto.MovieRatingDTO;
 import softserve.academy.cinemasoft.model.Comment;
 import softserve.academy.cinemasoft.model.Movie;
 import softserve.academy.cinemasoft.repository.CommentRepository;
-import softserve.academy.cinemasoft.repository.MovieRepository;
 import softserve.academy.cinemasoft.service.CategoryService;
 import softserve.academy.cinemasoft.service.MovieService;
-import softserve.academy.cinemasoft.specification.MovieSpecification;
+import softserve.academy.cinemasoft.utils.ObjectMapperUtils;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -31,18 +30,15 @@ import java.util.List;
 public class MovieController {
     private final MovieService movieService;
     private CommentRepository commentRepository;
-    private MovieRepository movieRepository;
     private ModelMapper modelMapper;
-
-    private final CategoryService categoryService;
+    private CategoryService categoryService;
 
     @Autowired
-    public MovieController(MovieService movieService, CategoryService categoryService, CommentRepository commentRepository,MovieRepository movieRepository,
+    public MovieController(MovieService movieService, CategoryService categoryService, CommentRepository commentRepository,
                            ModelMapper modelMapper) {
         this.movieService = movieService;
         this.categoryService = categoryService;
         this.commentRepository = commentRepository;
-        this.movieRepository = movieRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -90,7 +86,6 @@ public class MovieController {
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 log.debug("Printing errors" + error);
-               // System.out.println(error);
             }
             return "redirect:/edit-movie";
         }
@@ -127,34 +122,17 @@ public class MovieController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/searchByDirectorName/{name}")
     public List<MovieDirectorDTO> movies(@PathVariable("name") String name) {
-        List<Movie> movies = movieRepository.findAll(MovieSpecification.directorNameContains(name));
-        List<MovieDirectorDTO> mappedMovies = new ArrayList<>();
-        mapMoviesDirector(movies, mappedMovies);
+        List<Movie> movies = this.movieService.searchMoviesByDirectorName(name);
 
-        return mappedMovies;
+        return ObjectMapperUtils.mapAll(movies, MovieDirectorDTO.class);
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.GET,value = "/ratingGreaterOrEqualThan/{value}")
-    public List<MovieRatingDTO> getMoviesWithRatingGreaterOrEqualThan(@PathVariable("value") Double value){
-        List<Movie> movies = this.movieRepository.findAll(MovieSpecification.movieRatingGreaterThanOrEqualTo(value));
-        List<MovieRatingDTO> movieRatingDTO = new ArrayList<>();
-        mapMoviesRating(movies,movieRatingDTO);
+    @RequestMapping(method = RequestMethod.GET, value = "/ratingGreaterOrEqualThan/{value}")
+    public List<MovieRatingDTO> getMoviesWithRatingGreaterOrEqualThan(@PathVariable("value") Double value) {
+        List<Movie> movies = this.movieService.getMoviesWithRatingGreaterOrEqualThan(value);
 
-        return movieRatingDTO;
+        return ObjectMapperUtils.mapAll(movies, MovieRatingDTO.class);
     }
 
-    private void mapMoviesDirector(List<Movie> movies, List<MovieDirectorDTO> mappedMovies) {
-        for (Movie movie : movies) {
-            MovieDirectorDTO movieDirectorDTO = modelMapper.map(movie, MovieDirectorDTO.class);
-            mappedMovies.add(movieDirectorDTO);
-        }
-    }
-
-    private void mapMoviesRating(List<Movie> movies, List<MovieRatingDTO> mappedMovies) {
-        for (Movie movie : movies) {
-            MovieRatingDTO movieRatingDTO = modelMapper.map(movie, MovieRatingDTO.class);
-            mappedMovies.add(movieRatingDTO);
-        }
-    }
 }

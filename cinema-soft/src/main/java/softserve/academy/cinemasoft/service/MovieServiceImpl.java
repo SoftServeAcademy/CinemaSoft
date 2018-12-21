@@ -5,6 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import softserve.academy.cinemasoft.model.Movie;
 import softserve.academy.cinemasoft.repository.MovieRepository;
+import softserve.academy.cinemasoft.specification.MovieSpecification;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -66,5 +67,15 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public Movie getMovieById(int id) {
         return movieRepository.getOne(id);
+    }
+
+    @Override
+    public List<Movie> getMoviesWithRatingGreaterOrEqualThan(double value) {
+        return this.movieRepository.findAll(MovieSpecification.movieRatingGreaterThanOrEqualTo(value));
+    }
+
+    @Override
+    public List<Movie> searchMoviesByDirectorName(String name) {
+        return movieRepository.findAll(MovieSpecification.directorNameContains(name));
     }
 }
