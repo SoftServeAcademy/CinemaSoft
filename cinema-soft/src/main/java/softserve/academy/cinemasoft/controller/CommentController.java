@@ -43,7 +43,7 @@ public class CommentController {
                 .getAuthentication().getPrincipal();
         User userEntity = this.userService.findUserByEmail(user.getUsername());
 
-        commentService.addComment(comment,movieId,userEntity);
+        commentService.addComment(comment, movieId, userEntity);
 
         return "redirect:/movie/" + movieId;
     }
@@ -55,6 +55,6 @@ public class CommentController {
         Comment comment = this.commentService.findById(Id);
         commentService.removeComment(Id);
 
-        return "redirect:/movie/"+comment.getMovie().getId();
+        return "redirect:/movie/" + comment.getMovie().getId();
     }
 }

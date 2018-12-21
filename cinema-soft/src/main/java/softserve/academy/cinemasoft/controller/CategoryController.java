@@ -1,20 +1,26 @@
 package softserve.academy.cinemasoft.controller;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import softserve.academy.cinemasoft.dto.CategoryDTO;
+import softserve.academy.cinemasoft.dto.CategorySpecification;
 import softserve.academy.cinemasoft.model.Category;
 import softserve.academy.cinemasoft.model.Comment;
 import softserve.academy.cinemasoft.model.Movie;
+import softserve.academy.cinemasoft.repository.CategoryRepository;
 import softserve.academy.cinemasoft.repository.CommentRepository;
 import softserve.academy.cinemasoft.service.CategoryService;
 import org.springframework.web.servlet.ModelAndView;
 import softserve.academy.cinemasoft.service.MovieService;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -25,12 +31,17 @@ public class CategoryController {
     private CategoryService categoryService;
     private MovieService movieService;
     private CommentRepository commentRepository;
+    private ModelMapper modelMapper;
+    private CategoryRepository categoryRepository;
 
     @Autowired
-    public CategoryController(CategoryService categoryService, MovieService movieService, CommentRepository commentRepository) {
+    public CategoryController(CategoryService categoryService, MovieService movieService, CommentRepository commentRepository,
+                              CategoryRepository categoryRepository, ModelMapper modelMapper) {
         this.categoryService = categoryService;
         this.movieService = movieService;
         this.commentRepository = commentRepository;
+        this.categoryRepository = categoryRepository;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/add-category")
@@ -98,5 +109,18 @@ public class CategoryController {
         String newName = category.getNameOfCategory();
         categoryService.editCategory(id, newName);
         return "redirect:/categories";
+    }
+
+    @GetMapping("/all-categories")
+    @ResponseBody
+    public List<CategoryDTO> getAllCategories() {
+        List<Category> allCategories = categoryRepository.findAll(CategorySpecification.categoryNameContains("ction"));
+        List<CategoryDTO> mappedCategories = new ArrayList<>();
+
+        for (Category category : allCategories) {
+            CategoryDTO categoryDTO = modelMapper.map(category, CategoryDTO.class);
+            mappedCategories.add(categoryDTO);
+        }
+        return mappedCategories;
     }
 }

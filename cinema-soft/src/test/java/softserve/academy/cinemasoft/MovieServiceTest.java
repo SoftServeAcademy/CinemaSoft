@@ -119,25 +119,25 @@ public class MovieServiceTest {
     }
 
     @Test
-    public void testEditMovie(){
+    public void testEditMovie() {
         movieServiceImpl.editMovie(movieToTest);
         verify(movieRepository, only()).saveAndFlush(movieToTest);
     }
 
     @Test
-    public void testEditPostMovie(){
+    public void testEditPostMovie() {
         movieServiceImpl.editPostMovie(movieToTest);
         verify(movieRepository, only()).save(movieToTest);
     }
 
     @Test
-    public void testGetMovieById(){
+    public void testGetMovieById() {
         movieServiceImpl.getMovieById(anyInt());
         verify(movieRepository, only()).getOne(anyInt());
     }
 
     @Test
-    public void testSaveMovie(){
+    public void testSaveMovie() {
         Movie movie = new Movie();
         movie = movieServiceImpl.addMovie(movie);
         assertThat(movie.getId()).isEqualTo(4);
