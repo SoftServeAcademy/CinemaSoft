@@ -1,4 +1,4 @@
-package softserve.academy.cinemasoft.dto;
+package softserve.academy.cinemasoft.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 import softserve.academy.cinemasoft.model.Category;
