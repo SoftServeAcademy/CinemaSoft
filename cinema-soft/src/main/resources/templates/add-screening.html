@@ -126,6 +126,7 @@
                         <input th:field="*{startTime}" type="text"/>
                     </div>
                     <div class="form-control">
+
                         <select name="dayOfWeek" th:field="*{dayOfWeek}">
                             <option th:each="day : ${T(softserve.academy.cinemasoft.enums.DaysOfWeek).values()}"
                                     th:value="${day}"

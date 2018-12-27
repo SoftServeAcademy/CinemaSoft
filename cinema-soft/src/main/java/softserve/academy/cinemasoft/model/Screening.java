@@ -40,4 +40,8 @@ public class Screening {
     private DaysOfWeek dayOfWeek;
 
 
+    @Override
+    public String toString(){
+        return this.Id.toString();
+    }
 }

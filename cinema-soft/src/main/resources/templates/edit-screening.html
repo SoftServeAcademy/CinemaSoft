@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>cinemasoft</title>
-    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="icon" type="image/png" href="images/favicon.png"/>
     <link href="/css/slick.css" rel="stylesheet">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/venobox.css" rel="stylesheet">
@@ -61,7 +61,7 @@
             <div class="navbar-collapse collapse">
                 <ul id="menu-primary" class="nav navbar-nav">
                     <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
-                        <a >Admin</a>
+                        <a>Admin</a>
                         <ul class="dropdown-menu">
                             <li><a href="/add-movie">Add movie</a></li>
                             <li><a href="/add-category">Add category</a></li>
@@ -83,11 +83,12 @@
     <!-- Hero-->
 
     <div id="content_hero" style="background-image:url(/images/background.jpg)">
-        <img src="/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+        <img src="/images/scroll-arrow.svg" alt="Scroll down" class="scroll"/>
 
         <!-- Content -->
         <div class="container">
-            <div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
+            <div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0"
+                 data-translatey="100">
                 <div class="col-md-9">
                     <span class="title"></span>
                 </div>
@@ -104,32 +105,45 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <form action="#" th:object="${screening}"  th:action="@{/editScreening/{id}(id=${screening.id})}" method="post">
-
-                    <!--<div class="form-group">-->
-                        <!--<label>Auditorium*</label>-->
-                        <!--<input th:field ="*{auditorium}" type="text" />-->
-                    <!--</div>-->
-
+                <form action="#" th:object="${screening}" th:action="@{/editScreening/{id}(id=${screening.id})}"
+                      method="post">
                     <div class="form-group">
-                        <select name="movie" th:field="*{movie}">
-                            <option th:each="movie : ${movie}" th:value="${movie.id}" th:text="${movie.title}" >
+                        <!--<select name="movie" th:field="*{movie}">-->
+                            <!--<option th:each="movie : ${movie}" th:value="${movie.id}" th:text="${movie.title}">-->
+
+                            <!--</option>-->
+                        <!--</select>-->
+                        <select name="movie" th:value="${screening.movie}" th:object="${screening.movie}">
+
+                            <option
+                                    th:each="mov : ${movies}" th:value="${mov.id}" th:text="${mov.title}"
+                                    th:selected="${mov.id == screening.movie.id}">
+
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <!--<select name="auditorium" th:field="*{auditorium}">-->
+
+                            <!--<option th:each="auditorium : ${auditorium}" th:value="${auditorium.id}"-->
+                                    <!--th:text="${auditorium.id}"></option>-->
+                        <!--</select>-->
+                        <select name="auditorium" th:value="${screening.auditorium}" th:object="${screening.auditorium}">
+
+                            <option
+                                    th:each="au : ${auditoriums}" th:value="${au.id}" th:text="${au.name}"
+                                    th:selected="${au.id == screening.auditorium.id}">
 
                             </option>
                         </select>
                     </div>
-
-                    <div class="form-group">
-                        <select name="auditorium" th:field="*{auditorium}">
-
-                            <option th:each="auditorium : ${auditorium}" th:value="${auditorium.id}" th:text="${auditorium.id}" ></option>
-                        </select>
-                    </div>
                     <div class="form-group">
                         <label>Start Hour *</label>
-                        <input th:field ="*{startTime}" type="text" />
+                        <input th:field="*{startTime}" type="text"/>
                     </div>
                     <div class="form-control">
+
                         <select name="dayOfWeek" th:field="*{dayOfWeek}">
                             <option th:each="day : ${T(softserve.academy.cinemasoft.enums.DaysOfWeek).values()}"
                                     th:value="${day}"
@@ -149,7 +163,8 @@
     <footer>
         <div class="container">
             <div class="copyright">
-                <p>2018 &copy; cinemasoft  /  <a href="http://www.klevermedia.co.uk">Web design by softServe Academy</a></p>
+                <p>2018 &copy; cinemasoft / <a href="http://www.klevermedia.co.uk">Web design by softServe Academy</a>
+                </p>
             </div>
         </div>
     </footer>

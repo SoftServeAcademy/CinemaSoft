@@ -54,15 +54,31 @@ public class ScreeningController {
 
     //EDIT
     @GetMapping(value = "/editScreening/{id}")
-    public ModelAndView editScreening(@PathVariable("id") int id) {
-        ModelAndView mav = new ModelAndView("edit-screening");
-        Screening screening = new Screening();
-        screening.setId(id);
-        mav.addObject("screening", screening);
-        mav.addObject("auditorium", this.auditoriumService.findAll());
-        mav.addObject("movie", this.movieService.getAllMovie());
-        return mav;
+    public String editScreening(@PathVariable("id") int id,Model model) {
+        Screening screening = screeningService.findById(id);
+        model.addAttribute("screening",screening);
+        model.addAttribute("movies",this.movieService.findAll());
+        model.addAttribute("auditoriums",this.auditoriumService.findAll());
+        return "edit-screening";
+//        ModelAndView mav = new ModelAndView("edit-screening");
+//        Screening screening = new Screening();
+//        screening.setId(id);
+//        mav.addObject("screening", screening);
+//        mav.addObject("auditorium", this.auditoriumService.findAll());
+//        mav.addObject("movie", this.movieService.getAllMovie());
+//        return mav;
     }
+
+//    @GetMapping("/edit-movie/{id}")
+//    public String editMovie(@PathVariable int id, Model model) {
+//        Movie movie = movieService.findMovie(id);
+//        model.addAttribute("movie",movie);
+//        model.addAttribute("categories", this.categoryService.findAll());
+//        MultipartFile file = null;
+//        model.addAttribute("imageFile", file);
+//
+//        return "edit-movie";
+//    }
 
     @PostMapping(value = "/editScreening/{id}")
     public String postEditScreening(@ModelAttribute("screening") Screening screening, @PathVariable("id") int Id) {

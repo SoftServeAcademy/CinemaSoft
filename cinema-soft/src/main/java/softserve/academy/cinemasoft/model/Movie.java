@@ -90,6 +90,10 @@ public class Movie {
     public void addComment(Comment comment) {
         this.comment.add(comment);
     }
+    @Override
+    public String toString(){
+        return this.title;
+    }
 
 }
 
