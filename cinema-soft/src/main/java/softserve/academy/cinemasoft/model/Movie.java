@@ -1,15 +1,25 @@
-
 package softserve.academy.cinemasoft.model;
 
-import lombok.Data;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.Data;
+
 
 @Data
 @Entity
@@ -71,7 +81,7 @@ public class Movie {
     private double rating;
 
     public Movie(Integer id, String title, String director, String trailer, String description, int duration,
-                  double rating, String cast, byte[] cover) {
+                 double rating, String cast, byte[] cover) {
         this.id = id;
         this.title = title;
         this.director = director;
@@ -90,8 +100,9 @@ public class Movie {
     public void addComment(Comment comment) {
         this.comment.add(comment);
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.title;
     }
 

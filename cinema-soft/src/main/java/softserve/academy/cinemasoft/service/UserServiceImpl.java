@@ -1,18 +1,17 @@
 package softserve.academy.cinemasoft.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import softserve.academy.cinemasoft.dto.UserDTO;
 import softserve.academy.cinemasoft.model.Role;
 import softserve.academy.cinemasoft.model.User;
 import softserve.academy.cinemasoft.repository.RoleRepository;
 import softserve.academy.cinemasoft.repository.UserRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;

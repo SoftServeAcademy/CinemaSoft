@@ -1,8 +1,7 @@
-
 package softserve.academy.cinemasoft.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-
 import softserve.academy.cinemasoft.model.Comment;
 import softserve.academy.cinemasoft.model.User;
 import softserve.academy.cinemasoft.service.CommentService;
@@ -33,7 +30,8 @@ public class CommentController {
     }
 
     @PostMapping("/addComment")
-    public String createComment(@ModelAttribute("comment") Comment comment, @ModelAttribute("movieId") int movieId, BindingResult bindingResult) {
+    public String createComment(@ModelAttribute("comment") Comment comment, @ModelAttribute("movieId") int movieId,
+                                BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 System.out.println(error);

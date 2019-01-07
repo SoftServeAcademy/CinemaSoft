@@ -1,5 +1,10 @@
 package softserve.academy.cinemasoft.controller;
 
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -7,21 +12,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import softserve.academy.cinemasoft.dto.CategoryDTO;
-import softserve.academy.cinemasoft.specification.CategorySpecification;
 import softserve.academy.cinemasoft.model.Category;
 import softserve.academy.cinemasoft.model.Movie;
 import softserve.academy.cinemasoft.repository.CategoryRepository;
 import softserve.academy.cinemasoft.repository.CommentRepository;
 import softserve.academy.cinemasoft.service.CategoryService;
-import org.springframework.web.servlet.ModelAndView;
 import softserve.academy.cinemasoft.service.MovieService;
+import softserve.academy.cinemasoft.specification.CategorySpecification;
 
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
+
 
 @Controller
 public class CategoryController {
@@ -83,6 +90,13 @@ public class CategoryController {
         return "edit-category";
     }
 
+    @PostMapping("editCategory/{id}")
+    public String editCategory(@ModelAttribute("category") Category category, @PathVariable("id") int id) {
+        String newName = category.getNameOfCategory();
+        categoryService.editCategory(id, newName);
+        return "redirect:/categories";
+    }
+
     @GetMapping("/")
     public ModelAndView showAllMovies(Model model) {
 
@@ -102,12 +116,6 @@ public class CategoryController {
         return modelAndView;
     }
 
-    @PostMapping("editCategory/{id}")
-    public String editCategory(@ModelAttribute("category") Category category, @PathVariable("id") int id) {
-        String newName = category.getNameOfCategory();
-        categoryService.editCategory(id, newName);
-        return "redirect:/categories";
-    }
 
     @GetMapping("/all-categories")
     @ResponseBody

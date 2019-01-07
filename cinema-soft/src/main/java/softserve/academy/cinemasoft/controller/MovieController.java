@@ -1,30 +1,35 @@
 package softserve.academy.cinemasoft.controller;
 
+import javax.validation.Valid;
+import java.io.IOException;
+import java.util.Base64;
+import java.util.List;
+
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import softserve.academy.cinemasoft.dto.MovieDirectorDTO;
 import softserve.academy.cinemasoft.dto.MovieRatingDTO;
 import softserve.academy.cinemasoft.model.Comment;
 import softserve.academy.cinemasoft.model.Movie;
-import softserve.academy.cinemasoft.repository.CommentRepository;
 import softserve.academy.cinemasoft.service.CategoryService;
 import softserve.academy.cinemasoft.service.CommentService;
 import softserve.academy.cinemasoft.service.MovieService;
 import softserve.academy.cinemasoft.utils.ObjectMapperUtils;
 
-import javax.validation.Valid;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
 
 @Controller
 @Slf4j
@@ -52,8 +57,8 @@ public class MovieController {
     }
 
     @PostMapping("/add-movie")
-    public String addMovieFromView(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult, @ModelAttribute("fileImage") MultipartFile imageFile,
-                                   Model model) throws IOException {
+    public String addMovieFromView(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult,
+                                   @ModelAttribute("fileImage") MultipartFile imageFile, Model model) throws IOException {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("categories", this.categoryService.findAll());
@@ -71,7 +76,7 @@ public class MovieController {
     @GetMapping("/edit-movie/{id}")
     public String editMovie(@PathVariable int id, Model model) {
         Movie movie = movieService.findMovie(id);
-        model.addAttribute("movie",movie);
+        model.addAttribute("movie", movie);
         model.addAttribute("categories", this.categoryService.findAll());
         MultipartFile file = null;
         model.addAttribute("imageFile", file);
@@ -80,7 +85,8 @@ public class MovieController {
     }
 
     @PostMapping("/edit-movie/{id}")
-    public String editMovie(@PathVariable int id, @ModelAttribute("movie") Movie movie, BindingResult bindingResult, Model model, @ModelAttribute("fileImage") MultipartFile imageFile) throws IOException {
+    public String editMovie(@PathVariable int id, @ModelAttribute("movie") Movie movie, BindingResult bindingResult, Model model,
+                            @ModelAttribute("fileImage") MultipartFile imageFile) throws IOException {
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 log.debug("Printing errors" + error);
