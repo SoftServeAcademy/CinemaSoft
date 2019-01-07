@@ -23,7 +23,8 @@ public class ScreeningController {
     private MovieService movieService;
 
     @Autowired
-    public ScreeningController(ScreeningService screeningService, AuditoriumService auditoriumService, MovieService movieService) {
+    public ScreeningController(ScreeningService screeningService, AuditoriumService auditoriumService,
+                               MovieService movieService) {
         this.screeningService = screeningService;
         this.auditoriumService = auditoriumService;
         this.movieService = movieService;
@@ -68,7 +69,7 @@ public class ScreeningController {
 
 
     @PostMapping(value = "/editScreening/{id}")
-    public String postEditScreening(@ModelAttribute("screening") Screening screening, @PathVariable("id") int Id) {
+    public String postEditScreening(@ModelAttribute("screening") Screening screening, @PathVariable("id") int ident) {
         screeningService.editPostScreening(screening);
         return "redirect:/listScreening";
     }

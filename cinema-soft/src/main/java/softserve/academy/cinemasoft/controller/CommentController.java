@@ -49,9 +49,9 @@ public class CommentController {
 
     // DELETE
     @DeleteMapping(value = "/removeComment/{id}")
-    public String removeComment(@PathVariable("id") int Id) {
-        Comment comment = this.commentService.findById(Id);
-        commentService.removeComment(Id);
+    public String removeComment(@PathVariable("id") int ident) {
+        Comment comment = this.commentService.findById(ident);
+        commentService.removeComment(ident);
 
         return "redirect:/movie/" + comment.getMovie().getId();
     }

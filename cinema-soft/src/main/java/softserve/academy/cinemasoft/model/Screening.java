@@ -24,7 +24,7 @@ public class Screening {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer Id;
+    private Integer ident;
 
     @NotNull
     @Size(min = 4, max = 5)
@@ -44,6 +44,6 @@ public class Screening {
 
     @Override
     public String toString() {
-        return this.Id.toString();
+        return this.ident.toString();
     }
 }

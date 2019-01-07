@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import softserve.academy.cinemasoft.dto.UserDTO;
+import softserve.academy.cinemasoft.dto.UserDto;
 import softserve.academy.cinemasoft.model.Role;
 import softserve.academy.cinemasoft.model.User;
 import softserve.academy.cinemasoft.repository.RoleRepository;
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User saveUser(UserDTO userDto) {
+    public User saveUser(UserDto userDto) {
         User user = new User();
         Role role = this.roleRepository.findByName("ROLE_USER");
 

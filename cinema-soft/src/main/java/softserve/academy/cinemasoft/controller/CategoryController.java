@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import softserve.academy.cinemasoft.dto.CategoryDTO;
+import softserve.academy.cinemasoft.dto.CategoryDto;
 import softserve.academy.cinemasoft.model.Category;
 import softserve.academy.cinemasoft.model.Movie;
 import softserve.academy.cinemasoft.repository.CategoryRepository;
@@ -119,13 +119,13 @@ public class CategoryController {
 
     @GetMapping("/all-categories")
     @ResponseBody
-    public List<CategoryDTO> getAllCategories() {
+    public List<CategoryDto> getAllCategories() {
         List<Category> allCategories = categoryRepository.findAll(CategorySpecification.categoryNameContains("ction"));
-        List<CategoryDTO> mappedCategories = new ArrayList<>();
+        List<CategoryDto> mappedCategories = new ArrayList<>();
 
         for (Category category : allCategories) {
-            CategoryDTO categoryDTO = modelMapper.map(category, CategoryDTO.class);
-            mappedCategories.add(categoryDTO);
+            CategoryDto categoryDto = modelMapper.map(category, CategoryDto.class);
+            mappedCategories.add(categoryDto);
         }
         return mappedCategories;
     }

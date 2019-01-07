@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
-public class UserDTO {
+public class UserDto {
 
     @NotEmpty
     private String firstName;

@@ -7,7 +7,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class MovieDTO {
+public class MovieDto {
 
     @NotEmpty(message = "Movie title cannot be empty.")
     public String title;

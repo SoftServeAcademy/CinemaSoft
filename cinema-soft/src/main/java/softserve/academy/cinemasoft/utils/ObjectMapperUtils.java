@@ -49,6 +49,12 @@ public class ObjectMapperUtils {
      * @param <T>        type of entity in <code>entityList</code>
      * @return list of mapped object with <code><D></code> type.
      */
+
+    public static <S, D> D map(final S source, D destination) {
+        modelMapper.map(source, destination);
+        return destination;
+    }
+
     public static <D, T> List<D> mapAll(final Collection<T> entityList, Class<D> outCLass) {
         return entityList.stream()
                 .map(entity -> map(entity, outCLass))
@@ -61,8 +67,5 @@ public class ObjectMapperUtils {
      * @param source      object to map from
      * @param destination object to map to
      */
-    public static <S, D> D map(final S source, D destination) {
-        modelMapper.map(source, destination);
-        return destination;
-    }
+
 }

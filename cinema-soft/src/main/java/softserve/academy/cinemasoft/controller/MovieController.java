@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import softserve.academy.cinemasoft.dto.MovieDirectorDTO;
-import softserve.academy.cinemasoft.dto.MovieRatingDTO;
+import softserve.academy.cinemasoft.dto.MovieDirectorDto;
+import softserve.academy.cinemasoft.dto.MovieRatingDto;
 import softserve.academy.cinemasoft.model.Comment;
 import softserve.academy.cinemasoft.model.Movie;
 import softserve.academy.cinemasoft.service.CategoryService;
@@ -126,18 +126,18 @@ public class MovieController {
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/searchByDirectorName/{name}")
-    public List<MovieDirectorDTO> movies(@PathVariable("name") String name) {
+    public List<MovieDirectorDto> movies(@PathVariable("name") String name) {
         List<Movie> movies = this.movieService.searchMoviesByDirectorName(name);
 
-        return ObjectMapperUtils.mapAll(movies, MovieDirectorDTO.class);
+        return ObjectMapperUtils.mapAll(movies, MovieDirectorDto.class);
     }
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/ratingGreaterOrEqualThan/{value}")
-    public List<MovieRatingDTO> getMoviesWithRatingGreaterOrEqualThan(@PathVariable("value") Double value) {
+    public List<MovieRatingDto> getMoviesWithRatingGreaterOrEqualThan(@PathVariable("value") Double value) {
         List<Movie> movies = this.movieService.getMoviesWithRatingGreaterOrEqualThan(value);
 
-        return ObjectMapperUtils.mapAll(movies, MovieRatingDTO.class);
+        return ObjectMapperUtils.mapAll(movies, MovieRatingDto.class);
     }
 
 }

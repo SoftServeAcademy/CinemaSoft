@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import softserve.academy.cinemasoft.dto.UserDTO;
+import softserve.academy.cinemasoft.dto.UserDto;
 import softserve.academy.cinemasoft.model.User;
 import softserve.academy.cinemasoft.service.UserService;
 
@@ -31,12 +31,12 @@ public class UserController {
 
     @GetMapping("/register")
     public ModelAndView getRegisterForm(Model model) {
-        model.addAttribute("user", new UserDTO());
+        model.addAttribute("user", new UserDto());
         return new ModelAndView("register");
     }
 
     @PostMapping("/register")
-    public String registerUserAccount(@ModelAttribute("user") UserDTO user, BindingResult bindingResult) {
+    public String registerUserAccount(@ModelAttribute("user") UserDto user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 System.out.println(error);
