@@ -1,7 +1,6 @@
 package softserve.academy.cinemasoft.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -49,9 +48,9 @@ public class CommentController {
 
     // DELETE
     @DeleteMapping(value = "/removeComment/{id}")
-    public String removeComment(@PathVariable("id") int ident) {
-        Comment comment = this.commentService.findById(ident);
-        commentService.removeComment(ident);
+    public String removeComment(@PathVariable("id") int id) {
+        Comment comment = commentService.findById(id);
+        commentService.removeComment(id);
 
         return "redirect:/movie/" + comment.getMovie().getId();
     }

@@ -3,7 +3,6 @@ package softserve.academy.cinemasoft.specification;
 import org.springframework.data.jpa.domain.Specification;
 import softserve.academy.cinemasoft.model.Category;
 
-
 public class CategorySpecification {
     public static Specification<Category> categoryNameContains(String name) {
         String toFind = "%" + name + "%";

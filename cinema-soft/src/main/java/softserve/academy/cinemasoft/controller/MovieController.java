@@ -58,7 +58,7 @@ public class MovieController {
 
     @PostMapping("/add-movie")
     public String addMovieFromView(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult,
-                                   @ModelAttribute("fileImage") MultipartFile imageFile, Model model) throws IOException {
+                                   @ModelAttribute("fileImage") MultipartFile imageFile, Model model)  {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("categories", this.categoryService.findAll());
@@ -66,7 +66,12 @@ public class MovieController {
             model.addAttribute("imageFile", file);
             return "add-movie";
         }
-        byte[] cover = imageFile.getBytes();
+        byte[] cover = new byte[0];
+        try {
+            cover = imageFile.getBytes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         movie.setCover(cover);
         movieService.addMovie(movie);
 
@@ -86,7 +91,7 @@ public class MovieController {
 
     @PostMapping("/edit-movie/{id}")
     public String editMovie(@PathVariable int id, @ModelAttribute("movie") Movie movie, BindingResult bindingResult, Model model,
-                            @ModelAttribute("fileImage") MultipartFile imageFile) throws IOException {
+                            @ModelAttribute("fileImage") MultipartFile imageFile) {
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 log.debug("Printing errors" + error);
@@ -96,7 +101,12 @@ public class MovieController {
         if (imageFile.isEmpty()) {
             movie.setCover(movieService.getMovieById(id).getCover());
         } else {
-            byte[] cover = imageFile.getBytes();
+            byte[] cover= new byte[0];
+            try {
+                cover = imageFile.getBytes();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             movie.setCover(cover);
         }
 

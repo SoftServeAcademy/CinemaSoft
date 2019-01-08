@@ -69,7 +69,7 @@ public class ScreeningController {
 
 
     @PostMapping(value = "/editScreening/{id}")
-    public String postEditScreening(@ModelAttribute("screening") Screening screening, @PathVariable("id") int ident) {
+    public String postEditScreening(@ModelAttribute("screening") Screening screening, @PathVariable("id") int id) {
         screeningService.editPostScreening(screening);
         return "redirect:/listScreening";
     }
