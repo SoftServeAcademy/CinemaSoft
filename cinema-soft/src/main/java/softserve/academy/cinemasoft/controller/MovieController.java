@@ -64,13 +64,14 @@ public class MovieController {
             model.addAttribute("categories", this.categoryService.findAll());
             MultipartFile file = null;
             model.addAttribute("imageFile", file);
+
             return "add-movie";
         }
         byte[] cover = new byte[0];
         try {
             cover = imageFile.getBytes();
         } catch (IOException e) {
-            e.printStackTrace();
+            return "The image is not found";
         }
         movie.setCover(cover);
         movieService.addMovie(movie);
@@ -96,6 +97,7 @@ public class MovieController {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 log.debug("Printing errors" + error);
             }
+
             return "redirect:/edit-movie";
         }
         if (imageFile.isEmpty()) {
@@ -105,7 +107,7 @@ public class MovieController {
             try {
                 cover = imageFile.getBytes();
             } catch (IOException e) {
-                e.printStackTrace();
+                return "The image is not found";
             }
             movie.setCover(cover);
         }
@@ -131,11 +133,12 @@ public class MovieController {
         model.addAttribute("screenings", movieService.getMovieById(id).getScreenings());
         String image = Base64.getEncoder().encodeToString(movieService.getMovieById(id).getCover());
         model.addAttribute("image", image);
+
         return modelAndView;
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.GET, value = "/searchByDirectorName/{name}")
+    @GetMapping(value = "/searchByDirectorName/{name}")
     public List<MovieDirectorDto> movies(@PathVariable("name") String name) {
         List<Movie> movies = this.movieService.searchMoviesByDirectorName(name);
 
@@ -143,7 +146,7 @@ public class MovieController {
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.GET, value = "/ratingGreaterOrEqualThan/{value}")
+    @GetMapping (value = "/ratingGreaterOrEqualThan/{value}")
     public List<MovieRatingDto> getMoviesWithRatingGreaterOrEqualThan(@PathVariable("value") Double value) {
         List<Movie> movies = this.movieService.getMoviesWithRatingGreaterOrEqualThan(value);
 

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import softserve.academy.cinemasoft.dto.CategoryDto;
+import softserve.academy.cinemasoft.dto.MovieDirectorDto;
 import softserve.academy.cinemasoft.model.Category;
 import softserve.academy.cinemasoft.model.Movie;
 import softserve.academy.cinemasoft.repository.CategoryRepository;
@@ -27,7 +28,7 @@ import softserve.academy.cinemasoft.repository.CommentRepository;
 import softserve.academy.cinemasoft.service.CategoryService;
 import softserve.academy.cinemasoft.service.MovieService;
 import softserve.academy.cinemasoft.specification.CategorySpecification;
-
+import softserve.academy.cinemasoft.utils.ObjectMapperUtils;
 
 
 @Controller
@@ -52,6 +53,7 @@ public class CategoryController {
     @GetMapping("/add-category")
     public String addCategoryView(Model model) {
         model.addAttribute("category", new Category());
+
         return "add-category";
     }
 
@@ -64,6 +66,7 @@ public class CategoryController {
             }
         }
         categoryService.addCategory(category);
+
         return "redirect:/add-category";
     }
 
@@ -71,6 +74,7 @@ public class CategoryController {
     public ModelAndView getCategories(Model model) {
         ModelAndView modelAndView = new ModelAndView("list-category");
         modelAndView.addObject("categories", categoryService.findAll());
+
         return modelAndView;
     }
 
@@ -78,6 +82,7 @@ public class CategoryController {
     public String deleteCategory(@PathVariable int id) {
 
         categoryService.removeCategory(id);
+
         return "redirect:/categories";
     }
 
@@ -94,6 +99,7 @@ public class CategoryController {
     public String editCategory(@ModelAttribute("category") Category category, @PathVariable("id") int id) {
         String newName = category.getNameOfCategory();
         categoryService.editCategory(id, newName);
+
         return "redirect:/categories";
     }
 
@@ -113,6 +119,7 @@ public class CategoryController {
         }
 
         model.addAttribute("images", movieCovers);
+
         return modelAndView;
     }
 
@@ -124,9 +131,10 @@ public class CategoryController {
         List<CategoryDto> mappedCategories = new ArrayList<>();
 
         for (Category category : allCategories) {
-            CategoryDto categoryDto = modelMapper.map(category, CategoryDto.class);
+            CategoryDto categoryDto = ObjectMapperUtils.map(category, CategoryDto.class);
             mappedCategories.add(categoryDto);
         }
+
         return mappedCategories;
     }
 }

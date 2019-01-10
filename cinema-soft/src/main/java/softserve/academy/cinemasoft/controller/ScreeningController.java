@@ -36,6 +36,7 @@ public class ScreeningController {
         model.addAttribute("screening", new Screening());
         model.addAttribute("auditoriums", this.auditoriumService.findAll());
         model.addAttribute("movie", this.movieService.getAllMovie());
+
         return "add-screening";
     }
 
@@ -45,8 +46,10 @@ public class ScreeningController {
         String string = screening.getStartTime();
         if (screeningService.isValid(string)) {
             screeningService.createScreening(screening);
+
             return "redirect:/listScreening";
         }
+
         return "redirect:/addScreening";
     }
 
@@ -54,6 +57,7 @@ public class ScreeningController {
     @DeleteMapping(value = "/removeScreening/{id}")
     public String deleteScreening(@PathVariable("id") int id) {
         screeningService.deleteScreening(id);
+
         return "redirect:/listScreening";
     }
 
@@ -64,6 +68,7 @@ public class ScreeningController {
         model.addAttribute("screening", screening);
         model.addAttribute("movies", this.movieService.findAll());
         model.addAttribute("auditoriums", this.auditoriumService.findAll());
+
         return "edit-screening";
     }
 
@@ -71,6 +76,7 @@ public class ScreeningController {
     @PostMapping(value = "/editScreening/{id}")
     public String postEditScreening(@ModelAttribute("screening") Screening screening, @PathVariable("id") int id) {
         screeningService.editPostScreening(screening);
+
         return "redirect:/listScreening";
     }
 
@@ -79,6 +85,7 @@ public class ScreeningController {
     public ModelAndView listScreening(Model model) {
         ModelAndView modelAndView = new ModelAndView("list-screening");
         modelAndView.addObject("screenings", screeningService.findAllScreenings());
+
         return modelAndView;
     }
 }

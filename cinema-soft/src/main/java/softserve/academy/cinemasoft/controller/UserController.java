@@ -32,6 +32,7 @@ public class UserController {
     @GetMapping("/register")
     public ModelAndView getRegisterForm(Model model) {
         model.addAttribute("user", new UserDto());
+
         return new ModelAndView("register");
     }
 
@@ -50,6 +51,7 @@ public class UserController {
         }
 
         userService.saveUser(user);
+
         return "redirect:/login";
     }
 }

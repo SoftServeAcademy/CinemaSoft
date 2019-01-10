@@ -21,7 +21,6 @@ public class MovieDto {
 
     private String trailer;
 
-    @NotEmpty(message = "Movie description cannot be empty.")
     @Size(min = 5, max = 100, message = "Movie description must be between 5 and 100 symbols long.")
     private String description;
 

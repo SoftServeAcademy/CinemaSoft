@@ -33,5 +33,4 @@ public class Category {
         this.nameOfCategory = nameOfCategory;
     }
 
-
 }

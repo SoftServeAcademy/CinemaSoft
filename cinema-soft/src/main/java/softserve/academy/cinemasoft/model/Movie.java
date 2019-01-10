@@ -20,7 +20,6 @@ import java.util.List;
 
 import lombok.Data;
 
-
 @Data
 @Entity
 @Table(name = "movie")
@@ -50,7 +49,7 @@ public class Movie {
     private Category category;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "movie", fetch = FetchType.LAZY)
-    private List<Comment> comment;
+    private List<Comment> commentList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "movie")
     private List<Screening> screenings;
@@ -59,6 +58,7 @@ public class Movie {
     private byte[] cover;
 
     @NotNull
+
     @Size(min = 2, max = 40)
     @Column(nullable = false)
     private String trailer;
@@ -67,8 +67,7 @@ public class Movie {
     @Size(min = 2, max = 40)
     @Column(nullable = false)
     private String description;
-
-
+    
     @Column(nullable = false)
     @NotNull
     @Min(30)
@@ -91,14 +90,15 @@ public class Movie {
         this.rating = rating;
         this.cast = cast;
         this.cover = cover;
-        this.comment = new ArrayList<>();
+        this.commentList = new ArrayList<>();
     }
 
     public Movie() {
     }
 
-    public void addComment(Comment comment) {
-        this.comment.add(comment);
+    public void addComment(Comment comment)
+    {
+        this.commentList.add(comment);
     }
 
     @Override
