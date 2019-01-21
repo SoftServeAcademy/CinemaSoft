@@ -67,7 +67,7 @@ public class Movie {
     @Size(min = 2, max = 40)
     @Column(nullable = false)
     private String description;
-    
+
     @Column(nullable = false)
     @NotNull
     @Min(30)
