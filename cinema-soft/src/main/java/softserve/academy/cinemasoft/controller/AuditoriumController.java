@@ -27,6 +27,7 @@ public class AuditoriumController {
     @GetMapping("/addAuditorium")
     public String addAuditoriumView(Model model) {
         model.addAttribute("auditorium", new Auditorium());
+
         return "add-auditorium";
     }
 
@@ -40,6 +41,7 @@ public class AuditoriumController {
             }
         }
         auditoriumService.addAuditorium(auditorium);
+
         return "redirect:/addAuditorium";
     }
 
@@ -48,6 +50,7 @@ public class AuditoriumController {
     public ModelAndView getAuditoriums(Model model) {
         ModelAndView modelAndView = new ModelAndView("list-auditorium");
         modelAndView.addObject("auditoriums", auditoriumService.findAll());
+
         return modelAndView;
     }
 
@@ -55,6 +58,7 @@ public class AuditoriumController {
     @RequestMapping(value = "/deleteAuditorium", method = RequestMethod.POST, params = {"delete"})
     public String deleteAuditoriumView(@ModelAttribute("auditorium") Auditorium auditorium) {
         auditoriumService.removeAuditorium(auditorium);
+
         return "redirect:/auditoriums";
     }
 }

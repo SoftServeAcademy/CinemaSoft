@@ -1,5 +1,10 @@
 package softserve.academy.cinemasoft.controller;
 
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -7,21 +12,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.*;
-import softserve.academy.cinemasoft.dto.CategoryDTO;
-import softserve.academy.cinemasoft.specification.CategorySpecification;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import softserve.academy.cinemasoft.dto.CategoryDto;
+import softserve.academy.cinemasoft.dto.MovieDirectorDto;
 import softserve.academy.cinemasoft.model.Category;
 import softserve.academy.cinemasoft.model.Movie;
 import softserve.academy.cinemasoft.repository.CategoryRepository;
 import softserve.academy.cinemasoft.repository.CommentRepository;
 import softserve.academy.cinemasoft.service.CategoryService;
-import org.springframework.web.servlet.ModelAndView;
 import softserve.academy.cinemasoft.service.MovieService;
+import softserve.academy.cinemasoft.specification.CategorySpecification;
+import softserve.academy.cinemasoft.utils.ObjectMapperUtils;
 
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
 
 @Controller
 public class CategoryController {
@@ -45,6 +53,7 @@ public class CategoryController {
     @GetMapping("/add-category")
     public String addCategoryView(Model model) {
         model.addAttribute("category", new Category());
+
         return "add-category";
     }
 
@@ -57,6 +66,7 @@ public class CategoryController {
             }
         }
         categoryService.addCategory(category);
+
         return "redirect:/add-category";
     }
 
@@ -64,6 +74,7 @@ public class CategoryController {
     public ModelAndView getCategories(Model model) {
         ModelAndView modelAndView = new ModelAndView("list-category");
         modelAndView.addObject("categories", categoryService.findAll());
+
         return modelAndView;
     }
 
@@ -71,6 +82,7 @@ public class CategoryController {
     public String deleteCategory(@PathVariable int id) {
 
         categoryService.removeCategory(id);
+
         return "redirect:/categories";
     }
 
@@ -81,6 +93,14 @@ public class CategoryController {
         model.addAttribute("category", category);
 
         return "edit-category";
+    }
+
+    @PostMapping("editCategory/{id}")
+    public String editCategory(@ModelAttribute("category") Category category, @PathVariable("id") int id) {
+        String newName = category.getNameOfCategory();
+        categoryService.editCategory(id, newName);
+
+        return "redirect:/categories";
     }
 
     @GetMapping("/")
@@ -99,26 +119,22 @@ public class CategoryController {
         }
 
         model.addAttribute("images", movieCovers);
+
         return modelAndView;
     }
 
-    @PostMapping("editCategory/{id}")
-    public String editCategory(@ModelAttribute("category") Category category, @PathVariable("id") int id) {
-        String newName = category.getNameOfCategory();
-        categoryService.editCategory(id, newName);
-        return "redirect:/categories";
-    }
 
     @GetMapping("/all-categories")
     @ResponseBody
-    public List<CategoryDTO> getAllCategories() {
+    public List<CategoryDto> getAllCategories() {
         List<Category> allCategories = categoryRepository.findAll(CategorySpecification.categoryNameContains("ction"));
-        List<CategoryDTO> mappedCategories = new ArrayList<>();
+        List<CategoryDto> mappedCategories = new ArrayList<>();
 
         for (Category category : allCategories) {
-            CategoryDTO categoryDTO = modelMapper.map(category, CategoryDTO.class);
-            mappedCategories.add(categoryDTO);
+            CategoryDto categoryDto = ObjectMapperUtils.map(category, CategoryDto.class);
+            mappedCategories.add(categoryDto);
         }
+
         return mappedCategories;
     }
 }

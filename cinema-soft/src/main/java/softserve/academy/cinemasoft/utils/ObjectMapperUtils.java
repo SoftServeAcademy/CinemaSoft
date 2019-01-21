@@ -40,6 +40,18 @@ public class ObjectMapperUtils {
         return modelMapper.map(entity, outClass);
     }
 
+
+    /**
+     * Maps {@code source} to {@code destination}.
+     *
+     * @param source      object to map from
+     * @param destination object to map to
+     */
+    public static <S, D> D map(final S source, D destination) {
+        modelMapper.map(source, destination);
+        return destination;
+    }
+
     /**
      * <p>Note: outClass object must have default constructor with no arguments</p>
      *
@@ -55,14 +67,4 @@ public class ObjectMapperUtils {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Maps {@code source} to {@code destination}.
-     *
-     * @param source      object to map from
-     * @param destination object to map to
-     */
-    public static <S, D> D map(final S source, D destination) {
-        modelMapper.map(source, destination);
-        return destination;
-    }
 }
