@@ -49,9 +49,9 @@ public class CategoryServiceImplTest {
     @Test
     public void testRemoveCategory() {
         Category category = new Category();
-        categoryService.removeCategory(anyInt());
+        categoryService.removeCategory(1);
 
-        verify(categoryRepository, only()).deleteById(anyInt());
+        verify(categoryRepository, only()).deleteById(1);
     }
 
     @Test
