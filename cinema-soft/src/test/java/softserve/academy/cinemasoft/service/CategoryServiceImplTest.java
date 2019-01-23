@@ -52,6 +52,7 @@ public class CategoryServiceImplTest {
         categoryService.removeCategory(anyInt());
 
         verify(categoryRepository, only()).deleteById(anyInt());
+
     }
 
     @Test
