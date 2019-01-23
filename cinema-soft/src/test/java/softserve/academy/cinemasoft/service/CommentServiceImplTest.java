@@ -14,8 +14,12 @@ import softserve.academy.cinemasoft.repository.MovieRepository;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.only;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 
@@ -56,30 +60,41 @@ public class CommentServiceImplTest {
     @Test
     public void testFindById() {
         Comment comment = new Comment();
-        when(commentRepository.findById(anyInt())).thenReturn(comment);
+        when(commentRepository.findById(5)).thenReturn(comment);
 
-        commentService.findById(5);
+        Comment result = commentService.findById(5);
 
         verify(commentRepository, only()).findById(5);
+        assertEquals(comment, result);
     }
 
     @Test
     public void testFindAll() {
-        commentService.findAll();
+        Comment firstComment = new Comment();
+        Comment secondComment = new Comment();
+        Comment thirdComment = new Comment();
+        List<Comment> listOfComments = List.of(firstComment, secondComment, thirdComment);
+
+        when(commentRepository.findAll()).thenReturn(listOfComments);
+
+        List<Comment> resultList = commentService.findAll();
+
         verify(commentRepository, only()).findAll();
+        assertEquals(resultList, listOfComments);
     }
 
     @Test
     public void testFindByMovie() {
-        List<Comment> comment;
-        Comment comment1 = new Comment();
-        comment = List.of(comment1);
+        List<Comment> listOfComments;
+        Comment comment = new Comment();
+        listOfComments = List.of(comment);
 
         Movie movie = new Movie();
-        when(commentRepository.findByMovie(movie)).thenReturn(comment);
+        when(commentRepository.findByMovie(movie)).thenReturn(listOfComments);
 
-        commentService.findByMovie(movie);
+        List<Comment> resultList = commentService.findByMovie(movie);
 
         verify(commentRepository, only()).findByMovie(movie);
+        assertEquals(resultList, listOfComments);
     }
 }
