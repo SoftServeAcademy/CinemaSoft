@@ -1,7 +1,7 @@
 package softserve.academy.cinemasoft.dto;
 
 
-public class CategoryDTO {
+public class CategoryDto {
 
     private String nameOfcategory;
 

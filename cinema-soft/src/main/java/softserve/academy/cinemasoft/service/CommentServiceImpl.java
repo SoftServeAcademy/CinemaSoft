@@ -51,7 +51,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment findById(int id){
+    public Comment findById(int id) {
         return commentRepository.findById(id);
     }
 
