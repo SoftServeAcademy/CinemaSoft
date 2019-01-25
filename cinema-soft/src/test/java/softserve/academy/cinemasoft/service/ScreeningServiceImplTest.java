@@ -11,11 +11,13 @@ import softserve.academy.cinemasoft.utils.Validator;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.only;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-
 public class ScreeningServiceImplTest {
 
     @Mock
@@ -59,19 +61,19 @@ public class ScreeningServiceImplTest {
 
     @Test
     public void testDeleteScreening() {
-        screeningService.deleteScreening(anyInt());
+        screeningService.deleteScreening(1);
 
-        verify(screeningRepository, only()).deleteById(anyInt());
+        verify(screeningRepository, only()).deleteById(1);
     }
+
 
     @Test
     public void testFindById() {
         Screening screening = new Screening();
         when(screeningRepository.findById(anyInt())).thenReturn(screening);
 
-        screeningService.findById(5);
+        screeningService.findById(1);
 
-        verify(screeningRepository, only()).findById(5);
+        verify(screeningRepository, only()).findById(1);
     }
-
 }
