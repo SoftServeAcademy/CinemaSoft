@@ -22,7 +22,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-
 public class CommentServiceImplTest {
 
     @Mock
@@ -45,7 +44,7 @@ public class CommentServiceImplTest {
         when(movieRepository.getOne(anyInt())).thenReturn(Mockito.mock(Movie.class));
         when(commentRepository.save(any(Comment.class))).thenReturn(comment);
 
-        Comment result = commentService.addComment(comment,1, user);
+        Comment result = commentService.addComment(comment, 1, user);
 
         verify(commentRepository, only()).save(any(Comment.class));
         assertEquals(comment, result);
