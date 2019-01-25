@@ -11,9 +11,5 @@ import softserve.academy.cinemasoft.model.Movie;
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
 	List<Comment> findByMovie(Movie movie);
-
 	Comment findById(int id);
-
-
-	
 }
