@@ -9,6 +9,8 @@ import softserve.academy.cinemasoft.model.Screening;
 import softserve.academy.cinemasoft.repository.ScreeningRepository;
 import softserve.academy.cinemasoft.utils.Validator;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -31,8 +33,17 @@ public class ScreeningServiceImplTest {
 
     @Test
     public void testFindAllScreenings() {
-        screeningService.findAllScreenings();
+        Screening firstScreening = new Screening();
+        Screening secondScreening = new Screening();
+        Screening thirdScreening = new Screening();
+        List<Screening> listOfScreening = List.of(firstScreening, secondScreening, thirdScreening);
+
+        when(screeningRepository.findAll()).thenReturn(listOfScreening);
+
+        List<Screening> resultList = screeningService.findAllScreenings();
+
         verify(screeningRepository, only()).findAll();
+        assertEquals(resultList, listOfScreening);
     }
 
     @Test
