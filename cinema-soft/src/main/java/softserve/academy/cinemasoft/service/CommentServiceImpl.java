@@ -42,10 +42,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void removeComment(int id) {
-        Comment commentToDelete = commentRepository.getOne(id);
-        if (commentToDelete != null) {
-            this.commentRepository.delete(commentToDelete);
-        }
+        commentRepository.deleteById(id);
     }
 
     @Override
