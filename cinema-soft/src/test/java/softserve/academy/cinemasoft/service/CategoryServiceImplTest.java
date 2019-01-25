@@ -9,7 +9,10 @@ import softserve.academy.cinemasoft.model.Category;
 import softserve.academy.cinemasoft.repository.CategoryRepository;
 import softserve.academy.cinemasoft.repository.MovieRepository;
 
+import java.util.List;
 import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.only;
 import static org.mockito.Mockito.times;
@@ -17,9 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-
 public class CategoryServiceImplTest {
-
 
     @Mock
     private CategoryRepository categoryRepository;
@@ -42,12 +43,11 @@ public class CategoryServiceImplTest {
         Category result = categoryService.addCategory(category);
 
         verify(categoryRepository, only()).save(category);
-        //assertEquals(category, result);
+        assertEquals(category, result);
     }
 
     @Test
     public void testRemoveCategory() {
-        Category category = new Category();
         categoryService.removeCategory(1);
 
         verify(categoryRepository, only()).deleteById(1);
@@ -70,16 +70,24 @@ public class CategoryServiceImplTest {
         Category category = new Category();
         when(categoryRepository.findById(anyInt())).thenReturn(Optional.of(category));
 
-        categoryService.findCategoryById(5);
+        Category result = categoryService.findCategoryById(5);
 
         verify(categoryRepository, only()).findById(5);
+        assertEquals(category, result);
     }
 
     @Test
     public void testFindAll() {
-        categoryService.findAll();
+        Category firstCategory = new Category();
+        Category secondCategory = new Category();
+        Category thirdCategory = new Category();
+        List<Category> listOfCategories = List.of(firstCategory, secondCategory, thirdCategory);
+
+        when(categoryRepository.findAll()).thenReturn(listOfCategories);
+
+        List<Category> resultList = categoryService.findAll();
+
         verify(categoryRepository, only()).findAll();
+        assertEquals(resultList, listOfCategories);
     }
-
-
 }
