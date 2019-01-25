@@ -1,5 +1,6 @@
 # Compiled class file
 *.class
+/.idea/
 
 # Log file
 *.log
@@ -30,6 +31,7 @@ hs_err_pid*
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+test/
 
 # Generated files
 .idea/**/contentModel.xml

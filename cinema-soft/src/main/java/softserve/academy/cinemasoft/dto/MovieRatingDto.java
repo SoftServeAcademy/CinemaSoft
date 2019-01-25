@@ -3,8 +3,9 @@ package softserve.academy.cinemasoft.dto;
 import lombok.Data;
 
 @Data
-public class MovieDirectorDTO {
+public class MovieRatingDto {
+
     private String title;
-    private String director;
+    private Double rating;
 
 }
