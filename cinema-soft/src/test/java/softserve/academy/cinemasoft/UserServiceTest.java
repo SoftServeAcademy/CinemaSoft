@@ -5,14 +5,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.test.context.junit4.SpringRunner;
-import softserve.academy.cinemasoft.dto.UserDTO;
+import softserve.academy.cinemasoft.dto.UserDto;
 import softserve.academy.cinemasoft.model.Role;
 import softserve.academy.cinemasoft.model.User;
 import softserve.academy.cinemasoft.repository.RoleRepository;
@@ -21,7 +17,6 @@ import softserve.academy.cinemasoft.service.UserServiceImpl;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -63,7 +58,7 @@ public class UserServiceTest {
 
     @Test
     public void testPasswordEncryption() {
-        UserDTO userDTO = new UserDTO();
+        UserDto userDTO = new UserDto();
         userDTO.setEmail("email");
         userDTO.setFirstName("name");
         userDTO.setLastName("name");
