@@ -1,5 +1,7 @@
 package softserve.academy.cinemasoft.model;
 
+import lombok.Data;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +19,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-
-import lombok.Data;
 
 @Data
 @Entity
@@ -96,8 +96,7 @@ public class Movie {
     public Movie() {
     }
 
-    public void addComment(Comment comment)
-    {
+    public void addComment(Comment comment) {
         this.commentList.add(comment);
     }
 

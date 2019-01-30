@@ -1,10 +1,5 @@
 package softserve.academy.cinemasoft.controller;
 
-import javax.validation.Valid;
-import java.io.IOException;
-import java.util.Base64;
-import java.util.List;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +22,11 @@ import softserve.academy.cinemasoft.service.CategoryService;
 import softserve.academy.cinemasoft.service.CommentService;
 import softserve.academy.cinemasoft.service.MovieService;
 import softserve.academy.cinemasoft.utils.ObjectMapperUtils;
+
+import javax.validation.Valid;
+import java.io.IOException;
+import java.util.Base64;
+import java.util.List;
 
 
 @Controller
@@ -58,7 +56,7 @@ public class MovieController {
 
     @PostMapping("/add-movie")
     public String addMovieFromView(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult,
-                                   @ModelAttribute("fileImage") MultipartFile imageFile, Model model)  {
+                                   @ModelAttribute("fileImage") MultipartFile imageFile, Model model) {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("categories", this.categoryService.findAll());
@@ -103,7 +101,7 @@ public class MovieController {
         if (imageFile.isEmpty()) {
             movie.setCover(movieService.getMovieById(id).getCover());
         } else {
-            byte[] cover= new byte[0];
+            byte[] cover = new byte[0];
             try {
                 cover = imageFile.getBytes();
             } catch (IOException e) {
@@ -146,7 +144,7 @@ public class MovieController {
     }
 
     @ResponseBody
-    @GetMapping (value = "/ratingGreaterOrEqualThan/{value}")
+    @GetMapping(value = "/ratingGreaterOrEqualThan/{value}")
     public List<MovieRatingDto> getMoviesWithRatingGreaterOrEqualThan(@PathVariable("value") Double value) {
         List<Movie> movies = this.movieService.getMoviesWithRatingGreaterOrEqualThan(value);
 
