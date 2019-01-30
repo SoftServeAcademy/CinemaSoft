@@ -9,18 +9,15 @@ import softserve.academy.cinemasoft.model.Category;
 import softserve.academy.cinemasoft.repository.CategoryRepository;
 import softserve.academy.cinemasoft.repository.MovieRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.anyInt;
-import static org.mockito.Mockito.only;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
+
 public class CategoryServiceImplTest {
+
 
     @Mock
     private CategoryRepository categoryRepository;
@@ -78,16 +75,7 @@ public class CategoryServiceImplTest {
 
     @Test
     public void testFindAll() {
-        Category firstCategory = new Category();
-        Category secondCategory = new Category();
-        Category thirdCategory = new Category();
-        List<Category> listOfCategories = List.of(firstCategory, secondCategory, thirdCategory);
-
-        when(categoryRepository.findAll()).thenReturn(listOfCategories);
-
-        List<Category> resultList = categoryService.findAll();
-
+        categoryService.findAll();
         verify(categoryRepository, only()).findAll();
-        assertEquals(resultList, listOfCategories);
     }
 }
