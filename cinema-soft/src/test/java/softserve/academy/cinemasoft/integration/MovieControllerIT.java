@@ -60,7 +60,6 @@ public class MovieControllerIT {
         categoryRepository.save(category);
         Movie movie = new Movie();
 
-
         movie.setTitle("Test Title");
         movie.setCategory(category);
         movie.setCast("Test Cast");
