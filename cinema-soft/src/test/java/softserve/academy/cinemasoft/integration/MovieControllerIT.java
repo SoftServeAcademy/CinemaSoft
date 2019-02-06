@@ -10,8 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
+
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
+
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.springframework.test.context.junit4.SpringRunner;
@@ -25,11 +28,11 @@ import softserve.academy.cinemasoft.repository.MovieRepository;
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class MovieControllerIT {
 
-
     @LocalServerPort
     private int port;
 
     private URL directorsUrl;
+    private URL ratingUrl;
 
     @Autowired
     private TestRestTemplate template;
@@ -42,19 +45,38 @@ public class MovieControllerIT {
 
     @Before
     public void setUp() throws Exception {
-
-        this.directorsUrl = new URL("http://localhost:" + port + "/" + "searchByDirectorName/" + "Dir");
         fillDatabase();
     }
 
     @Test
-    public void getDirectors() {
+    public void getDirectors() throws MalformedURLException {
+        this.directorsUrl = new URL("http://localhost:" + port + "/" + "searchByDirectorName/" + "Dir");
         ResponseEntity<String> response = template.getForEntity(directorsUrl.toString(), String.class);
         assertThat(response.getBody().contains("[{\"title\":\"Test Title\",\"director\":\"Test Director\"}]"), equalTo(true));
     }
 
-    private void fillDatabase() {
+    @Test
+    public void getNoDirectors() throws MalformedURLException {
+        this.directorsUrl = new URL("http://localhost:" + port + "/" + "searchByDirectorName/" + "Dir");
+        ResponseEntity<String> response = template.getForEntity(directorsUrl.toString(), String.class);
+        assertThat(response.getBody().contains("[]"), equalTo(false));
+    }
 
+    @Test
+    public void getMoviesRating() throws MalformedURLException {
+        this.ratingUrl = new URL("http://localhost:" + port + "/" + "ratingGreaterOrEqualThan/" + "3");
+        ResponseEntity<String> response = template.getForEntity(ratingUrl.toString(), String.class);
+        assertThat(response.getBody().contains("[{\"title\":\"Test Title\",\"rating\":3.1}]"), equalTo(true));
+    }
+
+    @Test
+    public void getLessMoviesRating() throws MalformedURLException {
+        this.ratingUrl = new URL("http://localhost:" + port + "/" + "ratingGreaterOrEqualThan/" + "3");
+        ResponseEntity<String> response = template.getForEntity(ratingUrl.toString(), String.class);
+        assertThat(response.getBody().contains("[]"), equalTo(false));
+    }
+
+    private void fillDatabase() {
         Category category = new Category();
         category.setNameOfCategory("categoryName");
         categoryRepository.save(category);
@@ -65,9 +87,9 @@ public class MovieControllerIT {
         movie.setCast("Test Cast");
         movie.setDescription("Test Description");
         movie.setDuration(30);
-        movie.setRating(5);
         movie.setTrailer("Test Trailer");
         movie.setDirector("Test Director");
+        movie.setRating(3.1);
         movieRepository.save(movie);
     }
 }
