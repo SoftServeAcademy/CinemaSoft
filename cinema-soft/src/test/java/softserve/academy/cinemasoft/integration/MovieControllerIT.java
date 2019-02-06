@@ -1,5 +1,6 @@
 package softserve.academy.cinemasoft.integration;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +18,7 @@ import static org.junit.Assert.assertThat;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import softserve.academy.cinemasoft.model.Category;
 import softserve.academy.cinemasoft.model.Movie;
@@ -25,6 +27,7 @@ import softserve.academy.cinemasoft.repository.MovieRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class MovieControllerIT {
 
