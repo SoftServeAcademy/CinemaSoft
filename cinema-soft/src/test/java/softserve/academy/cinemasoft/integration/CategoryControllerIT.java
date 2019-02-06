@@ -49,8 +49,11 @@ public class CategoryControllerIT {
 
     private void fillDatabase() {
         Category firstCategory = new Category("firstCategoryction");
+        firstCategory.setId(1);
         Category secondCategory = new Category("secondCategoryction");
+        secondCategory.setId(2);
         Category thirdCategory = new Category("thirdCategoryction");
+        thirdCategory.setId(3);
 
         categoryRepository.save(firstCategory);
         categoryRepository.save(secondCategory);
