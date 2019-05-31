@@ -4,7 +4,7 @@ import softserve.academy.cinemasoft.model.Screening;
 
 import java.util.List;
 
-public interface ScreeningService  {
+public interface ScreeningService {
 
     List<Screening> findAllScreenings();
 

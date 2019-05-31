@@ -6,13 +6,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
-public class Validator  {
+public class Validator {
 
-    public boolean isValid(String time){
+    private final String TIME_12_HOURS_PATTERN = "([0|1]?[0-9]|2[0-3]):[0-5][0-9]";
+
+    public boolean isValid(String time) {
         Pattern pattern;
         Matcher matcher;
-        String time12HOURS_PATTERN = "([0|1]?[0-9]|2[0-3]):[0-5][0-9]";
-        pattern = Pattern.compile(time12HOURS_PATTERN);
+        pattern = Pattern.compile(TIME_12_HOURS_PATTERN);
         matcher = pattern.matcher(time);
         return matcher.matches();
     }

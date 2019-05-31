@@ -35,10 +35,7 @@ public class ScreeningServiceImpl implements ScreeningService {
 
     @Override
     public void deleteScreening(int id) {
-        Screening s = screeningRepository.getOne(id);
-        if (s != null) {
-            this.screeningRepository.delete(s);
-        }
+       screeningRepository.deleteById(id);
     }
 
     @Override

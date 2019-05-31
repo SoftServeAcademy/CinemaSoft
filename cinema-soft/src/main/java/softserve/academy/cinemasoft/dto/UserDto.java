@@ -1,12 +1,12 @@
 package softserve.academy.cinemasoft.dto;
 
-import lombok.Data;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+import lombok.Data;
+
 @Data
-public class UserDTO {
+public class UserDto {
 
     @NotEmpty
     private String firstName;
@@ -23,7 +23,5 @@ public class UserDTO {
     @Email
     @NotEmpty
     private String email;
-
-
 
 }

@@ -19,9 +19,9 @@ public interface MovieService {
 
     List<Movie> findAll(Sort sort);
 
-    Movie getMovieById(int id);
-
     List<Movie> findAll();
+
+    Movie getMovieById(int id);
 
     void editPostMovie(Movie movie);
 

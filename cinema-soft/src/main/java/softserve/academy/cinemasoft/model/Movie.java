@@ -1,15 +1,24 @@
-
 package softserve.academy.cinemasoft.model;
 
-import lombok.Data;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.Data;
 
 @Data
 @Entity
@@ -40,7 +49,7 @@ public class Movie {
     private Category category;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "movie", fetch = FetchType.LAZY)
-    private List<Comment> comment;
+    private List<Comment> commentList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "movie")
     private List<Screening> screenings;
@@ -49,6 +58,7 @@ public class Movie {
     private byte[] cover;
 
     @NotNull
+
     @Size(min = 2, max = 40)
     @Column(nullable = false)
     private String trailer;
@@ -57,7 +67,6 @@ public class Movie {
     @Size(min = 2, max = 40)
     @Column(nullable = false)
     private String description;
-
 
     @Column(nullable = false)
     @NotNull
@@ -71,7 +80,7 @@ public class Movie {
     private double rating;
 
     public Movie(Integer id, String title, String director, String trailer, String description, int duration,
-                  double rating, String cast, byte[] cover) {
+                 double rating, String cast, byte[] cover) {
         this.id = id;
         this.title = title;
         this.director = director;
@@ -81,17 +90,19 @@ public class Movie {
         this.rating = rating;
         this.cast = cast;
         this.cover = cover;
-        this.comment = new ArrayList<>();
+        this.commentList = new ArrayList<>();
     }
 
     public Movie() {
     }
 
-    public void addComment(Comment comment) {
-        this.comment.add(comment);
+    public void addComment(Comment comment)
+    {
+        this.commentList.add(comment);
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.title;
     }
 
